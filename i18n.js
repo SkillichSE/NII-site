@@ -241,15 +241,27 @@ var D={
   "kk": "3-кезең"
  }
 };
-var L=localStorage.getItem('lang')||'ru';
-function apply(l){
+var LANGS=['ru','en','kk'];
+function detectLang(){
+var saved=null;
+try{saved=localStorage.getItem('lang')}catch(e){}
+if(saved&&LANGS.indexOf(saved)>-1)return saved;
+var list=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'ru'];
+for(var i=0;i<list.length;i++){
+var c=String(list[i]).toLowerCase().slice(0,2);
+if(LANGS.indexOf(c)>-1)return c;
+}
+return 'ru';
+}
+var L=detectLang();
+function apply(l,save){
 L=l;
-try{localStorage.setItem('lang',l)}catch(e){}
+if(save){try{localStorage.setItem('lang',l)}catch(e){}}
 document.documentElement.lang=l==='kk'?'kk':l;
 document.querySelectorAll('[data-i18n]').forEach(function(n){var d=D[n.dataset.i18n];if(d&&d[l])n.innerHTML=d[l]});
 document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l)});
 document.dispatchEvent(new Event('langchange'));
 }
-document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.lang)})});
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.lang,true)})});
 apply(L);
 })();
