@@ -1,7 +1,7 @@
 :root{--bg:#000;--fg:#fff;--mute:#8d8d8d;--line:rgba(255,255,255,.14);--y:#ffd111;--r:#ff0a4d;--o:#ff4f1f;box-sizing:border-box}
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-behavior:smooth;background:#000}
-body{margin:0;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;animation:pg .8s ease both}
+html{scroll-behavior:smooth;background:#000;overflow-x:hidden}
+body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--fg);font-family:'Manrope',system-ui,sans-serif;font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased;animation:pg .8s ease both}
 @keyframes pg{from{opacity:0}to{opacity:1}}
 h1,h2,h3,.cap,nav a,.btn{font-family:'Unbounded',sans-serif;text-transform:uppercase;font-weight:500}
 h1,h2,h3{margin:0;letter-spacing:.08em;line-height:1.08}
@@ -107,7 +107,7 @@ h2{font-size:clamp(1.7rem,4.2vw,3.5rem);margin:18px 0 0}
 .team p{margin:14px 24px 0;color:#999;font-size:.9rem}
 .cta{position:relative;text-align:center;padding:170px 6vw;overflow:hidden;background:radial-gradient(ellipse at 50% 120%,#3a120a 0,#000 60%)}
 .cta h2{font-size:clamp(2rem,7vw,6rem);margin:20px 0 0}
-footer{padding:70px 6vw 40px;border-top:1px solid var(--line)}
+footer{padding:70px 6vw 40px;border-top:1px solid var(--line);overflow:hidden}
 footer .row{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap}
 footer img{height:44px}
 footer nav{gap:26px}

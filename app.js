@@ -18,7 +18,7 @@ c.appendChild(f);
 function fit(){
 var b=document.querySelector('footer .big');
 if(!b)return;
-var w=b.parentNode.clientWidth;
+var cs=getComputedStyle(b.parentNode);var w=b.parentNode.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
 b.style.fontSize='100px';
 var k=w/b.getBoundingClientRect().width;
 b.style.fontSize=Math.min(100*k,170)+'px';
