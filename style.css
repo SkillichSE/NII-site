@@ -206,3 +206,13 @@ header.solid img{height:32px}
 .stage.photo{aspect-ratio:auto;width:min(960px,100%);margin-top:20px}
 .stage.photo img{position:static;height:auto;opacity:1;max-height:62svh;object-fit:contain}
 .na-box{display:flex;align-items:center;justify-content:center;width:min(1200px,100%);aspect-ratio:16/9;max-height:60svh;margin:40px auto 0;border:1px solid var(--line);font-family:'Unbounded',sans-serif;font-size:1.4rem;letter-spacing:.3em;color:var(--mute)}
+
+/* mobile fixes */
+@media (max-width:640px){
+.bot-title h1{white-space:normal;font-size:clamp(1.25rem,6.2vw,1.6rem);line-height:1.2;padding:0 2vw}
+.lang button{padding:9px 7px}
+.stage.photo{margin-top:8px}
+.na-box{font-size:1.1rem;margin-top:24px}
+}
+@media (max-width:360px){nav{gap:10px}header{gap:8px}.lang button{padding:9px 5px}}
+@media (max-width:400px){.hint{font-size:.5rem;letter-spacing:.18em;gap:10px;white-space:nowrap}.hint i{width:22px}}
