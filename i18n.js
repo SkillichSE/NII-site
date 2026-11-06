@@ -1,5 +1,10 @@
 (function(){
 var D={
+ "na": {
+  "ru": "N/A",
+  "en": "N/A",
+  "kk": "N/A"
+ },
  "robot_name": {
   "ru": "«Не включать»",
   "en": "“Do not turn on”",
