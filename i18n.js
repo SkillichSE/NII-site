@@ -20,10 +20,55 @@ var D={
   "en": "“Do not <em>turn on</em>” prototype",
   "kk": "«Қосуға <em>болмайды</em>» прототипі"
  },
+ "team_menu": {
+  "ru": "Команда",
+  "en": "Team",
+  "kk": "Команда"
+ },
+ "team_crew": {
+  "ru": "Экипаж",
+  "en": "Crew",
+  "kk": "Экипаж"
+ },
+ "team_title": {
+  "ru": "Команда НИИ",
+  "en": "NII team",
+  "kk": "НИИ командасы"
+ },
+ "team_name": {
+  "ru": "Имя Фамилия",
+  "en": "First Last name",
+  "kk": "Аты-жөні"
+ },
+ "team_role": {
+  "ru": "Роль",
+  "en": "Role",
+  "kk": "Рөлі"
+ },
+ "footer_big": {
+  "ru": "Не включать",
+  "en": "Do not turn on",
+  "kk": "Қосуға болмайды"
+ },
+ "status_dev": {
+  "ru": "В разработке",
+  "en": "In development",
+  "kk": "Әзірленуде"
+ },
+ "platform_value_2": {
+  "ru": "ESP32",
+  "en": "ESP32",
+  "kk": "ESP32"
+ },
+ "purpose_value_2": {
+  "ru": "Выиграть STEM-олимпиаду",
+  "en": "Win the STEM Olympiad",
+  "kk": "STEM олимпиадасында жеңіске жету"
+ },
  "hero_subtitle": {
-  "ru": "Отвечаю щас полетит - команда STEM-олимпиады",
-  "en": "Otvechayu shchas poletit - a STEM Olympiad team",
-  "kk": "Отвечаю щас полетит - STEM олимпиадасының командасы"
+  "ru": "НИИ Отвечаю щас полетит - команда STEM-олимпиады",
+  "en": "NII Otvechayu shchas poletit - a STEM Olympiad team",
+  "kk": "НИИ Отвечаю щас полетит - STEM олимпиадасының командасы"
  },
  "view_the_robot": {
   "ru": "Смотреть робота",
@@ -241,15 +286,27 @@ var D={
   "kk": "3-кезең"
  }
 };
-var L=localStorage.getItem('lang')||'ru';
-function apply(l){
+var LANGS=['ru','en','kk'];
+function detectLang(){
+var saved=null;
+try{saved=localStorage.getItem('lang')}catch(e){}
+if(saved&&LANGS.indexOf(saved)>-1)return saved;
+var list=(navigator.languages&&navigator.languages.length)?navigator.languages:[navigator.language||'ru'];
+for(var i=0;i<list.length;i++){
+var c=String(list[i]).toLowerCase().slice(0,2);
+if(LANGS.indexOf(c)>-1)return c;
+}
+return 'ru';
+}
+var L=detectLang();
+function apply(l,save){
 L=l;
-try{localStorage.setItem('lang',l)}catch(e){}
+if(save){try{localStorage.setItem('lang',l)}catch(e){}}
 document.documentElement.lang=l==='kk'?'kk':l;
 document.querySelectorAll('[data-i18n]').forEach(function(n){var d=D[n.dataset.i18n];if(d&&d[l])n.innerHTML=d[l]});
 document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l)});
 document.dispatchEvent(new Event('langchange'));
 }
-document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.lang)})});
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.lang,true)})});
 apply(L);
 })();
