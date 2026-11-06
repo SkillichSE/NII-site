@@ -36,7 +36,7 @@ for(var i=0;i<N;i++){var im=new Image();im.src='img/'+dir+'/bot_'+i+'.webp';im.a
 var ang=0,vel=0,auto=true,speed=1,drag=false,sx=0,sa=0,cur=-1,last=0,lx=0,lt=0,timer=null;
 function render(){
 ang=(ang%360+360)%360;
-var k=Math.round(ang/(360/N))%N;
+var k=(N-Math.round(ang/(360/N))%N)%N;
 if(k!==cur){
 for(var j=0;j<N;j++)if(j!==k)imgs[j].classList.remove('on');
 imgs[k].classList.add('on');cur=k;
