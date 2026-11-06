@@ -5,6 +5,16 @@ var D={
   "en": "“Do not turn on”",
   "kk": "«Қосуға болмайды»"
  },
+ "robot_name_proto": {
+  "ru": "«Не включать» прототип",
+  "en": "“Do not turn on” prototype",
+  "kk": "«Қосуға болмайды» прототипі"
+ },
+ "robot_title_proto": {
+  "ru": "«Не <em>включать</em>» прототип",
+  "en": "“Do not <em>turn on</em>” prototype",
+  "kk": "«Қосуға <em>болмайды</em>» прототипі"
+ },
  "hero_subtitle": {
   "ru": "Отвечаю щас полетит - команда STEM-олимпиады",
   "en": "Otvechayu shchas poletit - a STEM Olympiad team",
