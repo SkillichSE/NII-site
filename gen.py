@@ -14,23 +14,22 @@ ROBOTS=[
  'title':('Не <em>включать</em>','Do not <em>turn on</em>','Қосуға <em>болмайды</em>'),
  'status':('Прототип','Prototype','Прототип'),
  'specs':[
-  (('Название','Name','Атауы'),('Не включать · «Do not turn on»','Do not turn on','Қосуға болмайды')),
+  (('Название','Name','Атауы'),('Не включать','Do not turn on','Қосуға болмайды')),
   (('Статус','Status','Мәртебесі'),('Прототип','Prototype','Прототип')),
-  (('Шасси','Chassis','Шасси'),('Четыре колеса','Four wheels','Төрт дөңгелек')),
-  (('Передняя часть','Front','Алдыңғы бөлігі'),('Два клина спереди','Two wedges at the front','Алдында екі сына')),
+  (('Оружие','Weapon','Қару'),('Переворачивающий клин','Flipping wedge','Аударғыш сына')),
   (('Платформа','Platform','Платформа'),('LEGO Education','LEGO Education','LEGO Education')),
-  (('Назначение','Purpose','Міндеті'),('STEM-олимпиада','STEM Olympiad','STEM олимпиадасы')),
+  (('Назначение','Purpose','Міндеті'),('Тест задумки','Concept test','Идеяны сынау')),
  ]},
 ]
 
-NAV=[('index.html',('Главная','Home','Басты бет')),('robots.html',('Роботы','Robots','Роботтар')),('olympiad.html',('Олимпиада','Olympiad','Олимпиада')),('team.html',('Команда','Team','Команда'))]
+NAV=[('index.html',('Главная','Home','Басты бет')),('robots.html',('Роботы','Robots','Роботтар')),('olympiad.html',('Олимпиада','Olympiad','Олимпиада'))]
 TPL='''<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>@T@ — НИИ</title>
-<meta name="description" content="НИИ — Отвечаю щас полетит. Команда STEM-олимпиады.">
+<title>@T@ - НИИ</title>
+<meta name="description" content="НИИ - Отвечаю щас полетит. Команда STEM-олимпиады.">
 <link rel="icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,11 +37,10 @@ TPL='''<!DOCTYPE html>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><a href="index.html"><img src="img/logo.png" alt="НИИ"></a><div class="hdr-right"><nav>@N@</nav><div class="lang"><button data-lang="en">EN</button><button data-lang="ru">RU</button><button data-lang="kk">KAZ</button></div></div></header>
+<header><a href="index.html"><img src="img/logo-full.png" alt="НИИ"></a><div class="hdr-right"><nav>@N@</nav><div class="lang"><button data-lang="en">EN</button><button data-lang="ru">RU</button><button data-lang="kk">KAZ</button></div></div></header>
 @B@
 <footer>
 <div class="row"><img src="img/logo.png" alt="НИИ"><nav>@FN@</nav></div>
-<div class="big">@FB@</div>
 <small>@FS@</small>
 </footer>
 <script src="i18n.js"></script>
@@ -73,15 +71,12 @@ R0=ROBOTS[0]
 page('index.html','Главная','''
 <div class="hero">
 <video autoplay muted loop playsinline preload="auto" poster="img/poster.jpg"><source src="video/drive.mp4" type="video/mp4"></video>
-<div class="cap">@H1@</div>
-<h1 style="margin-top:16px">Отвечаю щас полетит</h1>
+<h1 style="margin-top:16px">@HN@</h1>
 <p>@HP@</p>
 <div><a class="btn solid" href="robots.html">@B1@</a><a class="btn" href="olympiad.html">@B2@</a></div>
 <div class="strip">
 <div><span class="cap">@S1@</span><b>@SV1@</b></div>
 <div><span class="cap">@S2@</span><b>@SV2@</b></div>
-<div><span class="cap">@S3@</span><b>@SV3@</b></div>
-<div><span class="cap">@S4@</span><b>@SV4@</b></div>
 </div>
 </div>
 <section class="sec"><div class="wrap cols">
@@ -91,29 +86,25 @@ page('index.html','Главная','''
 <div class="showcase">
 <div class="wrap">
 <div class="top"><div><div class="cap rv">@R1@</div><h2 class="rv">@RN@</h2></div><div><a class="btn rv" style="margin:0" href="robot-@SLUG@.html">@R2@</a><a class="btn rv" style="margin:0 0 0 16px" href="robots.html">@R3@</a></div></div>
-<img class="big rv" src="@THUMB@" alt="">
-<div class="chips rv"><div><span class="cap">@C1@</span><b>@CV1@</b></div><div><span class="cap">@C2@</span><b>@CV2@</b></div><div><span class="cap">@C3@</span><b>@CV3@</b></div></div>
+<div class="spin rv"><div class="stage" id="stage" data-dir="@DIR@" data-n="@N@"><div class="ring"></div><div class="ring two"></div><div class="pad"></div><div class="stage-inner" id="inner"></div></div><div class="hint" id="hint"><i></i>@HINT@<i></i></div></div>
+<div class="chips rv"><div><span class="cap">@C2@</span><b>@CV2@</b></div><div><span class="cap">@C3@</span><b>@CV3@</b></div></div>
 </div>
 </div>
-<section class="cta"><div class="cap rv">@T1@</div><h2 class="rv">@T2@</h2><a class="btn solid rv" href="team.html">@T3@</a></section>
-'''.replace('@H1@',S('STEM-олимпиада · Команда НИИ','STEM Olympiad · Team NII','STEM олимпиадасы · НИИ командасы'))
-.replace('@HP@',S('Команда STEM-олимпиады. Наш робот — «Не включать».','A STEM Olympiad team. Our robot is “Do not turn on”.','STEM олимпиадасының командасы. Біздің робот — «Қосуға болмайды».'))
+'''
+.replace('@HN@',S(*R0['name']))
+.replace('@HP@',S('Отвечаю щас полетит - команда STEM-олимпиады','Otvechayu shchas poletit - a STEM Olympiad team','Отвечаю щас полетит - STEM олимпиадасының командасы'))
 .replace('@B1@',S('Смотреть робота','View the robot','Роботты көру')).replace('@B2@',S('Олимпиада','Olympiad','Олимпиада'))
-.replace('@S1@',S('Борт','Robot','Робот')).replace('@SV1@',S(*R0['name']))
+.replace('@S1@',S('Робот','Robot','Робот')).replace('@SV1@',S(*R0['name']))
 .replace('@S2@',S('Статус','Status','Мәртебесі')).replace('@SV2@',S(*R0['status']))
-.replace('@S3@',S('Шасси','Chassis','Шасси')).replace('@SV3@',S('4 колеса','4 wheels','4 дөңгелек'))
-.replace('@S4@',S('Миссия','Mission','Міндеті')).replace('@SV4@',S('STEM-олимпиада','STEM Olympiad','STEM олимпиадасы'))
-.replace('@M1@',S('01 / Миссия','01 / Mission','01 / Міндет')).replace('@M2@',S('Инженерия<br>без лишних слов','Engineering<br>without the fluff','Артық сөзсіз<br>инженерия'))
-.replace('@M3@',S('НИИ — команда, которая участвует в STEM-олимпиаде. Наш текущий робот — прототип «Не включать». Готовый робот появится позже.','NII is a team competing in the STEM Olympiad. Our current robot is the prototype “Do not turn on”. The final robot will come later.','НИИ — STEM олимпиадасына қатысатын команда. Қазіргі робот — «Қосуға болмайды» прототипі. Дайын робот кейінірек пайда болады.'))
-.replace('@R1@',S('02 / Роботы','02 / Robots','02 / Роботтар')).replace('@RN@',S(*R0['name']))
+.replace('@M1@',S('Миссия','Mission','Міндет')).replace('@M2@',S('Инженерия<br>без лишних слов','Engineering<br>without the fluff','Артық сөзсіз<br>инженерия'))
+.replace('@M3@',S('НИИ Отвечаю щас полетит - команда STEM-олимпиады. Наш текущий робот - прототип названный «Не включать». Готовый робот появится позже.','NII Otvechayu shchas poletit is a STEM Olympiad team. Our current robot is the prototype named “Do not turn on”. The final robot will come later.','НИИ Отвечаю щас полетит - STEM олимпиадасының командасы. Біздің қазіргі робот - «Қосуға болмайды» деп аталатын прототип. Дайын робот кейінірек пайда болады.'))
+.replace('@R1@',S('Роботы','Robots','Роботтар')).replace('@RN@',S(*R0['name']))
 .replace('@R2@',S('Крутить в 3D','Rotate in 3D','3D айналдыру')).replace('@R3@',S('Все роботы','All robots','Барлық роботтар'))
-.replace('@SLUG@',R0['slug']).replace('@THUMB@',R0['thumb'])
-.replace('@C1@',S('Шасси','Chassis','Шасси')).replace('@CV1@',S('4 колеса','4 wheels','4 дөңгелек'))
-.replace('@C2@',S('Спереди','Front','Алдында')).replace('@CV2@',S('Два клина','Two wedges','Екі сына'))
-.replace('@C3@',S('Платформа','Platform','Платформа')).replace('@CV3@','LEGO Education')
-.replace('@T1@',S('Команда','Team','Команда')).replace('@T2@',S('Не включать.<br>Пока.','Do not turn on.<br>Yet.','Қосуға болмайды.<br>Әзірге.')).replace('@T3@',S('Познакомиться с командой','Meet the team','Командамен танысу')))
+.replace('@DIR@',R0['dir']).replace('@N@',str(R0['n'])).replace('@HINT@',S('ТЯНИ, ЧТОБЫ ВРАЩАТЬ','DRAG TO ROTATE','АЙНАЛДЫРУ ҮШІН СҮЙРЕҢІЗ')).replace('@SLUG@',R0['slug']).replace('@THUMB@',R0['thumb'])
+.replace('@C2@',S('Оружие','Weapon','Қару')).replace('@CV2@',S('Переворачивающий клин','Flipping wedge','Аударғыш сына'))
+.replace('@C3@',S('Платформа','Platform','Платформа')).replace('@CV3@','LEGO Education'))
 
-cards=''.join('<a class="rcard" href="robot-%s.html"><img src="%s" alt=""><div class="tag">%s</div><h3>%s</h3><span class="cap">%s</span></a>'%(r['slug'],r['thumb'],r['tag'],S(*r['name']),S('Открыть','Open','Ашу')) for r in ROBOTS)
+cards=''.join('<a class="rcard" href="robot-%s.html"><img src="%s" alt=""><div class="tag">%s</div><h3>%s</h3></a>'%(r['slug'],r['thumb'],r['tag'],S(*r['name'])) for r in ROBOTS)
 page('robots.html','Роботы','''
 <div class="page">
 <div class="head"><div><div class="cap">@C@</div><h1 style="margin-top:14px">@H@</h1></div></div>
@@ -140,18 +131,12 @@ for r in ROBOTS:
 <div class="cine rv" data-yt="@YT@" style="background-image:url(@POSTER@)"><div class="corner tl">@TAG@</div><div class="corner br">@NAME@</div><button class="play" aria-label="Play"></button></div>
 <a class="ytlink" href="https://www.youtube.com/watch?v=@YT@" target="_blank" rel="noopener">@YTL@ ↗</a>
 </div></section>
-<section><div class="wrap">
-<div class="cap rv">@G1@</div>
-<h2 class="rv">@G2@</h2>
-<div class="gallery rv">@GAL@</div>
-</div></section>
-<section class="cta"><div class="cap rv">@W1@</div><h2 class="rv">@W2@</h2><a class="btn solid rv" href="olympiad.html">@W3@</a></section>
 '''
     rep={'@TAG@':r['tag'],'@TITLE@':S(*r['title']),'@DIR@':r['dir'],'@N@':str(r['n']),'@HINT@':S('ТЯНИ, ЧТОБЫ ВРАЩАТЬ','DRAG TO ROTATE','АЙНАЛДЫРУ ҮШІН СҮЙРЕҢІЗ'),
-     '@SP1@':S('01 / Характеристики','01 / Specs','01 / Сипаттамасы'),'@NAME@':S(*r['name']),'@SPECS@':specs,
-     '@PR1@':S('02 / Презентация','02 / Presentation','02 / Презентация'),'@PR2@':S('Презентация робота','Robot presentation','Робот презентациясы'),
+     '@SP1@':S('Характеристики','Specs','Сипаттамасы'),'@NAME@':S(*r['name']),'@SPECS@':specs,
+     '@PR1@':S('Презентация','Presentation','Презентация'),'@PR2@':S('Презентация робота','Robot presentation','Робот презентациясы'),
      '@YT@':r['yt'],'@POSTER@':r['poster'],'@YTL@':S('Смотреть на YouTube','Watch on YouTube','YouTube-та көру'),
-     '@G1@':S('03 / Ракурсы','03 / Views','03 / Көріністер'),'@G2@':S('Все стороны','All sides','Барлық жағы'),'@GAL@':gal,
+     '@G1@':S('Ракурсы','Views','Көріністер'),'@G2@':S('Все стороны','All sides','Барлық жағы'),'@GAL@':gal,
      '@W1@':S('Предупреждение','Warning','Ескерту'),'@W2@':S('Может полететь','It might fly','Ұшып кетуі мүмкін'),'@W3@':S('К олимпиаде','To the Olympiad','Олимпиадаға')}
     for k,v in rep.items(): body=body.replace(k,v)
     page('robot-%s.html'%r['slug'],S(*r['name']).replace('<span data-i18n','<i data-x').split('>')[1].split('<')[0],body)
@@ -173,15 +158,6 @@ page('olympiad.html','Олимпиада','''
  (1,' class="done"',('Прототип «Не включать» собран','Prototype “Do not turn on” built','«Қосуға болмайды» прототипі жасалды')),
  (2,'',('Готовый робот','Final robot','Дайын робот')),
  (3,'',('Олимпиада','Olympiad','Олимпиада'))])))
-
-NAME=('Имя Фамилия','Full name','Аты-жөні');ROLE=('Роль','Role','Рөлі')
-page('team.html','Команда','''
-<div class="page">
-<div class="head"><div><div class="cap">@C@</div><h1 style="margin-top:14px">@H@</h1></div></div>
-<div class="team">@T@</div>
-</div>
-'''.replace('@C@',S('Экипаж','Crew','Экипаж')).replace('@H@',S('Команда НИИ','Team NII','НИИ командасы'))
-.replace('@T@',''.join('<article><div class="avatar">%02d</div><h3>%s</h3><span class="cap">%s</span></article>'%(i,S(*NAME),S(*ROLE)) for i in range(1,5))))
 
 open('i18n.js','w',encoding='utf-8').write('''(function(){
 var D=%s;
