@@ -38,9 +38,8 @@ function render(){
 ang=(ang%360+360)%360;
 var k=Math.round(ang/(360/N))%N;
 if(k!==cur){
-var o=imgs[cur];
-if(o){o.classList.remove('on');o.classList.add('prev');setTimeout(function(){o.classList.remove('prev')},200)}
-imgs[k].classList.remove('prev');imgs[k].classList.add('on');cur=k;
+for(var j=0;j<N;j++)if(j!==k)imgs[j].classList.remove('on');
+imgs[k].classList.add('on');cur=k;
 }
 }
 function pause(){auto=false;speed=0;clearTimeout(timer);hint.classList.add('off')}
