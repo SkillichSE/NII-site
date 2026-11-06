@@ -196,3 +196,9 @@ header.solid img{height:56px}
 .specs div>span:first-child{color:#ffd111;opacity:1}
 .specs div>span:first-child span{font-size:inherit;letter-spacing:inherit;color:inherit;text-transform:inherit;font-family:inherit}
 .specs div>span{opacity:1}
+/* v4 */
+header img{height:40px;width:auto;margin:0}
+header.solid img{height:32px}
+@media (max-width:640px){header img{height:28px;margin:0}header.solid img{height:26px}}
+.hero{padding-bottom:clamp(36px,8svh,80px)}
+@media (max-width:640px){.chips{grid-template-columns:1fr}.chips div{padding:16px 20px}}

@@ -10,11 +10,11 @@ def S(ru,en,kk):
 
 ROBOTS=[
 {'slug':'prototype','dir':'prototype','n':8,'yt':'xU22DL8z9OY','tag':'PROTOTYPE','thumb':'img/prototype/bot_2.webp','poster':'img/poster.jpg',
- 'name':('Не включать','Do not turn on','Қосуға болмайды'),
- 'title':('Не <em>включать</em>','Do not <em>turn on</em>','Қосуға <em>болмайды</em>'),
+ 'name':('«Не включать»','“Do not turn on”','«Қосуға болмайды»'),
+ 'title':('«Не <em>включать</em>»','“Do not <em>turn on</em>”','«Қосуға <em>болмайды</em>»'),
  'status':('Прототип','Prototype','Прототип'),
  'specs':[
-  (('Название','Name','Атауы'),('Не включать','Do not turn on','Қосуға болмайды')),
+  (('Название','Name','Атауы'),('«Не включать»','“Do not turn on”','«Қосуға болмайды»')),
   (('Статус','Status','Мәртебесі'),('Прототип','Prototype','Прототип')),
   (('Оружие','Weapon','Қару'),('Переворачивающий клин','Flipping wedge','Аударғыш сына')),
   (('Платформа','Platform','Платформа'),('LEGO Education','LEGO Education','LEGO Education')),
@@ -37,7 +37,7 @@ TPL='''<!DOCTYPE html>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><a href="index.html"><img src="img/logo-full.png" alt="НИИ"></a><div class="hdr-right"><nav>@N@</nav><div class="lang"><button data-lang="en">EN</button><button data-lang="ru">RU</button><button data-lang="kk">KAZ</button></div></div></header>
+<header><a href="index.html"><img src="img/logo-wide.png" alt="НИИ"></a><div class="hdr-right"><nav>@N@</nav><div class="lang"><button data-lang="en">EN</button><button data-lang="ru">RU</button><button data-lang="kk">KAZ</button></div></div></header>
 @B@
 <footer>
 <div class="row"><img src="img/logo.png" alt="НИИ"><nav>@FN@</nav></div>
@@ -74,10 +74,6 @@ page('index.html','Главная','''
 <h1 style="margin-top:16px">@HN@</h1>
 <p>@HP@</p>
 <div><a class="btn solid" href="robots.html">@B1@</a><a class="btn" href="olympiad.html">@B2@</a></div>
-<div class="strip">
-<div><span class="cap">@S1@</span><b>@SV1@</b></div>
-<div><span class="cap">@S2@</span><b>@SV2@</b></div>
-</div>
 </div>
 <section class="sec"><div class="wrap cols">
 <div><div class="cap rv">@M1@</div><h2 class="rv">@M2@</h2></div>
@@ -85,7 +81,7 @@ page('index.html','Главная','''
 </div></section>
 <div class="showcase">
 <div class="wrap">
-<div class="top"><div><div class="cap rv">@R1@</div><h2 class="rv">@RN@</h2></div><div><a class="btn rv" style="margin:0" href="robot-@SLUG@.html">@R2@</a><a class="btn rv" style="margin:0 0 0 16px" href="robots.html">@R3@</a></div></div>
+<div class="top"><div><div class="cap rv">@R1@</div><h2 class="rv">@RN@</h2></div><div><a class="btn rv" style="margin:0" href="robots.html">@R3@</a></div></div>
 <div class="spin rv"><div class="stage" id="stage" data-dir="@DIR@" data-n="@N@"><div class="ring"></div><div class="ring two"></div><div class="pad"></div><div class="stage-inner" id="inner"></div></div><div class="hint" id="hint"><i></i>@HINT@<i></i></div></div>
 <div class="chips rv"><div><span class="cap">@C2@</span><b>@CV2@</b></div><div><span class="cap">@C3@</span><b>@CV3@</b></div></div>
 </div>
@@ -94,8 +90,6 @@ page('index.html','Главная','''
 .replace('@HN@',S(*R0['name']))
 .replace('@HP@',S('Отвечаю щас полетит - команда STEM-олимпиады','Otvechayu shchas poletit - a STEM Olympiad team','Отвечаю щас полетит - STEM олимпиадасының командасы'))
 .replace('@B1@',S('Смотреть робота','View the robot','Роботты көру')).replace('@B2@',S('Олимпиада','Olympiad','Олимпиада'))
-.replace('@S1@',S('Робот','Robot','Робот')).replace('@SV1@',S(*R0['name']))
-.replace('@S2@',S('Статус','Status','Мәртебесі')).replace('@SV2@',S(*R0['status']))
 .replace('@M1@',S('Миссия','Mission','Міндет')).replace('@M2@',S('Инженерия<br>без лишних слов','Engineering<br>without the fluff','Артық сөзсіз<br>инженерия'))
 .replace('@M3@',S('НИИ Отвечаю щас полетит - команда STEM-олимпиады. Наш текущий робот - прототип названный «Не включать». Готовый робот появится позже.','NII Otvechayu shchas poletit is a STEM Olympiad team. Our current robot is the prototype named “Do not turn on”. The final robot will come later.','НИИ Отвечаю щас полетит - STEM олимпиадасының командасы. Біздің қазіргі робот - «Қосуға болмайды» деп аталатын прототип. Дайын робот кейінірек пайда болады.'))
 .replace('@R1@',S('Роботы','Robots','Роботтар')).replace('@RN@',S(*R0['name']))
