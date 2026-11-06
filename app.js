@@ -15,6 +15,19 @@ f.referrerPolicy='strict-origin-when-cross-origin';
 c.appendChild(f);
 });
 });
+function fit(){
+var b=document.querySelector('footer .big');
+if(!b)return;
+var w=b.parentNode.clientWidth;
+b.style.fontSize='100px';
+var k=w/b.getBoundingClientRect().width;
+b.style.fontSize=Math.min(100*k,170)+'px';
+}
+fit();
+window.addEventListener('resize',fit);
+window.addEventListener('load',fit);
+document.addEventListener('langchange',fit);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 var st=document.getElementById('stage');
 if(!st)return;
 var N=+st.dataset.n,dir=st.dataset.dir,inner=document.getElementById('inner'),hint=document.getElementById('hint'),hero=st.parentNode;

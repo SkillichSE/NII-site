@@ -7,6 +7,7 @@ try{localStorage.setItem('lang',l)}catch(e){}
 document.documentElement.lang=l==='kk'?'kk':l;
 document.querySelectorAll('[data-i18n]').forEach(function(n){var d=D[n.dataset.i18n];if(d&&d[l])n.innerHTML=d[l]});
 document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l)});
+document.dispatchEvent(new Event('langchange'));
 }
 document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){apply(b.dataset.lang)})});
 apply(L);
