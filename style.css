@@ -204,5 +204,5 @@ header.solid img{height:32px}
 @media (max-width:640px){.chips{grid-template-columns:1fr}.chips div{padding:16px 20px}}
 
 .stage.photo{aspect-ratio:auto;width:min(960px,100%);margin-top:20px}
-.stage.photo img{position:static;height:auto;opacity:1;border:1px solid var(--line)}
+.stage.photo img{position:static;height:auto;opacity:1;max-height:62svh;object-fit:contain}
 .na-box{display:flex;align-items:center;justify-content:center;width:min(1200px,100%);aspect-ratio:16/9;max-height:60svh;margin:40px auto 0;border:1px solid var(--line);font-family:'Unbounded',sans-serif;font-size:1.4rem;letter-spacing:.3em;color:var(--mute)}
