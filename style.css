@@ -97,13 +97,7 @@ h2{font-size:clamp(1.7rem,4.2vw,3.5rem);margin:18px 0 0}
 .timeline div.done::before{background:var(--y)}
 .timeline h3{font-size:1.05rem;margin:8px 0}
 .timeline p{margin:0;color:#999;max-width:560px}
-.team{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:56px}
-.team article{background:#000;padding:0 0 32px;transition:background .3s}
-.team article:hover{background:#0c0c0c}
-.avatar{aspect-ratio:1;background:radial-gradient(circle at 30% 20%,#1a1a1a,#000);display:flex;align-items:center;justify-content:center;font-family:'Unbounded',sans-serif;font-size:3.4rem;color:#1d1d1d;border-bottom:1px solid var(--line)}
-.team h3{font-size:.95rem;margin:26px 24px 8px}
-.team .cap{margin:0 24px}
-.team p{margin:14px 24px 0;color:#999;font-size:.9rem}
+
 .cta{position:relative;text-align:center;padding:170px 6vw;overflow:hidden;background:radial-gradient(ellipse at 50% 120%,#3a120a 0,#000 60%)}
 .cta h2{font-size:clamp(2rem,7vw,6rem);margin:20px 0 0}
 footer{padding:70px 6vw 40px;border-top:1px solid var(--line);overflow:hidden}
@@ -114,23 +108,19 @@ footer .big{font-family:'Unbounded',sans-serif;font-size:6rem;letter-spacing:.06
 footer small{color:var(--mute);font-size:.8rem}
 .rv{opacity:0;transform:translateY(28px);transition:opacity .9s,transform .9s}
 .rv.in{opacity:1;transform:none}
-@media (max-width:900px){.cols,.cards{grid-template-columns:1fr}.sticky{position:static}.chips,.strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border:0}.gallery{grid-template-columns:1fr 1fr}.specs div{grid-template-columns:1fr;gap:4px}.team{grid-template-columns:1fr 1fr}.cine{aspect-ratio:16/10}.hero .ghost{display:none}section{padding:90px 0}}
-@media (max-width:640px){nav{gap:14px}nav a{font-size:.52rem;letter-spacing:.1em}header img{height:24px}.team{grid-template-columns:1fr}.strip{margin-top:44px}.cine .tr,.cine .br{display:none}.btn{padding:16px 26px;margin-right:10px}}
+@media (max-width:900px){.cols,.cards{grid-template-columns:1fr}.sticky{position:static}.chips,.strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border:0}.gallery{grid-template-columns:1fr 1fr}.specs div{grid-template-columns:1fr;gap:4px}.cine{aspect-ratio:16/10}.hero .ghost{display:none}section{padding:90px 0}}
+@media (max-width:640px){nav{gap:14px}nav a{font-size:.52rem;letter-spacing:.1em}header img{height:24px}.strip{margin-top:44px}.cine .tr,.cine .br{display:none}.btn{padding:16px 26px;margin-right:10px}}
 
 .page{min-height:100vh;min-height:100svh;padding:100px 6vw 40px;display:flex;flex-direction:column;justify-content:center;border-bottom:1px solid var(--line)}
 .page .head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:clamp(20px,4svh,44px)}
 .page h1{font-size:clamp(1.8rem,min(5.4vw,8svh),4.6rem)}
-.page .team{margin-top:0}
-.page .avatar{aspect-ratio:16/10;font-size:2.4rem}
-.page .team h3{margin:20px 22px 6px}
-.page .team .cap{margin:0 22px}
-.page .team p{margin:10px 22px 0}
+
 .page .cols{align-items:start;gap:5vw}
 .page .specs div{padding:16px 0}
 .page .timeline div{padding:0 0 clamp(18px,4svh,40px) 36px}
 .page .timeline{margin-top:0}
 .sec{padding:110px 0 90px}
-@media (max-width:900px){.page{padding:84px 5vw 28px}.page .head{margin-bottom:16px}.page .team{grid-template-columns:1fr 1fr}.page .avatar{aspect-ratio:16/8;font-size:1.6rem}.page .team h3{margin:12px 14px 4px;font-size:.78rem}.page .team .cap{margin:0 14px;font-size:.55rem;letter-spacing:.2em}.page .team p{display:none}.page .team article{padding-bottom:16px}.page .specs div{padding:10px 0}.page .timeline div{padding-bottom:14px}.page .timeline p{font-size:.85rem}.page .cols{gap:22px}.hero{min-height:560px}}
+@media (max-width:900px){.page{padding:84px 5vw 28px}.page .head{margin-bottom:16px}.page .specs div{padding:10px 0}.page .timeline div{padding-bottom:14px}.page .timeline p{font-size:.85rem}.page .cols{gap:22px}.hero{min-height:560px}}
 
 @media (max-height:760px){.page .timeline p{display:none}.page .specs div{padding:10px 0}.page .timeline div{padding-bottom:16px}.hero p{display:none}}
 @media (max-width:640px){
@@ -158,7 +148,7 @@ footer small{color:var(--mute);font-size:.8rem}
 .dd:hover .menu,.dd:focus-within .menu{opacity:1;visibility:visible;transform:none}
 .menu a{display:flex;align-items:center;gap:16px;padding:10px 14px;border:0;letter-spacing:.18em}
 .menu a:hover{background:#111}
-.menu img{width:84px;height:62px;object-fit:contain;background:#080808}
+.menu img{width:84px;height:62px;flex:none;object-fit:contain;background:#080808}
 .menu small{display:block;color:var(--mute);font-size:.55rem;letter-spacing:.24em;margin-top:4px}
 .lang{display:flex;gap:2px}
 .lang button{background:none;border:1px solid transparent;color:var(--mute);font-family:'Unbounded',sans-serif;font-size:.58rem;letter-spacing:.14em;padding:6px 9px;cursor:pointer;transition:.2s}
