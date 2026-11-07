@@ -48,6 +48,24 @@ var D={
   "kk": "STEM олимпиадасында жеңіске жету",
   "uk": "Виграти STEM-олімпіаду"
  },
+ "spent_label": {
+  "ru": "Потрачено",
+  "en": "Spent",
+  "kk": "Жұмсалды",
+  "uk": "Витрачено"
+ },
+ "spent_value": {
+  "ru": "0 тг",
+  "en": "0 KZT",
+  "kk": "0 тг",
+  "uk": "0 тг"
+ },
+ "spent_value_2": {
+  "ru": "~20 000 тг",
+  "en": "~20,000 KZT",
+  "kk": "~20 000 тг",
+  "uk": "~20 000 тг"
+ },
  "hero_subtitle": {
   "ru": "НИИ Отвечаю щас полетит - команда STEM-олимпиады",
   "en": "NII “I’m Answering, It’s About to Fly” - a STEM Olympiad team",
