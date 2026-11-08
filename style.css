@@ -318,3 +318,8 @@ body{animation:none}
 .marquee div{animation:none}
 header nav,.burger span{transition:none}
 }
+
+/* robot pages: title sits at the same height on every robot page */
+@media (min-height:501px),(orientation:portrait){
+.bot-hero{justify-content:flex-start;padding-top:clamp(96px,17svh,160px)}
+}
