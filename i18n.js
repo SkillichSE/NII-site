@@ -379,16 +379,28 @@ var D={
   "uk": "Написання коду"
  },
  "step_strategy": {
-  "ru": "Выбор стратегии — создание прототипа",
-  "en": "Choosing a strategy — building a prototype",
-  "kk": "Стратегияны таңдау — прототип жасау",
-  "uk": "Вибір стратегії — створення прототипу"
+  "ru": "Выбор стратегии",
+  "en": "Choosing a strategy",
+  "kk": "Стратегияны таңдау",
+  "uk": "Вибір стратегії"
+ },
+ "step_prototype": {
+  "ru": "Создание <a href=\"robot-do-not-turn-on-prototype.html\">прототипа</a>",
+  "en": "Building a <a href=\"robot-do-not-turn-on-prototype.html\">prototype</a>",
+  "kk": "<a href=\"robot-do-not-turn-on-prototype.html\">Прототип</a> жасау",
+  "uk": "Створення <a href=\"robot-do-not-turn-on-prototype.html\">прототипу</a>"
  },
  "step_results": {
   "ru": "Участие в олимпиаде — итоги",
   "en": "Taking part in the olympiad — results",
   "kk": "Олимпиадаға қатысу — қорытынды",
   "uk": "Участь в олімпіаді — підсумки"
+ },
+ "step_final": {
+  "ru": "Готовый <a href=\"robot-do-not-turn-on.html\">робот</a>",
+  "en": "Final <a href=\"robot-do-not-turn-on.html\">robot</a>",
+  "kk": "Дайын <a href=\"robot-do-not-turn-on.html\">робот</a>",
+  "uk": "Готовий <a href=\"robot-do-not-turn-on.html\">робот</a>"
  }
 };
 var LANGS=['ru','en','kk','uk'];
