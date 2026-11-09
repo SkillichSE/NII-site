@@ -103,3 +103,32 @@ requestAnimationFrame(tick);
 }
 render();requestAnimationFrame(tick);
 })();
+(function(){
+var stage=document.querySelector('.stage');
+if(!stage)return;
+var target=document.getElementById('inner')||stage;
+var count=0,timer=null,busy=false,sx=0,sy=0,moved=false;
+var frames=[
+{transform:'translateY(0) scale(1,1) rotate(0deg)',offset:0},
+{transform:'translateY(0) scale(1.08,.88) rotate(0deg)',offset:.12},
+{transform:'translateY(-18%) scale(.94,1.08) rotate(-4deg)',offset:.3},
+{transform:'translateY(0) scale(1.1,.86) rotate(0deg)',offset:.45},
+{transform:'translateY(-10%) scale(.97,1.04) rotate(4deg)',offset:.6},
+{transform:'translateY(0) scale(1.05,.93) rotate(0deg)',offset:.75},
+{transform:'translateY(-4%) scale(1,1) rotate(-2deg)',offset:.88},
+{transform:'translateY(0) scale(1,1) rotate(0deg)',offset:1}
+];
+stage.addEventListener('pointerdown',function(e){sx=e.clientX;sy=e.clientY;moved=false});
+stage.addEventListener('pointermove',function(e){if(Math.abs(e.clientX-sx)>6||Math.abs(e.clientY-sy)>6)moved=true});
+stage.addEventListener('pointerup',function(){
+if(moved||busy)return;
+count++;
+clearTimeout(timer);
+timer=setTimeout(function(){count=0},600);
+if(count>=3){
+count=0;clearTimeout(timer);busy=true;
+var a=target.animate(frames,{duration:1400,easing:'ease-in-out'});
+a.onfinish=a.oncancel=function(){busy=false};
+}
+});
+})();
