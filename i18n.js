@@ -271,10 +271,10 @@ var D={
   "uk": "STEM-олімпіада"
  },
  "olympiad_title": {
-  "ru": "Дорога к старту",
-  "en": "The road to the start",
-  "kk": "Бастауға дейінгі жол",
-  "uk": "Дорога до старту"
+  "ru": "Путь к STEM-олимпиаде",
+  "en": "The road to the STEM Olympiad",
+  "kk": "STEM олимпиадасына апаратын жол",
+  "uk": "Шлях до STEM-олімпіади"
  },
  "date_label": {
   "ru": "Дата",
