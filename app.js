@@ -118,17 +118,21 @@ var frames=[
 {transform:'translateY(-4%) scale(1,1) rotate(-2deg)',offset:.88},
 {transform:'translateY(0) scale(1,1) rotate(0deg)',offset:1}
 ];
-stage.addEventListener('pointerdown',function(e){sx=e.clientX;sy=e.clientY;moved=false});
-stage.addEventListener('pointermove',function(e){if(Math.abs(e.clientX-sx)>6||Math.abs(e.clientY-sy)>6)moved=true});
-stage.addEventListener('pointerup',function(){
-if(moved||busy)return;
+var hero=stage.closest('.bot-hero')||stage.parentNode;
+var inStage=false;
+hero.addEventListener('pointerdown',function(e){inStage=!!e.target.closest('.stage');sx=e.clientX;sy=e.clientY;moved=false});
+hero.addEventListener('pointermove',function(e){if(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)moved=true});
+hero.addEventListener('pointerup',function(){
+if(!inStage||moved||busy)return;
+inStage=false;
 count++;
 clearTimeout(timer);
-timer=setTimeout(function(){count=0},600);
+timer=setTimeout(function(){count=0},700);
 if(count>=3){
 count=0;clearTimeout(timer);busy=true;
 var a=target.animate(frames,{duration:1400,easing:'ease-in-out'});
 a.onfinish=a.oncancel=function(){busy=false};
 }
 });
+
 })();
