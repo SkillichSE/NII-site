@@ -107,32 +107,42 @@ render();requestAnimationFrame(tick);
 var stage=document.querySelector('.stage');
 if(!stage)return;
 var target=document.getElementById('inner')||stage;
-var count=0,timer=null,busy=false,sx=0,sy=0,moved=false;
+var count=0,timer=null,sx=0,sy=0,moved=false,inStage=false,loop=null,back=null;
+target.style.transformOrigin='50% 85%';
 var frames=[
-{transform:'translateY(0) scale(1,1) rotate(0deg)',offset:0},
-{transform:'translateY(0) scale(1.08,.88) rotate(0deg)',offset:.12},
-{transform:'translateY(-18%) scale(.94,1.08) rotate(-4deg)',offset:.3},
-{transform:'translateY(0) scale(1.1,.86) rotate(0deg)',offset:.45},
-{transform:'translateY(-10%) scale(.97,1.04) rotate(4deg)',offset:.6},
-{transform:'translateY(0) scale(1.05,.93) rotate(0deg)',offset:.75},
-{transform:'translateY(-4%) scale(1,1) rotate(-2deg)',offset:.88},
-{transform:'translateY(0) scale(1,1) rotate(0deg)',offset:1}
+{transform:'translateX(0) scale(1,1) skewX(0deg)',offset:0},
+{transform:'translateX(3%) scale(1.12,.99) skewX(-2deg)',offset:.1},
+{transform:'translateX(6%) scale(1.25,.97) skewX(-3deg)',offset:.22},
+{transform:'translateX(9%) scale(1.38,.95) skewX(-4deg)',offset:.36},
+{transform:'translateX(10%) scale(1.42,.94) skewX(-4deg)',offset:.5},
+{transform:'translateX(10%) scale(1.42,.94) skewX(-4deg)',offset:.68},
+{transform:'translateX(8%) scale(1.3,.96) skewX(-3deg)',offset:.78},
+{transform:'translateX(2%) scale(1.05,1.02) skewX(0deg)',offset:.9},
+{transform:'translateX(0) scale(1,1) skewX(0deg)',offset:1}
 ];
+function start(){
+if(back){back.cancel();back=null}
+loop=target.animate(frames,{duration:840,iterations:Infinity,easing:'ease-in-out'});
+}
+function stop(){
+var cs=getComputedStyle(target).transform;
+loop.cancel();loop=null;
+back=target.animate([{transform:cs==='none'?'matrix(1,0,0,1,0,0)':cs},{transform:'matrix(1,0,0,1,0,0)'}],{duration:260,easing:'ease-out'});
+var b=back;
+b.onfinish=b.oncancel=function(){if(back===b)back=null};
+}
 var hero=stage.closest('.bot-hero')||stage.parentNode;
-var inStage=false;
 hero.addEventListener('pointerdown',function(e){inStage=!!e.target.closest('.stage');sx=e.clientX;sy=e.clientY;moved=false});
 hero.addEventListener('pointermove',function(e){if(Math.abs(e.clientX-sx)>10||Math.abs(e.clientY-sy)>10)moved=true});
 hero.addEventListener('pointerup',function(){
-if(!inStage||moved||busy)return;
+if(!inStage||moved)return;
 inStage=false;
 count++;
 clearTimeout(timer);
 timer=setTimeout(function(){count=0},700);
 if(count>=3){
-count=0;clearTimeout(timer);busy=true;
-var a=target.animate(frames,{duration:1400,easing:'ease-in-out'});
-a.onfinish=a.oncancel=function(){busy=false};
+count=0;clearTimeout(timer);
+if(loop)stop();else start();
 }
 });
-
 })();
