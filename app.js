@@ -111,18 +111,20 @@ var count=0,timer=null,sx=0,sy=0,moved=false,inStage=false,loop=null,back=null;
 target.style.transformOrigin='50% 85%';
 var frames=[
 {transform:'translateX(0) scale(1,1) skewX(0deg)',offset:0},
-{transform:'translateX(3%) scale(1.12,.99) skewX(-2deg)',offset:.1},
-{transform:'translateX(6%) scale(1.25,.97) skewX(-3deg)',offset:.22},
-{transform:'translateX(9%) scale(1.38,.95) skewX(-4deg)',offset:.36},
-{transform:'translateX(10%) scale(1.42,.94) skewX(-4deg)',offset:.5},
-{transform:'translateX(10%) scale(1.42,.94) skewX(-4deg)',offset:.68},
-{transform:'translateX(8%) scale(1.3,.96) skewX(-3deg)',offset:.78},
-{transform:'translateX(2%) scale(1.05,1.02) skewX(0deg)',offset:.9},
+{transform:'translateX(0) scale(1,1) skewX(0deg)',offset:.137},
+{transform:'translateX(4%) scale(1.12,.98) skewX(-2deg)',offset:.196},
+{transform:'translateX(7%) scale(1.3,.96) skewX(-3deg)',offset:.255},
+{transform:'translateX(10%) scale(1.42,.94) skewX(-4deg)',offset:.392},
+{transform:'translateX(10%) scale(1.42,.94) skewX(-4deg)',offset:.45},
+{transform:'translateX(9%) scale(1.4,.94) skewX(-4deg)',offset:.59},
+{transform:'translateX(9%) scale(1.38,.95) skewX(-4deg)',offset:.725},
+{transform:'translateX(1%) scale(1.02,1) skewX(0deg)',offset:.784},
+{transform:'translateX(0) scale(1,1) skewX(0deg)',offset:.92},
 {transform:'translateX(0) scale(1,1) skewX(0deg)',offset:1}
 ];
 function start(){
 if(back){back.cancel();back=null}
-loop=target.animate(frames,{duration:840,iterations:Infinity,easing:'ease-in-out'});
+loop=target.animate(frames,{duration:510,iterations:Infinity,easing:'linear'});
 }
 function stop(){
 var cs=getComputedStyle(target).transform;
