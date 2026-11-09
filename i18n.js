@@ -397,10 +397,10 @@ var D={
   "uk": "Участь в олімпіаді — підсумки"
  },
  "step_final": {
-  "ru": "Готовый <a href=\"robot-do-not-turn-on.html\">робот</a>",
-  "en": "Final <a href=\"robot-do-not-turn-on.html\">robot</a>",
-  "kk": "Дайын <a href=\"robot-do-not-turn-on.html\">робот</a>",
-  "uk": "Готовий <a href=\"robot-do-not-turn-on.html\">робот</a>"
+  "ru": "<a href=\"robot-do-not-turn-on.html\">Готовый робот</a>",
+  "en": "<a href=\"robot-do-not-turn-on.html\">Final robot</a>",
+  "kk": "<a href=\"robot-do-not-turn-on.html\">Дайын робот</a>",
+  "uk": "<a href=\"robot-do-not-turn-on.html\">Готовий робот</a>"
  }
 };
 var LANGS=['ru','en','kk','uk'];
