@@ -163,10 +163,10 @@ var D={
   "uk": "Не вмикати"
  },
  "footer_text": {
-  "ru": "© 2026 НИИ · Отвечаю щас полетит · Команда STEM-олимпиады",
-  "en": "© 2026 NII · “I’m Answering, It’s About to Fly” · STEM Olympiad team",
-  "kk": "© 2026 НИИ · «Жауап беремін, қазір ұшады» · STEM олимпиадасының командасы",
-  "uk": "© 2026 НИИ · «Відповідаю, зараз полетить» · Команда STEM-олімпіади"
+  "ru": "© 2026 НИИ · Отвечаю щас полетит · Команда STEM-олимпиады · made by Ski’s Team",
+  "en": "© 2026 NII · “I’m Answering, It’s About to Fly” · STEM Olympiad team · made by Ski’s Team",
+  "kk": "© 2026 НИИ · «Жауап беремін, қазір ұшады» · STEM олимпиадасының командасы · made by Ski’s Team",
+  "uk": "© 2026 НИИ · «Відповідаю, зараз полетить» · Команда STEM-олімпіади · made by Ski’s Team"
  },
  "robots_label": {
   "ru": "Наши роботы",
