@@ -148,3 +148,21 @@ if(loop)stop();else start();
 }
 });
 })();
+(function(){
+var el=document.getElementById('cd');
+if(!el)return;
+var end=new Date(el.dataset.end).getTime();
+var n={};
+['d','h','m','s'].forEach(function(k){n[k]=el.querySelector('[data-u="'+k+'"]')});
+function p(x){return x<10?'0'+x:String(x)}
+function tick(){
+var s=Math.max(0,Math.floor((end-Date.now())/1000));
+n.d.textContent=p(Math.floor(s/86400));
+n.h.textContent=p(Math.floor(s%86400/3600));
+n.m.textContent=p(Math.floor(s%3600/60));
+n.s.textContent=p(s%60);
+if(!s)clearInterval(iv);
+}
+var iv=setInterval(tick,1000);
+tick();
+})();

@@ -334,3 +334,8 @@ header nav,.burger span{transition:none}
 @media (min-height:501px),(orientation:portrait){
 .bot-hero{justify-content:flex-start;padding-top:clamp(96px,17svh,160px)}
 }
+.timeline .cd{display:grid;grid-template-columns:repeat(4,minmax(0,64px));gap:8px;margin-top:14px}
+.timeline .cd-b{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 0 8px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.04)}
+.timeline .cd-b b{font-family:'Unbounded',sans-serif;font-weight:700;font-size:1.15rem;line-height:1;color:var(--fg);font-variant-numeric:tabular-nums}
+.timeline .cd-b i{font-style:normal;font-family:'Manrope',sans-serif;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+@media (max-width:640px){.timeline .cd{grid-template-columns:repeat(4,minmax(0,1fr));max-width:300px}.timeline .cd-b b{font-size:1rem}}
