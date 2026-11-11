@@ -340,13 +340,13 @@ header nav,.burger span{transition:none}
 .timeline .cd-b i{font-style:normal;font-family:'Manrope',sans-serif;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
 @media (max-width:640px){.timeline .cd{grid-template-columns:repeat(4,minmax(0,1fr));max-width:300px}.timeline .cd-b b{font-size:1rem}}
 /* ---- olympiad: latest-news box ---- */
-.olymp{display:grid;grid-template-columns:minmax(0,760px) minmax(0,1fr);gap:5vw;align-items:start}
-.newsbox{justify-self:end;width:min(100%,440px);box-sizing:border-box;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 100%,#3a120a 0,#000 70%);padding:24px 24px 28px;overflow:hidden}
+.olymp{display:grid;grid-template-columns:minmax(0,480px) minmax(0,1fr);gap:4vw;align-items:start}
+.newsbox{justify-self:end;width:min(100%,720px);box-sizing:border-box;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 100%,#3a120a 0,#000 70%);padding:24px 24px 28px;overflow:hidden}
 .newsbox .cap{color:var(--y)}
 .nb-body{margin-top:14px}
-.nb-img{display:block;width:calc(100% + 48px);max-width:none;margin:0 -24px 18px;aspect-ratio:16/10;object-fit:cover;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#111}
+.nb-img{display:block;width:calc(100% + 48px);max-width:none;margin:0 -24px 18px;height:auto;max-height:80svh;object-fit:contain;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#111}
 .nb-title{font-family:'Unbounded',sans-serif;font-weight:500;font-size:1.05rem;line-height:1.35;margin:0 0 10px}
-.nb-text{margin:0;color:#c9c9c9;white-space:pre-line;overflow-wrap:anywhere}
+.nb-text{margin:0;font-size:1.05rem;color:#c9c9c9;white-space:pre-line;overflow-wrap:anywhere}
 .nb-date{display:block;margin-top:16px;font-family:'Unbounded',sans-serif;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
 .nb-empty{margin:0;color:var(--mute)}
 @media (max-width:900px){.olymp{grid-template-columns:minmax(0,1fr);gap:8px}.newsbox{justify-self:stretch;width:100%;margin-top:6px}}
