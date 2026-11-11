@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Админка - НИИ</title>
+<link rel="icon" href="img/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.adm{max-width:720px;margin:0 auto;padding:110px 6vw 60px}
+.adm h1{font-size:clamp(1.5rem,5vw,2.4rem);margin:0 0 28px}
+.adm label{display:block;margin:20px 0 8px}
+.adm input[type=text],.adm input[type=password],.adm textarea{width:100%;box-sizing:border-box;background:#0a0a0a;border:1px solid var(--line);color:var(--fg);font:inherit;font-weight:400;padding:14px 16px;border-radius:0;outline:none;transition:border-color .2s}
+.adm input:focus,.adm textarea:focus{border-color:var(--y)}
+.adm textarea{min-height:160px;resize:vertical}
+.adm .row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:24px}
+.adm button{cursor:pointer;font-family:'Unbounded',sans-serif;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;background:none;border:1px solid var(--fg);color:var(--fg);padding:16px 26px;transition:.2s}
+.adm button.go{background:var(--y);border-color:var(--y);color:#000}
+.adm button:disabled{opacity:.5;cursor:default}
+@media (hover:hover){.adm button:hover{border-color:var(--y);color:var(--y)}.adm button.go:hover{color:#000;filter:brightness(1.1)}}
+.adm .msg{min-height:1.4em;margin-top:14px;font-size:.9rem}
+.adm .msg.err{color:var(--r)}.adm .msg.ok{color:var(--y)}
+.adm .prev{display:none;margin-top:12px;max-width:100%;max-height:260px;border:1px solid var(--line)}
+.adm .list{margin-top:56px;border-top:1px solid var(--line)}
+.adm .it{display:flex;gap:16px;align-items:flex-start;padding:18px 0;border-bottom:1px solid var(--line)}
+.adm .it img{width:84px;height:56px;object-fit:cover;border:1px solid var(--line);flex:none}
+.adm .it .tx{flex:1;min-width:0}
+.adm .it b{font-weight:600;display:block;overflow-wrap:anywhere}
+.adm .it small{color:var(--mute);display:block;overflow-wrap:anywhere}
+.adm .it button{padding:10px 14px;font-size:.52rem;letter-spacing:.16em}
+.adm .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.adm .top a{color:var(--mute);font-size:.8rem}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="adm">
+ <div class="top"><span class="cap">АДМИНКА</span><a href="olympiad.html">← к олимпиаде</a></div>
+ <h1>Новость для страницы «Олимпиада»</h1>
+
+ <form id="login" hidden>
+  <label class="cap" for="pw">ПАРОЛЬ</label>
+  <input id="pw" type="password" autocomplete="current-password" required>
+  <div class="row"><button class="go" type="submit">Войти</button></div>
+  <div class="msg err" id="lmsg"></div>
+</form>
+
+ <div id="panel" hidden>
+  <form id="f">
+   <label class="cap" for="title">ЗАГОЛОВОК (необязательно)</label>
+   <input id="title" type="text" maxlength="140">
+   <label class="cap" for="text">ТЕКСТ</label>
+   <textarea id="text" maxlength="4000"></textarea>
+   <label class="cap" for="img">КАРТИНКА (JPG, PNG, WEBP, GIF)</label>
+   <input id="img" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
+   <img class="prev" id="prev" alt="">
+   <div class="row"><button class="go" id="pub" type="submit">Опубликовать</button><button type="button" id="out">Выйти</button></div>
+   <div class="msg" id="msg"></div>
+  </form>
+  <p class="cap" style="margin-top:56px">ОПУБЛИКОВАННЫЕ <span style="color:var(--mute)">· на сайте показывается самая новая</span></p>
+  <div class="list" id="list"></div>
+ </div>
+</div>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var dataUrl='';
+function api(u,o){o=o||{};o.credentials='same-origin';if(o.body&&typeof o.body!=='string'){o.body=JSON.stringify(o.body);o.headers={'Content-Type':'application/json'}}
+ return fetch(u,o).then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok)throw new Error(d.error||('Ошибка '+r.status));return d})})}
+function show(a){$('login').hidden=a;$('panel').hidden=!a;if(a)load()}
+function say(el,t,c){el.textContent=t;el.className='msg '+(c||'')}
+api('/api/admin?action=me').then(function(d){
+ if(!d.enabled)say($('lmsg'),'Админка отключена: добавьте переменную ADMIN_PASSWORD в настройках Vercel и сделайте Redeploy.','err');
+ show(d.admin);if(!d.admin)$('login').hidden=false;
+}).catch(function(){$('login').hidden=false;say($('lmsg'),'Нет связи с сервером. Проверьте, что сайт задеплоен на Vercel.','err')});
+$('login').addEventListener('submit',function(e){e.preventDefault();say($('lmsg'),'');
+ api('/api/admin?action=login',{method:'POST',body:{password:$('pw').value}}).then(function(){$('pw').value='';show(true)}).catch(function(x){say($('lmsg'),x.message,'err')})});
+$('out').onclick=function(){api('/api/admin?action=logout',{method:'POST'}).then(function(){show(false);$('login').hidden=false})};
+/* картинка: уменьшаем до 1600px и пережимаем, чтобы не грузить огромные фото */
+$('img').addEventListener('change',function(){
+ var f=this.files[0];dataUrl='';$('prev').style.display='none';if(!f)return;
+ if(f.size>3e6){say($('msg'),'Файл больше 3 МБ — уменьшите его','err');this.value='';return}
+ if(f.type==='image/gif'){var r=new FileReader();r.onload=function(){dataUrl=r.result;$('prev').src=dataUrl;$('prev').style.display='block'};r.readAsDataURL(f);return}
+ var u=URL.createObjectURL(f),im=new Image();
+ im.onload=function(){var k=Math.min(1,1600/Math.max(im.width,im.height)),c=document.createElement('canvas');
+  c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+  var png=f.type==='image/png';dataUrl=c.toDataURL(png?'image/png':'image/jpeg',.88);
+  $('prev').src=dataUrl;$('prev').style.display='block';URL.revokeObjectURL(u)};
+ im.onerror=function(){say($('msg'),'Не удалось прочитать картинку','err')};im.src=u});
+$('f').addEventListener('submit',function(e){e.preventDefault();var b=$('pub');b.disabled=true;say($('msg'),'Публикуем…');
+ api('/api/admin?action=add',{method:'POST',body:{title:$('title').value,text:$('text').value,image:dataUrl}}).then(function(){
+  $('f').reset();dataUrl='';$('prev').style.display='none';say($('msg'),'Опубликовано — теперь это последняя новость.','ok');load()
+ }).catch(function(x){say($('msg'),x.message,'err')}).then(function(){b.disabled=false})});
+function load(){api('/api/news').then(function(a){var l=$('list');l.textContent='';
+ if(!a.length){var p=document.createElement('p');p.style.color='var(--mute)';p.textContent='Пока ничего нет';l.appendChild(p);return}
+ a.forEach(function(n,i){var d=document.createElement('div');d.className='it';
+  if(n.image){var im=document.createElement('img');im.src=n.image;im.alt='';d.appendChild(im)}
+  var tx=document.createElement('div');tx.className='tx';
+  var b=document.createElement('b');b.textContent=(i===0?'● ':'')+(n.title||(n.text||'').slice(0,60)||'(только картинка)');
+  var s=document.createElement('small');s.textContent=new Date(n.date).toLocaleString('ru-RU')+(i===0?' · сейчас на сайте':'');
+  tx.appendChild(b);tx.appendChild(s);d.appendChild(tx);
+  var x=document.createElement('button');x.textContent='Удалить';
+  x.onclick=function(){if(!confirm('Удалить эту новость?'))return;api('/api/admin?action=del',{method:'POST',body:{id:n.id}}).then(load).catch(function(e){alert(e.message)})};
+  d.appendChild(x);l.appendChild(d)})})}
+})();
+</script>
+</body>
+</html>

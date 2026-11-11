@@ -420,6 +420,18 @@ var D={
   "kk": "Олимпиадаға қатысу — қорытынды",
   "uk": "Участь в олімпіаді — підсумки"
  },
+ "news_label": {
+  "ru": "Последняя новость",
+  "en": "Latest news",
+  "kk": "Соңғы жаңалық",
+  "uk": "Остання новина"
+ },
+ "news_empty": {
+  "ru": "Новостей пока нет",
+  "en": "No news yet",
+  "kk": "Жаңалықтар әзірге жоқ",
+  "uk": "Новин поки немає"
+ },
  "step_final": {
   "ru": "<a href=\"robot-do-not-turn-on.html\">Готовый робот</a>",
   "en": "<a href=\"robot-do-not-turn-on.html\">Final robot</a>",
