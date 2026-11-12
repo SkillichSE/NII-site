@@ -1,4 +1,4 @@
-/* Админ-API: /api/admin?action=me|login|logout|add|del */
+/* Админ-API: /api/admin?action=me|login|logout|add|edit|del */
 const crypto = require('crypto');
 const { readNews, writeNews, saveImage, removeImage } = require('../lib/store');
 
@@ -70,6 +70,28 @@ module.exports = async (req, res) => {
       all.unshift(item);
       await writeNews(all);
       return res.json(item);
+    }
+
+    if (act === 'edit') {
+      const all = await readNews();
+      const it = all.find((x) => x.id === String(d.id));
+      if (!it) return res.status(404).json({ error: 'Не найдено' });
+      const title = String(d.title || '').trim().slice(0, 140);
+      const text = String(d.text || '').trim().slice(0, 4000);
+      let image = it.image, old = '';
+      if (d.image) {
+        const m = /^data:image\/[\w+.-]+;base64,(.+)$/s.exec(String(d.image));
+        if (!m) return res.status(400).json({ error: 'Некорректная картинка' });
+        const buf = Buffer.from(m[1], 'base64');
+        const t = sniff(buf);
+        if (!t) return res.status(400).json({ error: 'Допустимы JPG, PNG, WEBP, GIF' });
+        old = it.image; image = await saveImage(buf, t[0], t[1]);
+      } else if (d.removeImage) { old = it.image; image = ''; }
+      if (!text && !image) return res.status(400).json({ error: 'Добавьте текст или картинку' });
+      Object.assign(it, { title, text, image });
+      await writeNews(all);
+      await removeImage(old);
+      return res.json(it);
     }
 
     if (act === 'del') {
