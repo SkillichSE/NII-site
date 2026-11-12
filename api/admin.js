@@ -1,5 +1,6 @@
 /* Админ-API: /api/admin?action=me|login|logout|add|edit|del */
 const crypto = require('crypto');
+const { translateNews } = require('../lib/translate');
 const { readNews, writeNews, saveImage, removeImage } = require('../lib/store');
 
 const PASSWORD = process.env.ADMIN_PASSWORD || '';
@@ -66,6 +67,7 @@ module.exports = async (req, res) => {
         image = await saveImage(buf, t[0], t[1]);
       }
       const item = { id: crypto.randomBytes(6).toString('hex'), title, text, image, date: new Date().toISOString() };
+      const tr = await translateNews(title, text); if (Object.keys(tr).length) item.tr = tr;
       const all = await readNews();
       all.unshift(item);
       await writeNews(all);
@@ -88,7 +90,9 @@ module.exports = async (req, res) => {
         old = it.image; image = await saveImage(buf, t[0], t[1]);
       } else if (d.removeImage) { old = it.image; image = ''; }
       if (!text && !image) return res.status(400).json({ error: 'Добавьте текст или картинку' });
+      const changed = title !== it.title || text !== it.text || !it.tr;
       Object.assign(it, { title, text, image });
+      if (changed) { const tr = await translateNews(title, text); if (Object.keys(tr).length) it.tr = tr; else delete it.tr; }
       await writeNews(all);
       await removeImage(old);
       return res.json(it);
