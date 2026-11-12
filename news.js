@@ -5,9 +5,11 @@ var all=document.getElementById('newsbox').hasAttribute('data-all');
 var items=[],loaded=false;
 function get(u){return fetch(u,{cache:'no-store'}).then(function(r){if(!r.ok)throw 0;return r.json()})}
 function renderItem(item,parent){
-if(item.image){var im=document.createElement('img');im.className='nb-img';im.src=item.image;im.alt=item.title||'';im.loading='lazy';im.decoding='async';parent.appendChild(im)}
-if(item.title){var h=document.createElement('h2');h.className='nb-title';h.textContent=item.title;parent.appendChild(h)}
-if(item.text){var p2=document.createElement('p');p2.className='nb-text';p2.textContent=item.text;parent.appendChild(p2)}
+var L=document.documentElement.lang,T=(L&&L!=='ru'&&item.tr&&item.tr[L])||null;
+var title=(T&&T.title)||item.title,text=(T&&T.text)||item.text;
+if(item.image){var im=document.createElement('img');im.className='nb-img';im.src=item.image;im.alt=title||'';im.loading='lazy';im.decoding='async';parent.appendChild(im)}
+if(title){var h=document.createElement('h2');h.className='nb-title';h.textContent=title;parent.appendChild(h)}
+if(text){var p2=document.createElement('p');p2.className='nb-text';p2.textContent=text;parent.appendChild(p2)}
 var d=new Date(item.date);
 if(!isNaN(d)){
 var s=document.createElement('time');s.className='nb-date';s.dateTime=item.date;
