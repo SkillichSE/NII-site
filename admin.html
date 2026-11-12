@@ -56,7 +56,7 @@
    <label class="cap" for="img">КАРТИНКА (JPG, PNG, WEBP, GIF)</label>
    <input id="img" type="file" accept="image/jpeg,image/png,image/webp,image/gif">
    <img class="prev" id="prev" alt="">
-   <div class="row"><button class="go" id="pub" type="submit">Опубликовать</button><button type="button" id="out">Выйти</button></div>
+   <div class="row"><button class="go" id="pub" type="submit">Опубликовать</button><button type="button" id="rmimg" hidden>Убрать картинку</button><button type="button" id="cancel" hidden>Отмена</button><button type="button" id="out">Выйти</button></div>
    <div class="msg" id="msg"></div>
   </form>
   <p class="cap" style="margin-top:56px">ОПУБЛИКОВАННЫЕ <span style="color:var(--mute)">· на сайте показывается самая новая</span></p>
@@ -66,7 +66,7 @@
 <script>
 (function(){
 var $=function(i){return document.getElementById(i)};
-var dataUrl='';
+var dataUrl='',editId='',rmImg=false;
 function api(u,o){o=o||{};o.credentials='same-origin';if(o.body&&typeof o.body!=='string'){o.body=JSON.stringify(o.body);o.headers={'Content-Type':'application/json'}}
  return fetch(u,o).then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok)throw new Error(d.error||('Ошибка '+r.status));return d})})}
 function show(a){$('login').hidden=a;$('panel').hidden=!a;if(a)load()}
@@ -89,9 +89,12 @@ $('img').addEventListener('change',function(){
   var png=f.type==='image/png';dataUrl=c.toDataURL(png?'image/png':'image/jpeg',.88);
   $('prev').src=dataUrl;$('prev').style.display='block';URL.revokeObjectURL(u)};
  im.onerror=function(){say($('msg'),'Не удалось прочитать картинку','err')};im.src=u});
-$('f').addEventListener('submit',function(e){e.preventDefault();var b=$('pub');b.disabled=true;say($('msg'),'Публикуем…');
- api('/api/admin?action=add',{method:'POST',body:{title:$('title').value,text:$('text').value,image:dataUrl}}).then(function(){
-  $('f').reset();dataUrl='';$('prev').style.display='none';say($('msg'),'Опубликовано — теперь это последняя новость.','ok');load()
+function resetForm(){$('f').reset();dataUrl='';editId='';rmImg=false;$('prev').style.display='none';$('pub').textContent='Опубликовать';$('cancel').hidden=true;$('rmimg').hidden=true}
+$('cancel').onclick=function(){resetForm();say($('msg'),'')};
+$('rmimg').onclick=function(){rmImg=true;dataUrl='';$('img').value='';$('prev').style.display='none';this.hidden=true};
+$('f').addEventListener('submit',function(e){e.preventDefault();var b=$('pub'),ed=!!editId;b.disabled=true;say($('msg'),ed?'Сохраняем…':'Публикуем…');
+ api('/api/admin?action='+(ed?'edit':'add'),{method:'POST',body:{id:editId,title:$('title').value,text:$('text').value,image:dataUrl,removeImage:rmImg}}).then(function(){
+  resetForm();say($('msg'),ed?'Сохранено.':'Опубликовано — теперь это последняя новость.','ok');load()
  }).catch(function(x){say($('msg'),x.message,'err')}).then(function(){b.disabled=false})});
 function load(){api('/api/news').then(function(a){var l=$('list');l.textContent='';
  if(!a.length){var p=document.createElement('p');p.style.color='var(--mute)';p.textContent='Пока ничего нет';l.appendChild(p);return}
@@ -101,6 +104,11 @@ function load(){api('/api/news').then(function(a){var l=$('list');l.textContent=
   var b=document.createElement('b');b.textContent=(i===0?'● ':'')+(n.title||(n.text||'').slice(0,60)||'(только картинка)');
   var s=document.createElement('small');s.textContent=new Date(n.date).toLocaleString('ru-RU')+(i===0?' · сейчас на сайте':'');
   tx.appendChild(b);tx.appendChild(s);d.appendChild(tx);
+  var ed=document.createElement('button');ed.textContent='Изменить';
+  ed.onclick=function(){resetForm();editId=n.id;$('title').value=n.title||'';$('text').value=n.text||'';
+   if(n.image){$('prev').src=n.image;$('prev').style.display='block';$('rmimg').hidden=false}
+   $('pub').textContent='Сохранить';$('cancel').hidden=false;say($('msg'),'Редактирование. Новая картинка заменит старую.');window.scrollTo({top:0,behavior:'smooth'})};
+  d.appendChild(ed);
   var x=document.createElement('button');x.textContent='Удалить';
   x.onclick=function(){if(!confirm('Удалить эту новость?'))return;api('/api/admin?action=del',{method:'POST',body:{id:n.id}}).then(load).catch(function(e){alert(e.message)})};
   d.appendChild(x);l.appendChild(d)})})}
