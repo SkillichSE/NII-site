@@ -1,4 +1,4 @@
-/* Админ-API: /api/admin?action=me|login|logout|add|edit|del */
+
 const crypto = require('crypto');
 const { translateNews } = require('../lib/translate');
 const { readNews, writeNews, saveImage, removeImage } = require('../lib/store');
