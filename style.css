@@ -399,3 +399,10 @@ header nav,.burger span{transition:none}
 .newsbox[data-all] article.open .nb-title,.newsbox[data-all] article.open .nb-text{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
 .newsbox[data-all] article.no-img{padding-top:18px}
 }
+
+/* no artificial stretching: each card is as tall as its content, images share one ratio */
+.newsbox[data-all] .nb-body{align-items:start}
+.newsbox[data-all] article{height:auto}
+.newsbox[data-all] .nb-text{flex:0 0 auto}
+.newsbox[data-all] .nb-date{margin-top:0;padding-top:14px}
+@media (min-width:641px){.newsbox[data-all] article.no-img{padding-top:18px}}
