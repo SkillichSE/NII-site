@@ -419,3 +419,27 @@ h1,h2,h3{overflow-wrap:anywhere}
 @media (max-width:400px){
 .page h1{font-size:clamp(1.15rem,6.4vw,1.7rem)}
 }
+
+@media (max-width:640px){
+.newsbox{padding:12px 10px 12px}
+.newsbox[data-all] .nb-body{gap:8px}
+.newsbox[data-all] article{grid-template-columns:72px minmax(0,1fr);column-gap:10px;padding:8px}
+.newsbox[data-all] .nb-img{width:72px;min-height:72px}
+.newsbox[data-all] .nb-title{font-size:.8rem;-webkit-line-clamp:2;line-clamp:2}
+.newsbox[data-all] .nb-text{font-size:.8rem;line-height:1.4;-webkit-line-clamp:2;line-clamp:2}
+.newsbox[data-all] .nb-date{padding-top:4px}
+.newsbox[data-all] article.open{padding:0 0 12px}
+.hero .btn{margin:14px 12px 0 0;padding:12px 18px}
+.lang{gap:6px}
+.hdr-right{gap:10px}
+.hero h1{margin-bottom:6px}
+.btn{margin-right:12px}
+.showcase .top{gap:16px}
+.chips{margin-top:24px}
+.facts div,.specs div{gap:12px}
+.rgrid{gap:14px}
+.rcard{margin:0}
+footer .row{gap:28px}
+footer nav a{padding:12px 0;margin-right:6px}
+.timeline div{padding-bottom:20px}
+}
