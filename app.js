@@ -15,19 +15,6 @@ f.referrerPolicy='strict-origin-when-cross-origin';
 c.appendChild(f);
 });
 });
-function fit(){
-var b=document.querySelector('footer .big');
-if(!b)return;
-var cs=getComputedStyle(b.parentNode);var w=b.parentNode.clientWidth-parseFloat(cs.paddingLeft)-parseFloat(cs.paddingRight);
-b.style.fontSize='100px';
-var k=w/b.getBoundingClientRect().width;
-b.style.fontSize=Math.min(100*k,170)+'px';
-}
-fit();
-window.addEventListener('resize',fit);
-window.addEventListener('load',fit);
-document.addEventListener('langchange',fit);
-if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 /* mobile menu: burger button + full-screen nav (CSS shows it only on narrow screens) */
 var hr=hd&&hd.querySelector('.hdr-right'),nv=hd&&hd.querySelector('nav');
 if(hr&&nv){
@@ -47,19 +34,7 @@ window.addEventListener('pageshow',function(){setNav(false)});
 var mq=window.matchMedia('(max-width:900px)');
 if(mq.addEventListener)mq.addEventListener('change',function(){setNav(false)});else if(mq.addListener)mq.addListener(function(){setNav(false)});
 }
-/* hero video: lighter file on phones, none on data-saver / slow networks / reduced motion; paused when off-screen */
-var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-var hv=document.querySelector('video[data-src]');
-if(hv){
-var cn=navigator.connection||{};
-var slow=cn.saveData||/(^|-)2g$/.test(cn.effectiveType||'');
-if(!slow&&!reduce){
-hv.muted=true;
-hv.src=(window.matchMedia('(max-width:900px)').matches&&hv.dataset.srcM)?hv.dataset.srcM:hv.dataset.src;
-var pl=function(){var q=hv.play();if(q&&q.catch)q.catch(function(){})};
-if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)pl();else hv.pause()})},{threshold:0}).observe(hv)}else pl();
-}
-}
+var reduce=window.matchMedia("(prefers-reduced-motion:reduce)").matches;
 var st=document.getElementById('stage');
 if(!st)return;
 var N=+st.dataset.n,dir=st.dataset.dir,inner=document.getElementById('inner'),hint=document.getElementById('hint'),hero=st.parentNode;
