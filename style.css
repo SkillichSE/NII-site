@@ -355,9 +355,9 @@ header nav,.burger span{transition:none}
 .newsbox[data-all] .nb-img{width:100%;margin:0 0 16px;aspect-ratio:16/10;max-height:none;object-fit:cover;border-top:0}
 .nb-empty{margin:0;color:var(--mute)}
 @media (max-width:900px){.olymp{grid-template-columns:minmax(0,1fr);gap:8px}.newsbox{justify-self:stretch;width:100%;margin-top:6px}}
-/* ---- home hero: regular bot photo instead of the prototype video ---- */
-.hero>.bgimg.bot{z-index:0;opacity:.95;object-fit:contain;object-position:50% 34%;padding:84px 4vw 0;pointer-events:none}
-@media (max-width:640px){.hero>.bgimg.bot{object-position:50% 30%;padding:92px 2vw 0}}
+/* ---- home hero: faint bot photo as background, crisp photo lives in the showcase ---- */
+.hero>.bgimg.bot{z-index:0;opacity:.3;object-fit:cover;object-position:60% 40%;pointer-events:none}
+.showcase .big{display:block;width:min(1000px,100%);height:auto;margin:24px auto 0;filter:drop-shadow(0 40px 60px #000)}
 
 /* ---- news cards: equal-height rows, date pinned to the bottom ---- */
 .newsbox[data-all] .nb-body{align-items:stretch}
@@ -389,5 +389,13 @@ header nav,.burger span{transition:none}
 .newsbox[data-all] article.open .nb-img{grid-row:auto;width:100%;height:auto;min-height:0;aspect-ratio:16/10;margin:0 0 12px}
 .newsbox[data-all] article.open .nb-title,.newsbox[data-all] article.open .nb-text{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
 }
-@media (min-width:641px){.hero>.bgimg.bot{padding:84px 6vw clamp(310px,46svh,420px);object-position:50% 50%}}
 .newsbox[data-all] article.no-img{padding-top:18px}
+
+/* desktop/tablet: cap text height so equal-height cards never get large empty gaps */
+@media (min-width:641px){
+.newsbox[data-all] .nb-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.newsbox[data-all] .nb-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:5;line-clamp:5;overflow:hidden;flex:0 1 auto}
+.newsbox[data-all] article{cursor:pointer}
+.newsbox[data-all] article.open .nb-title,.newsbox[data-all] article.open .nb-text{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+.newsbox[data-all] article.no-img{padding-top:18px}
+}
