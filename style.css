@@ -355,3 +355,39 @@ header nav,.burger span{transition:none}
 .newsbox[data-all] .nb-img{width:100%;margin:0 0 16px;aspect-ratio:16/10;max-height:none;object-fit:cover;border-top:0}
 .nb-empty{margin:0;color:var(--mute)}
 @media (max-width:900px){.olymp{grid-template-columns:minmax(0,1fr);gap:8px}.newsbox{justify-self:stretch;width:100%;margin-top:6px}}
+/* ---- home hero: regular bot photo instead of the prototype video ---- */
+.hero>.bgimg.bot{z-index:0;opacity:.95;object-fit:contain;object-position:50% 34%;padding:84px 4vw 0;pointer-events:none}
+@media (max-width:640px){.hero>.bgimg.bot{object-position:50% 30%;padding:92px 2vw 0}}
+
+/* ---- news cards: equal-height rows, date pinned to the bottom ---- */
+.newsbox[data-all] .nb-body{align-items:stretch}
+.newsbox[data-all] article{display:flex;flex-direction:column;height:100%}
+.newsbox[data-all] .nb-img{flex:none}
+.newsbox[data-all] .nb-text{flex:1 1 auto}
+.newsbox[data-all] .nb-date{margin-top:auto;padding-top:14px}
+
+/* ---- news cards: compact on phones ---- */
+@media (max-width:640px){
+.newsbox{padding:16px 14px 18px}
+.nb-body{margin-top:10px}
+.nb-title{font-size:.9rem;line-height:1.3;margin:0 0 6px}
+.nb-text{font-size:.9rem;line-height:1.5}
+.nb-date{margin-top:10px;font-size:.52rem}
+.newsbox[data-all] .nb-body{grid-template-columns:minmax(0,1fr);gap:10px}
+.newsbox[data-all] article{display:grid;grid-template-columns:96px minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:12px;align-content:start;height:auto;padding:10px 12px 10px 10px;cursor:pointer}
+.newsbox[data-all] article.no-img{grid-template-columns:minmax(0,1fr)}
+.newsbox[data-all] article>:not(img){margin:0;grid-column:2}
+.newsbox[data-all] article.no-img>:not(img){grid-column:1}
+.newsbox[data-all] .nb-img{grid-column:1;grid-row:1/span 3;width:96px;height:100%;min-height:96px;aspect-ratio:auto;margin:0;object-fit:cover}
+.newsbox[data-all] .nb-title{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden}
+.newsbox[data-all] .nb-text{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.newsbox[data-all] .nb-text{align-self:start}
+.newsbox[data-all] .nb-date{align-self:end;margin-top:0;padding-top:8px}
+/* tap a card to read it in full */
+.newsbox[data-all] article.open{grid-template-columns:minmax(0,1fr);padding:0 0 14px}
+.newsbox[data-all] article.open>:not(img){grid-column:1;margin-left:14px;margin-right:14px}
+.newsbox[data-all] article.open .nb-img{grid-row:auto;width:100%;height:auto;min-height:0;aspect-ratio:16/10;margin:0 0 12px}
+.newsbox[data-all] article.open .nb-title,.newsbox[data-all] article.open .nb-text{display:block;-webkit-line-clamp:unset;line-clamp:unset;overflow:visible}
+}
+@media (min-width:641px){.hero>.bgimg.bot{padding:84px 6vw clamp(310px,46svh,420px);object-position:50% 50%}}
+.newsbox[data-all] article.no-img{padding-top:18px}

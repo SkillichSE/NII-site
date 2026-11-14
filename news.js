@@ -28,6 +28,8 @@ box.appendChild(p);return;
 var list=all?items:items.slice(0,1);
 list.forEach(function(it,i){
 var a=document.createElement('article');
+a.className=it.image?'has-img':'no-img';
+if(all)a.addEventListener('click',function(){a.classList.toggle('open')});
 if(i>0&&!all)a.style.cssText='margin-top:28px;padding-top:28px;border-top:1px solid var(--line)';
 renderItem(it,a);box.appendChild(a);
 });
