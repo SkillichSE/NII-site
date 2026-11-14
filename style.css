@@ -443,3 +443,13 @@ footer .row{gap:28px}
 footer nav a{padding:12px 0;margin-right:6px}
 .timeline div{padding-bottom:20px}
 }
+
+@media (max-width:640px){
+.newsbox[data-all] article{grid-template-rows:auto auto auto 1fr;align-items:start;padding:6px;row-gap:2px}
+.newsbox[data-all] .nb-img{grid-row:1/span 4;width:72px;height:72px;min-height:0;align-self:start}
+.newsbox[data-all] .nb-title{margin:0}
+.newsbox[data-all] .nb-date{align-self:start;margin:2px 0 0;padding:0}
+.newsbox[data-all] article.open .nb-img{grid-row:auto;width:100%;height:auto;aspect-ratio:16/10}
+.newsbox[data-all] .nb-body{gap:6px}
+footer{padding-bottom:max(80px,calc(40px + env(safe-area-inset-bottom)))}
+}
