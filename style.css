@@ -453,3 +453,12 @@ footer nav a{padding:12px 0;margin-right:6px}
 .newsbox[data-all] .nb-body{gap:6px}
 footer{padding-bottom:max(80px,calc(40px + env(safe-area-inset-bottom)))}
 }
+
+@media (max-width:640px){
+.newsbox[data-all] article{grid-template-columns:56px minmax(0,1fr);padding:6px;row-gap:0;align-content:center;align-items:center;min-height:0}
+.newsbox[data-all] .nb-img{width:56px;height:56px;grid-row:1/span 3;align-self:center}
+.newsbox[data-all] .nb-title,.newsbox[data-all] .nb-text,.newsbox[data-all] .nb-date{align-self:center;margin:0;padding:0}
+.newsbox[data-all] .nb-date{margin-top:3px}
+footer{padding-top:40px}
+footer .row{gap:0}
+}
