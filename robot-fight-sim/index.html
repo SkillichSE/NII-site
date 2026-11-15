@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Робо-арена</title>
+<link rel="stylesheet" href="style.css"></head>
+<body class="m">
+<div id="menu"><div id="mtop"><span>РОБО-АРЕНА</span><span id="mt">ВЫБОР БОЙЦОВ</span><span id="msg">ENTER — СТАРТ</span></div>
+<div id="stage">
+<div class="side"><div class="lab">ТВОЙ РОБОТ</div><div class="vp" id="vl"></div><div class="nav"><button data-s="l" data-d="-1">‹</button><div class="nm"><b id="nl"></b><small id="tl"></small></div><button data-s="l" data-d="1">›</button></div><div class="dsc" id="dl"></div><div id="sl"></div></div>
+<div id="vs">VS</div>
+<div class="side"><div class="lab" style="text-align:right">ПРОТИВНИКИ</div><div class="slots" id="slots"></div><div class="vp" id="vr"></div><div class="nav"><button data-s="r" data-d="-1">‹</button><div class="nm"><b id="nr"></b><small id="tr"></small></div><button data-s="r" data-d="1">›</button></div><div class="dsc" id="dr"></div><div id="sr"></div></div>
+</div>
+<div id="mbot"><div>ПРОТИВНИКОВ<span id="opp"></span></div><button id="start">В БОЙ</button></div></div>
+<div id="bars" class="hud"></div><div id="timer" class="hud">2:00</div><div id="flash"></div>
+<div id="wbar" class="hud">ОРУЖИЕ<div><span id="wf" style="display:block"></span></div></div>
+<div id="panel" class="open"><div id="pc">
+<div id="pad" class="no"></div><div id="mode"></div>
+<div style="margin-top:6px"><kbd>WASD</kbd> / ЛЕВЫЙ СТИК — ДВИЖЕНИЕ</div>
+<div><kbd>ПРАВЫЙ СТИК</kbd> / <kbd>Q</kbd><kbd>E</kbd> — ПОВОРОТ КАМЕРЫ</div>
+<div><kbd>ПРОБЕЛ</kbd> / <kbd>✕</kbd> — ОРУЖИЕ</div>
+<div><kbd>R</kbd> / <kbd>○</kbd> — ВСТАТЬ</div>
+<div><kbd>C</kbd> / <kbd>△</kbd> — КАМЕРА · <kbd>H</kbd> — СКРЫТЬ</div>
+<div class="row"><button id="bcam">КАМЕРА</button><button id="bup">ВСТАТЬ</button><button id="bmenu">МЕНЮ</button></div>
+</div><button id="tog">УПРАВЛЕНИЕ ▾</button></div>
+
+<!-- Scripts load in this order -->
+<script src="js/lib.js"></script>
+<script src="js/config.js"></script>
+<script src="js/atmo.js"></script>
+<script src="js/parts.js"></script>
+<script src="js/robot.js"></script>
+<script src="js/ai.js"></script>
+<script src="js/input.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/main.js"></script>
+</body></html>
