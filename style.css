@@ -390,3 +390,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--y);outline-offset:3
 section{padding:100px 0}
 @media (max-width:900px){section{padding:64px 0}.intro{padding:64px 0 56px}.showcase{padding:56px 0 44px}}
 @media (max-width:640px){.lead{font-size:1rem}.lang button{min-width:34px;padding:9px 5px}}
+/* simplified home hero */
+.hero{height:auto;min-height:0;padding:140px 6vw 56px}
+.hero>.bgimg{opacity:.3;object-position:70% 40%}
+.hero h1{font-size:clamp(1.8rem,5vw,3.6rem);max-width:20ch;line-height:1.15}
+.showcase h2{margin-top:10px}
+.showcase .chips{margin-top:24px}
+@media (max-width:640px){.hero{padding:110px 5vw 40px}.hero h1{font-size:1.7rem}}
+.hero{padding:140px 6vw 70px;background:radial-gradient(ellipse at 20% 100%,#2a0e07 0,#000 70%)}
+.rbox{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:5vw;align-items:center}
+.rpic{width:100%;height:auto;max-height:320px;object-fit:contain}
+.rinfo .chips{grid-template-columns:1fr}
+@media (max-width:900px){.rbox{grid-template-columns:1fr;gap:20px}.rpic{max-height:220px}.hero{padding:100px 5vw 36px}}
+.hero p{display:block!important;font-size:1rem}
