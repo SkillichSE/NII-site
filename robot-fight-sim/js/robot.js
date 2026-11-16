@@ -94,14 +94,9 @@ class Bot{
     if(this.type==='ram')p.z-=this.t*.75;else if(this.type==='spinner')q.setFromAxisAngle(w_,this.spinAng);else if(this.type==='drill')q.setFromAxisAngle(ZI,this.spinAng);else q.setFromAxisAngle(yi,W.rest+(W.hit-W.rest)*this.t);
     b.pointToWorldFrame(p,a.position);b.quaternion.mult(q,a.quaternion);a.aabbNeedsUpdate=true;
   }
-  // flipper upside down: the arm pushes off the floor and flips the robot back
-  rollDir(){return this.body.vectorToLocalFrame(new y(0,1,0)).x>=0?1:-1}
-  armRight(){if(!this.W.rights)return;sfxServo(this);const b=this.body;b.velocity.y+=5.5;b.angularVelocity.vadd(b.vectorToWorldFrame(new y(0,0,-1)).scale(10*this.rollDir()),b.angularVelocity)}
   selfRight(){
     if(!this.alive||!this.flipped)return;
-    if(this.W.rights){if(this.wOK)this.input.press=true;return}
-    if(!SELF_RIGHT_ANY||this.rcd>0)return;
-    const b=this.body;sfxServo(this);this.rcd=2.5;b.velocity.y+=4.5;b.angularVelocity.vadd(b.vectorToWorldFrame(new y(0,0,-1)).scale(6*this.rollDir()),b.angularVelocity)
+    if(this.W.rights&&this.wOK)this.input.press=true;
   }
   preStep(dt){
     const b=this.body,a=this.arm,i=this.input,W=this.W;
@@ -115,7 +110,7 @@ class Bot{
       if(this.type==='spinner'||this.type==='drill'){const tg=i.atk&&!this.flipped?W.spin:0;this.spin+=xn(tg-this.spin,-6*dt,12*dt)}
       else{ // stroke: 0 idle, 1 going out, 2 coming back
         if(i.press)this.pb=.3;i.press=false;this.pb-=dt; // press buffer: a tap during cooldown still counts
-        if(this.pb>0&&this.st===0&&this.cd<=0&&(!this.flipped||this.W.rights)){this.pb=0;this.st=1;this.fired=false;if(this.flipped)this.armRight()}
+        if(this.pb>0&&this.st===0&&this.cd<=0&&(!this.flipped||this.W.rights)){this.pb=0;this.st=1;this.fired=false;if(this.flipped)sfxServo(this)}
         if(this.st===1){td=W.out;this.t+=td*dt;if(this.t>=1){this.t=1;this.st=2;this.hot=.15}}
         else if(this.st===2){td=-W.back;this.t+=td*dt;if(this.t<=0){this.t=0;this.st=0;this.cd=W.cd}}
       }
@@ -141,9 +136,8 @@ class Bot{
     const L=ie-.35;                                              // put back if thrown out of the arena
     if(Math.abs(p.x)>L+.7||Math.abs(p.z)>L+.7||p.y>3.2||p.y<-.5){p.set(xn(p.x,-L+1,L-1),.4,xn(p.z,-L+1,L-1));v.setZero();b.angularVelocity.setZero()}
     this.snap();
-    // the weapon must not sink into the floor: if its lowest point is below 0, the robot rides up on it
-    if(this.wOK){let low=1e9;for(const o of armBoxes(this)){const m=o.c.y-(o.h[0]*Math.abs(o.ax[0].y)+o.h[1]*Math.abs(o.ax[1].y)+o.h[2]*Math.abs(o.ax[2].y));if(m<low)low=m}
-      if(low<0){p.y+=Math.min(-low,.04);if(v.y<0)v.y=0;this.snap()}}
+    if(this.wOK){let low=1e9,pt=null;for(const o of armBoxes(this)){const m=o.c.y-(o.h[0]*Math.abs(o.ax[0].y)+o.h[1]*Math.abs(o.ax[1].y)+o.h[2]*Math.abs(o.ax[2].y));if(m<low){low=m;pt=o.c}}
+      if(low<0){const d=Math.min(-low,.06);b.applyImpulse(new y(0,b.mass*ARM_PUSH*d,0),new y(pt.x-p.x,-p.y,pt.z-p.z));if(-low>.04){p.y+=-low-.04;this.snap()}}}
     // weapon arms are kinematic, so the walls cannot stop them: push the robot back if its weapon pokes into a wall
     if(this.wOK){
       const a=this.arm,W=ie-.02;a.updateAABB();const lo=a.aabb.lowerBound,hi=a.aabb.upperBound;
@@ -171,7 +165,7 @@ class Bot{
     if(o.weaponOf&&at.active()){
       d=Math.min(v,14)*at.W.dmg;
       // flipper throws the enemy up and rolls it
-      if(at.type==='flipper'&&(at.st===1||at.hot>0)&&!at.fired){at.fired=true;say('ФЛИП!',2);sfxFlip(at);const f=at.fwdFlat(),B=this.body;B.velocity.y+=5.6;B.velocity.x+=f.x*1.6;B.velocity.z+=f.z*1.6;B.angularVelocity.vadd(at.body.vectorToWorldFrame(yi).scale(8.5),B.angularVelocity);rumble(at,1,.6,220)}
+      if(at.type==='flipper'&&(at.st===1||at.hot>0)&&!at.fired){at.fired=true;say('ФЛИП!',2);sfxFlip(at);rumble(at,1,.6,220)}
     }else d=Math.max(0,v-3)*(o.weaponOf?.5:.55);
     if(d>0){
       this.dmg(d,at);this.hurt(lp,d*1.1);sfxHit(v,!!o.weaponOf&&at.active(),this);if(d>=12)say('МОЩНЕЙШИЙ УДАР!',3);

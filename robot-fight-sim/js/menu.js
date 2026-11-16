@@ -57,5 +57,4 @@ $('tog').onclick=togglePanel;
 try{if(localStorage.rp==='0'){$('panel').classList.remove('open');$('tog').textContent='УПРАВЛЕНИЕ ▴'}}catch{}
 $('start').onclick=startGame;
 $('bmenu').onclick=()=>showMenu('ВЫБОР БОЙЦОВ');
-$('bup').onclick=()=>bots[0]?.selfRight();
 $('bcam').onclick=()=>camMode=(camMode+1)%3;

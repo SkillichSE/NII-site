@@ -3,7 +3,7 @@ const {Bt,pn,y,fe,Cn,oe,Fe,ke,Gr,D,Fr,Le,Yr,Zr,Ut,Ge,Be,Us,bi,yo,xn,yi,w_,b_,ie}
 
 const $ = id => document.getElementById(id);
 const STEP = 1/120;               // physics step
-const SELF_RIGHT_ANY = false;       // robots without a righting weapon get a magic hop when true
+const ARM_PUSH = 4;
 const CLASH = true;               // weapons push each other apart
 const BODY_MASK = 15|16|3840;     // robot bodies hit: bodies, walls, weapons
 

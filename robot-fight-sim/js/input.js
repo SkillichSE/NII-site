@@ -19,7 +19,7 @@ function readInput(){
     camYaw-=dz(pad.axes[2]||0)*2.6/60;camH=xn(camH-dz(pad.axes[3]||0)*1.2/60,.4,2.4); // right stick: turn camera, up/down = height
     if(pressed(pad,11)){camYaw=0;camH=1}                                              // press right stick: reset camera
     if(pressed(pad,0))P.input.press=true;if(pad.buttons[0]?.pressed)atk=true;
-    if(pressed(pad,1))P.selfRight();if(pressed(pad,3))camMode=(camMode+1)%3;
+    if(pressed(pad,3))camMode=(camMode+1)%3;
     prevBtn=pad.buttons.map(b=>b.pressed);
   }
   const kv=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0),kh=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0);
@@ -30,7 +30,6 @@ function readInput(){
 addEventListener('keydown',e=>{
   if(e.repeat)return;keys[e.code]=true;
   if(e.code==='Space'){e.preventDefault();bots[0]&&(bots[0].input.press=true)}
-  if(e.code==='KeyR')bots[0]?.selfRight();
   if(e.code==='KeyC')camMode=(camMode+1)%3;
   if(e.code==='KeyH')togglePanel();
   if(e.code==='Enter'&&paused)startGame();
