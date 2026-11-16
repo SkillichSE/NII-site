@@ -22,7 +22,7 @@ function renderMenu(dt){
   bi.setScissorTest(false);bi.setViewport(0,0,innerWidth,innerHeight);bi.setClearColor(0x05070b,1);bi.clear();
   for(const s of['l','r']){
     const r=$('v'+s).getBoundingClientRect(),V=pvM[s];if(r.width<2||!V)continue;
-    V.g.rotation.y+=dt*.7;if(V.k==='spinner')V.ag.rotation.y+=dt*9;
+    V.g.rotation.y+=dt*.7;if(V.k==='spinner')V.ag.rotation.y+=dt*9;if(V.k==='drill')V.ag.rotation.z+=dt*9;
     const x=r.left,yy=innerHeight-r.bottom;
     bi.setViewport(x,yy,r.width,r.height);bi.setScissor(x,yy,r.width,r.height);bi.setScissorTest(true);
     pvC.aspect=r.width/r.height;pvC.updateProjectionMatrix();

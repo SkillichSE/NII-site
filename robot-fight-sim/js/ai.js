@@ -1,6 +1,6 @@
 // Bot brain. Every bot picks a target, approaches from a side, hits, backs off and tries again.
 // fire = distance to use the weapon, back = how long to back off after a hit.
-const AI_T={flipper:{fire:1.9,back:.55},hammer:{fire:2.15,back:.9},ram:{fire:2.5,back:.8},spinner:{fire:0,back:.45}};
+const AI_T={flipper:{fire:1.9,back:.55},hammer:{fire:2.15,back:.9},ram:{fire:2.5,back:.8},spinner:{fire:0,back:.45},drill:{fire:0,back:.5}};
 
 // Turn towards a point. Wide angle = turn on the spot, so bots do not drive in circles.
 function steerTo(b,tx,tz,spd){
@@ -45,6 +45,7 @@ function ai(b,dt){
   if(wall>7.4&&dm>2.2){tx*=.4;tz*=.4}      // near the wall and nobody close: go back to the middle
 
   if(b.type==='spinner')i.atk=b.wOK&&dm<6.5;
+  if(b.type==='drill')i.atk=b.wOK&&dm<4.5;
 
   // stuck: not moving for a second while the enemy is not right here
   S.pt-=dt;

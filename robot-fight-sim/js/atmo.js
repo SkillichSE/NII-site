@@ -3,6 +3,7 @@ const INFO={
  flipper:{fl:'kz',city:'Рудный',weapon:'Флиппер',w:'2,97 кг',power:'45 кгс · подъём 0,18 с'},
  hammer:{fl:'by',city:'Минск',weapon:'Кувалда',w:'3,00 кг',power:'80 Дж · удар сверху'},
  spinner:{fl:'in',city:'Пуна',weapon:'Гориз. спиннер',w:'2,89 кг',power:'120 Дж · 8 000 об/мин'},
+ drill:{fl:'kz',city:'Костанай',weapon:'Конус-бур',w:'2,95 кг',power:'90 Дж · 6 000 об/мин'},
  ram:{fl:'uz',city:'Ташкент',weapon:'Пневмо-таран',w:'2,94 кг',power:'30 кгс · ход 0,25 с'}
 };
 const flagOf=k=>`<i class="flag ${INFO[k].fl}"></i>`;
@@ -26,7 +27,7 @@ function tone(type,f0,f1,dur,v,at=0){if(!AC)return;const t=AC.currentTime+at,o=A
 function noise(dur,v,fq,Q,ft='lowpass',at=0){if(!AC)return;const t=AC.currentTime+at,s=AC.createBufferSource(),f=AC.createBiquadFilter(),g=AC.createGain();s.buffer=noiseBuf;f.type=ft;f.frequency.value=fq;f.Q.value=Q;
   g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);s.connect(f);f.connect(g);g.connect(master);s.start(t,Math.random());s.stop(t+dur+.02)}
 const near=b=>{const P=bots[0];if(!P||b===P)return 1;const a=b.body.position,q=P.body.position;return 1/(1+Math.hypot(a.x-q.x,a.z-q.z)*.22)};
-const SND={flipper:{pitch:1.6,loud:1.3,wt:'sawtooth',wc:2600},hammer:{pitch:.8,loud:1.1,wt:'square',wc:700},spinner:{pitch:1.1,loud:1,wt:'sawtooth',wc:1400},ram:{pitch:.7,loud:1.1,wt:'square',wc:900}};
+const SND={flipper:{pitch:1.6,loud:1.3,wt:'sawtooth',wc:2600},hammer:{pitch:.8,loud:1.1,wt:'square',wc:700},spinner:{pitch:1.1,loud:1,wt:'sawtooth',wc:1400},ram:{pitch:.7,loud:1.1,wt:'square',wc:900},drill:{pitch:1,loud:1.1,wt:'sawtooth',wc:1200}};
 function loopNoise(){const s=AC.createBufferSource();s.buffer=noiseBuf;s.loop=true;s.start(0,Math.random());return s}
 const mkO=(type,f)=>{const o=AC.createOscillator();o.type=type;o.frequency.value=f;o.start();return o};
 const mkF=(t,f,q)=>{const x=AC.createBiquadFilter();x.type=t;x.frequency.value=f;x.Q.value=q;return x};
@@ -57,7 +58,7 @@ function sfx(dt){
     let f=100,wgn=0,gf=40,ggn=0;
     if(b.wOK){
       if(T==='flipper'){if(b.st===1){f=500+b.t*1000;wgn=.35;gf=55+b.t*90;ggn=1}else if(b.st===2){f=300;wgn=.12;gf=45;ggn=.35}} // very loud grinding while the arm goes up
-      else if(T==='spinner'){f=60+b.spin*20;wgn=.2*Math.min(1,b.spin/8);gf=b.spin*14;ggn=Math.min(1,b.spin/8)*.35}
+      else if(T==='spinner'||T==='drill'){f=60+b.spin*20;wgn=.2*Math.min(1,b.spin/8);gf=b.spin*14;ggn=Math.min(1,b.spin/8)*.35}
       else if(T==='hammer'&&b.st){f=120+b.t*200;wgn=.15;gf=35+b.t*40;ggn=.3}
       else if(T==='ram'&&b.st===1){f=250+b.t*350;wgn=.1;gf=40+b.t*60;ggn=.25}
     }

@@ -38,7 +38,7 @@ function hud(dt){
     $('p'+b.id).textContent=`КОЛЁСА ${b.wheels(-1)+b.wheels(1)}/4 · ${b.wOK?'ОРУЖИЕ':'БЕЗ ОРУЖИЯ'}`;
   }
   const P=bots[0];
-  if(P)$('wf').style.width=(!P.wOK?0:P.type==='spinner'?P.spin/P.W.spin:P.st?P.t:P.cd>0?1-P.cd/P.W.cd:1)*100+'%';
+  if(P)$('wf').style.width=(!P.wOK?0:(P.type==='spinner'||P.type==='drill')?P.spin/P.W.spin:P.st?P.t:P.cd>0?1-P.cd/P.W.cd:1)*100+'%';
   const tl=Math.ceil(timeLeft),T=$('timer');T.textContent=Math.floor(tl/60)+':'+String(tl%60).padStart(2,'0');T.className='hud'+(timeLeft<=10?' low':'');
   $('pad').textContent=pad?'● '+pad.id.split('(')[0].trim():'○ геймпад не найден';$('pad').className=pad?'ok':'no';
   $('mode').textContent='Камера: '+['сзади','сверху','далеко'][camMode];
