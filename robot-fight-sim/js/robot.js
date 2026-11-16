@@ -14,7 +14,7 @@ function makeMesh(type){
     bx(g,1,.26,.7,0,.04,.15,mb);bx(g,.7,.26,.3,0,.04,-.35,mb);bx(g,.4,.26,.2,0,.04,-.55,mb);
     bx(g,.9,.03,.66,0,.185,.15,mt);bx(g,.6,.03,.28,0,.185,-.35,mt);
   }else{
-    bx(g,1,.26,1,0,.04,0,mb);bx(g,.96,.03,.96,0,.185,0,mt);bx(g,.5,.08,.04,0,.12,-.5,ma);
+    bx(g,1,.26,1,0,.01,0,mb);bx(g,.96,.03,.96,0,.155,0,mt);bx(g,.5,.08,.04,0,.09,-.5,ma);
   }
   // 4 wheels. On the flipper they sit inside the side walls (only the tread shows under the body)
   const fl=type==='flipper',wx=fl?.4:.46,wd=fl?.12:.14;
@@ -43,9 +43,11 @@ function makeMesh(type){
     const ax=new oe(new Gr(.03,.03,.3,10),mk);ax.rotation.z=Math.PI/2;ag.add(ax);                  // pivot axle
   }else if(type==='hammer'){bx(ag,.1,.1,1.1,0,0,-.55,mw);bx(ag,.64,.36,.28,0,0,-1.15,ma)}
   else if(type==='spinner'){bx(ag,1.9,.07,.2,0,0,0,ma);ag.add(new oe(new Gr(.13,.13,.14,12),mw))}
-  else if(type==='drill'){const c0=new oe(new Gr(.17,.17,.1,18),mw);c0.rotation.x=-Math.PI/2;ag.add(c0);
-    for(let k=0;k<6;k++){const r0=.15-k*.022,c=new oe(new Gr(Math.max(.01,r0-.014),r0,.075,18),ma);c.rotation.x=-Math.PI/2;c.position.z=-.06-k*.075;c.castShadow=true;ag.add(c);
-      const rb=new oe(new Gr(r0+.005,r0+.005,.012,18),mw);rb.rotation.x=-Math.PI/2;rb.position.z=-.025-k*.075;ag.add(rb)}}
+  else if(type==='drill'){ // winged drill: hub, tapered core, two twisted flat wings, sharp tip
+    const hub=new oe(new Gr(.1,.1,.08,16),mw);hub.rotation.x=-Math.PI/2;hub.position.z=-.02;ag.add(hub);
+    const core=new oe(new Gr(.015,.075,.42,14),mw);core.rotation.x=-Math.PI/2;core.position.z=-.27;core.castShadow=true;ag.add(core);
+    for(let k=0;k<7;k++){const r=.17-k*.017,s=new oe(new Fe(2*r,.02,.07),ma);s.position.z=-.08-k*.065;s.rotation.z=k*.42;s.castShadow=true;ag.add(s)} // each slice turned a bit more = twisted wings
+    const tip=new oe(new Gr(.002,.045,.12,14),ma);tip.rotation.x=-Math.PI/2;tip.position.z=-.54;ag.add(tip)}
   else{bx(ag,.76,.2,.2,0,0,0,ma);for(const f of[-1,1])bx(ag,.07,.07,.7,f*.2,0,.4,mw)}
   parts.push({name:'weapon',kind:'weapon',pos:T.wpos,mesh:ag,size:T.wdeb.slice(0,3),off:T.wdeb.slice(3),hp:T.whp});
   return{g,ag,mats:[mb,mt,ma,mk],parts};
@@ -72,7 +74,7 @@ class Bot{
     if(type==='flipper'){for(const f of[-1,1])for(const g of armSegs())S(.045,g.t/2,g.hl,f*ARMX,g.cy,g.cz,g.th);for(const P of armPlates())S(.085,P.pt/2,P.len/2,0,P.cy,P.cz,P.th)}
     else if(type==='hammer'){S(.05,.05,.55,0,0,-.55);S(.32,.18,.14,0,0,-1.15)}
     else if(type==='spinner')S(.95,.1,.12,0,-.06,0); // blade hitbox reaches down so it hits the sides of enemy bodies, not flies over them
-    else if(type==='drill')S(.14,.14,.28,0,0,-.28);
+    else if(type==='drill')S(.16,.16,.28,0,0,-.3);
     else S(.38,.1,.1,0,0,0);
     Ge.addBody(a);
     // look
@@ -154,7 +156,8 @@ class Bot{
   // something touched our body
   onHit(e){
     if(!this.alive)return;
-    const o=e.body,v=Math.abs(e.contact.getImpactVelocityAlongNormal()),now=performance.now();
+    const o=e.body,now=performance.now();let v=Math.abs(e.contact.getImpactVelocityAlongNormal());
+    if(o.weaponOf&&o.weaponOf.type==='drill'&&o.weaponOf.active())v=Math.max(v,3.2); // a spinning drill keeps cutting even when it only pushes slowly
     const r=e.contact.bi===this.body?e.contact.ri:e.contact.rj,lp=this.body.vectorToLocalFrame(r),wp=this.body.position.vadd(r);
     const at=o.weaponOf||o.bot;
     if(!at){ // wall or floor: only a hard crash hurts
