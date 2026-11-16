@@ -109,7 +109,7 @@ class Bot{
       let td=0;
       if(this.type==='spinner'||this.type==='drill'){const tg=i.atk&&!this.flipped?W.spin:0;this.spin+=xn(tg-this.spin,-6*dt,12*dt)}
       else{ // stroke: 0 idle, 1 going out, 2 coming back
-        if(i.press)this.pb=.3;i.press=false;this.pb-=dt; // press buffer: a tap during cooldown still counts
+        if(i.press)this.pb=.5;i.press=false;this.pb-=dt; // press buffer: a tap during cooldown still counts
         if(this.pb>0&&this.st===0&&this.cd<=0&&(!this.flipped||this.W.rights)){this.pb=0;this.st=1;this.fired=false;if(this.flipped)sfxServo(this)}
         if(this.st===1){td=W.out;this.t+=td*dt;if(this.t>=1){this.t=1;this.st=2;this.hot=.15}}
         else if(this.st===2){td=-W.back;this.t+=td*dt;if(this.t<=0){this.t=0;this.st=0;this.cd=W.cd}}

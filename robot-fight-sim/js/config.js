@@ -19,7 +19,7 @@ const TYPES={
   col:0x101114,top:0x1a1c20,acc:0xf0a626,arm:0x0b0c0e,ui:0x20b8a4,
   hull:[[.175,.13,.3,-.325,.04,-.2],[.175,.13,.3,.325,.04,-.2],[.5,.13,.2,0,.04,.3]],sx:.325,tipx:.38,
   rights:true,hp:85,mass:12,vmax:7,omega:4.5,accel:26,dmg:.5,
-  pv:[0,.18,-.3],rest:0,hit:1.95,out:5.5,back:1.6,cd:.5,
+  pv:[0,.18,-.3],rest:0,hit:1.95,out:5.5,back:3.6,cd:.12,
   wpos:[0,-.1,-.8],wdeb:[.2,.05,.45,0,-.1,-.55],whp:55},
  hammer:{rights:true,n:'«Титан-3»',tag:'Оружие · кувалда',d:'Тяжёлый удар сверху, медленный',
   col:0xc83c3c,top:0x7a2424,acc:0xbfc7d1,hull:BOX,hp:75,mass:12,vmax:5,omega:3.4,accel:20,dmg:1,
