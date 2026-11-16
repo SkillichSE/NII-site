@@ -13,7 +13,7 @@ let paused=true, menuOpen=true, camMode=0, shake=0, over=false, camYaw=0, camH=1
 
 // hull = body boxes [halfX,halfY,halfZ, x,y,z]
 // wdeb = shape of the weapon when it breaks off, whp = weapon health
-const BOX=[[.5,.13,.5,0,.01,0]]; // body sits lower than before (clearance .05, was .08): a wedge no longer slides under everyone
+const BOX=[[.5,.13,.5,0,.01,0]];
 const TYPES={
  flipper:{n:'«Не включать»',tag:'Оружие · флиппер',d:'Золотые клин-ковши, бирюзовые лапы, чёрная перемычка между ними',
   col:0x101114,top:0x1a1c20,acc:0xf0a626,arm:0x0b0c0e,ui:0x20b8a4,
@@ -30,11 +30,10 @@ const TYPES={
  ram:{n:'«Бык»',tag:'Оружие · поршневой таран',d:'Поршень-таран, крепкая броня',
   col:0x4fb35a,top:0x2c6b34,acc:0xdddddd,hull:BOX,hp:68,mass:12,vmax:4.6,omega:3.2,accel:21,dmg:.85,
   pv:[0,-.02,-.78],out:5,back:2.5,cd:.7,wpos:[0,0,-.85],wdeb:[.38,.1,.4,0,0,.2],whp:40},
- drill:{n:'«Сверылш»',tag:'Оружие · крылатое сверло',d:'Вращающееся сверло с крыльями, поднятое над полом, клин-корпус',
-  col:0x15161a,top:0xb3322a,acc:0xaab2ba,ui:0xe0443a, // ui = colour of the name in the HUD (col is almost black, the name was invisible)
-  // hull follows the wedge model (narrow nose) and keeps the old clearance so a flipper can get under it
-  hull:[[.5,.13,.35,0,.04,.15],[.35,.13,.15,0,.04,-.35],[.2,.13,.1,0,.04,-.55]],hp:72,mass:12,vmax:4.8,omega:3.6,accel:21,dmg:1,
-  pv:[0,.1,-.45],spin:12,wpos:[0,.1,-.9],wdeb:[.16,.16,.3,0,0,-.3],whp:45}
+ drill:{n:'«Сверылш»',tag:'Оружие · сверло',d:'Прямое сверло с двумя маленькими крыльями на конце, клин-корпус',
+  col:0x15161a,top:0xb3322a,acc:0xaab2ba,ui:0xe0443a,
+  hull:[[.5,.13,.35,0,.04,.15],[.35,.13,.15,0,.04,-.35],[.2,.13,.1,0,.04,-.55]],hp:68,mass:12,vmax:4.8,omega:3.6,accel:21,dmg:.75,
+  pv:[0,.1,-.45],spin:8,wpos:[0,.1,-.9],wdeb:[.16,.16,.3,0,0,-.3],whp:45}
 };
 
 // Flipper geometry. WA = slope angle of the red wedge scoops.

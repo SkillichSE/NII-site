@@ -3,7 +3,7 @@ const INFO={
  flipper:{fl:'kz',city:'Рудный',weapon:'Флиппер',w:'2,97 кг',power:'45 кгс · подъём 0,18 с'},
  hammer:{fl:'by',city:'Минск',weapon:'Кувалда',w:'3,00 кг',power:'80 Дж · удар сверху'},
  spinner:{fl:'in',city:'Пуна',weapon:'Гориз. спиннер',w:'2,89 кг',power:'120 Дж · 8 000 об/мин'},
- drill:{fl:'kz',city:'Костанай',weapon:'Крылатое сверло',w:'2,95 кг',power:'90 Дж · 6 000 об/мин'},
+ drill:{fl:'kz',city:'Костанай',weapon:'Сверло',w:'2,95 кг',power:'90 Дж · 6 000 об/мин'},
  ram:{fl:'uz',city:'Ташкент',weapon:'Пневмо-таран',w:'2,94 кг',power:'30 кгс · ход 0,25 с'}
 };
 const flagOf=k=>`<i class="flag ${INFO[k].fl}"></i>`;
