@@ -416,8 +416,7 @@ section{padding:100px 0}
 /* news photos: no cropping, card adapts to photo */
 .newsbox[data-all] .nb-img,.newsbox[data-all] article.open .nb-img{object-fit:contain;aspect-ratio:auto;height:auto;background:#111}
 @media (max-width:640px){.newsbox[data-all] article:not(.open) .nb-img{object-fit:contain;aspect-ratio:auto}}
-/* news grid: masonry columns, no empty gaps between cards of different height */
-@media (min-width:641px){
-.newsbox[data-all] .nb-body{display:block;column-width:300px;column-gap:20px}
-.newsbox[data-all] article{break-inside:avoid;margin:0 0 20px;display:block;width:100%}
-}
+/* news grid: masonry in date order (columns built by news.js) */
+.nb-body.masonry{display:flex!important;gap:20px;align-items:flex-start}
+.nb-body.masonry .nb-col{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:20px}
+.nb-body.masonry article{margin:0;width:100%;height:auto}
