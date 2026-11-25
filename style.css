@@ -399,7 +399,7 @@ section{padding:100px 0}
 @media (max-width:640px){.hero{padding:110px 5vw 40px}.hero h1{font-size:1.7rem}}
 .hero{padding:140px 6vw 70px;background:radial-gradient(ellipse at 20% 100%,#2a0e07 0,#000 70%)}
 .rbox{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:3vw;align-items:center}
-.rpic{width:135%;max-width:none;margin-left:-17%;height:auto;object-fit:contain;pointer-events:none}
+.rpic{width:115%;max-width:none;margin-left:-17%;height:auto;object-fit:contain;pointer-events:none}
 .rinfo .chips{grid-template-columns:1fr}
 @media (max-width:900px){.rbox{grid-template-columns:1fr;gap:20px}.rpic{width:110%;margin-left:-5%;max-height:none}.hero{padding:100px 5vw 36px}}
 .hero p{display:block!important;font-size:1rem}
