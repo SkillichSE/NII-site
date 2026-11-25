@@ -409,3 +409,7 @@ section{padding:100px 0}
 @media (max-height:500px) and (orientation:landscape){.bot-hero.solo{flex-direction:column;justify-content:center}
 .bot-hero.solo .bot-title{flex:none;text-align:center}
 .bot-title h1 img.soma{max-height:calc(100svh - 100px)}}
+.hero h1 img.hero-logo{display:block;width:auto;height:clamp(110px,28svh,280px);max-width:100%;object-fit:contain;object-position:left center}
+.hero h1{max-width:none;line-height:0;margin-bottom:6px}
+@media (max-width:640px){.hero h1 img.hero-logo{height:clamp(90px,20svh,160px)}}
+@media (max-height:500px) and (orientation:landscape){.hero h1 img.hero-logo{height:clamp(70px,32svh,130px)}}
