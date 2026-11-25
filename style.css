@@ -403,3 +403,9 @@ section{padding:100px 0}
 .rinfo .chips{grid-template-columns:1fr}
 @media (max-width:900px){.rbox{grid-template-columns:1fr;gap:20px}.rpic{max-height:220px}.hero{padding:100px 5vw 36px}}
 .hero p{display:block!important;font-size:1rem}
+.bot-title h1 img.soma{display:block;margin:0 auto;width:min(860px,100%);max-height:58svh;height:auto;object-fit:contain;pointer-events:none;-webkit-user-drag:none}
+.bot-hero.solo{justify-content:center}
+.bot-hero.solo .bot-title{margin:0}
+@media (max-height:500px) and (orientation:landscape){.bot-hero.solo{flex-direction:column;justify-content:center}
+.bot-hero.solo .bot-title{flex:none;text-align:center}
+.bot-title h1 img.soma{max-height:calc(100svh - 100px)}}

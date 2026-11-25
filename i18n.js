@@ -78,12 +78,6 @@ var D={
   "kk": "Роботты көру",
   "uk": "Дивитися робота"
  },
- "olympiad": {
-  "ru": "Олимпиада",
-  "en": "Olympiad",
-  "kk": "Олимпиада",
-  "uk": "Олімпіада"
- },
  "mission": {
   "ru": "Миссия",
   "en": "Mission",
@@ -258,72 +252,6 @@ var D={
   "kk": "Ұшып кетуі мүмкін",
   "uk": "Може полетіти"
  },
- "to_the_olympiad": {
-  "ru": "К олимпиаде",
-  "en": "To the Olympiad",
-  "kk": "Олимпиадаға",
-  "uk": "До олімпіади"
- },
- "olympiad_label": {
-  "ru": "STEM-олимпиада",
-  "en": "STEM Olympiad",
-  "kk": "STEM олимпиадасы",
-  "uk": "STEM-олімпіада"
- },
- "olympiad_title": {
-  "ru": "Путь к STEM-олимпиаде",
-  "en": "The road to the STEM Olympiad",
-  "kk": "STEM олимпиадасына апаратын жол",
-  "uk": "Шлях до STEM-олімпіади"
- },
- "date_label": {
-  "ru": "Дата",
-  "en": "Date",
-  "kk": "Күні",
-  "uk": "Дата"
- },
- "date_value": {
-  "ru": "21-23 ноября 2026",
-  "en": "November 21-23, 2026",
-  "kk": "2026 жылғы 21-23 қараша",
-  "uk": "21-23 листопада 2026"
- },
- "cd_d": {
-  "ru": "дн",
-  "en": "d",
-  "kk": "күн",
-  "uk": "дн"
- },
- "cd_h": {
-  "ru": "ч",
-  "en": "h",
-  "kk": "сағ",
-  "uk": "год"
- },
- "cd_m": {
-  "ru": "мин",
-  "en": "min",
-  "kk": "мин",
-  "uk": "хв"
- },
- "cd_s": {
-  "ru": "сек",
-  "en": "sec",
-  "kk": "сек",
-  "uk": "сек"
- },
- "robot_limit_label": {
-  "ru": "Лимит робота",
-  "en": "Robot limit",
-  "kk": "Роботтың шегі",
-  "uk": "Ліміт робота"
- },
- "robot_limit_value": {
-  "ru": "30 × 30 × 30 см, 3 кг",
-  "en": "30 × 30 × 30 cm, 3 kg",
-  "kk": "30 × 30 × 30 см, 3 кг",
-  "uk": "30 × 30 × 30 см, 3 кг"
- },
  "stage_1": {
   "ru": "Этап 1",
   "en": "Stage 1",
@@ -354,72 +282,6 @@ var D={
   "kk": "3-кезең",
   "uk": "Етап 3"
  },
- "status_done": {
-  "ru": "Выполнено",
-  "en": "Done",
-  "kk": "Орындалды",
-  "uk": "Виконано"
- },
- "status_progress": {
-  "ru": "В процессе",
-  "en": "In progress",
-  "kk": "Орындалуда",
-  "uk": "У процесі"
- },
- "status_wait": {
-  "ru": "В ожидании",
-  "en": "Waiting",
-  "kk": "Күтуде",
-  "uk": "В очікуванні"
- },
- "status_todo": {
-  "ru": "Не выполнено",
-  "en": "Not done",
-  "kk": "Орындалмады",
-  "uk": "Не виконано"
- },
- "step_calc": {
-  "ru": "Расчёты",
-  "en": "Calculations",
-  "kk": "Есептеулер",
-  "uk": "Розрахунки"
- },
- "step_models": {
-  "ru": "Создание моделей",
-  "en": "Creating models",
-  "kk": "Модельдерді жасау",
-  "uk": "Створення моделей"
- },
- "step_print": {
-  "ru": "Печать и сборка",
-  "en": "Printing and assembly",
-  "kk": "Басып шығару және жинау",
-  "uk": "Друк і збірка"
- },
- "step_code": {
-  "ru": "Написание кода",
-  "en": "Writing code",
-  "kk": "Код жазу",
-  "uk": "Написання коду"
- },
- "step_strategy": {
-  "ru": "Выбор стратегии",
-  "en": "Choosing a strategy",
-  "kk": "Стратегияны таңдау",
-  "uk": "Вибір стратегії"
- },
- "step_prototype": {
-  "ru": "Создание <a href=\"robot-do-not-turn-on-prototype.html\">прототипа</a>",
-  "en": "Building a <a href=\"robot-do-not-turn-on-prototype.html\">prototype</a>",
-  "kk": "<a href=\"robot-do-not-turn-on-prototype.html\">Прототип</a> жасау",
-  "uk": "Створення <a href=\"robot-do-not-turn-on-prototype.html\">прототипу</a>"
- },
- "step_results": {
-  "ru": "Участие в олимпиаде — итоги",
-  "en": "Taking part in the olympiad — results",
-  "kk": "Олимпиадаға қатысу — қорытынды",
-  "uk": "Участь в олімпіаді — підсумки"
- },
  "source_code": {
   "ru": "Открытый исходный код",
   "en": "Open source code",
@@ -444,113 +306,119 @@ var D={
   "kk": "Жаңалықтар әзірге жоқ",
   "uk": "Новин поки немає"
  },
- "step_final": {
-  "ru": "<a href=\"robot-do-not-turn-on.html\">Готовый робот</a>",
-  "en": "<a href=\"robot-do-not-turn-on.html\">Final robot</a>",
-  "kk": "<a href=\"robot-do-not-turn-on.html\">Дайын робот</a>",
-  "uk": "<a href=\"robot-do-not-turn-on.html\">Готовий робот</a>"
- },
  "intro_label": {
-   "ru": "О проекте",
-   "en": "About",
-   "kk": "Жоба туралы",
-   "uk": "Про проєкт"
+  "ru": "О проекте",
+  "en": "About",
+  "kk": "Жоба туралы",
+  "uk": "Про проєкт"
  },
  "intro_title": {
-   "ru": "Кто мы и что делаем",
-   "en": "Who we are and what we do",
-   "kk": "Біз кімбіз және не істейміз",
-   "uk": "Хто ми і що робимо"
+  "ru": "Кто мы и что делаем",
+  "en": "Who we are and what we do",
+  "kk": "Біз кімбіз және не істейміз",
+  "uk": "Хто ми і що робимо"
  },
  "intro_text": {
-   "ru": "Мы — НИИ «Отвечаю щас полетит», команда инженеров. Мы строим робота «Не включать» и готовим его к STEM-олимпиаде. Здесь можно посмотреть робота, узнать, как идёт подготовка, и прочитать новости команды.",
-   "en": "We are NII “I’m Answering, It’s About to Fly”, a team of engineers. We are building a robot called “Do not turn on” and getting it ready for the STEM Olympiad. Here you can see the robot, follow our progress and read team news.",
-   "kk": "Біз — НИИ «Жауап беремін, қазір ұшады», инженерлер командасы. Біз «Қосуға болмайды» роботын жасап, STEM олимпиадасына дайындап жатырмыз. Мұнда роботты көруге, дайындық барысын білуге және команда жаңалықтарын оқуға болады.",
-   "uk": "Ми — НИИ «Відповідаю, зараз полетить», команда інженерів. Ми будуємо робота «Не вмикати» і готуємо його до STEM-олімпіади. Тут можна подивитися робота, дізнатися, як іде підготовка, і прочитати новини команди."
+  "ru": "Мы — НИИ «Отвечаю щас полетит», команда инженеров. Мы строим робота «Не включать» и готовим его к STEM-олимпиаде. Здесь можно посмотреть робота, узнать, как идёт подготовка, и прочитать новости команды.",
+  "en": "We are NII “I’m Answering, It’s About to Fly”, a team of engineers. We are building a robot called “Do not turn on” and getting it ready for the STEM Olympiad. Here you can see the robot, follow our progress and read team news.",
+  "kk": "Біз — НИИ «Жауап беремін, қазір ұшады», инженерлер командасы. Біз «Қосуға болмайды» роботын жасап, STEM олимпиадасына дайындап жатырмыз. Мұнда роботты көруге, дайындық барысын білуге және команда жаңалықтарын оқуға болады.",
+  "uk": "Ми — НИИ «Відповідаю, зараз полетить», команда інженерів. Ми будуємо робота «Не вмикати» і готуємо його до STEM-олімпіади. Тут можна подивитися робота, дізнатися, як іде підготовка, і прочитати новини команди."
  },
  "guide_1_t": {
-   "ru": "Посмотри робота",
-   "en": "See the robot",
-   "kk": "Роботты көріңіз",
-   "uk": "Подивись робота"
+  "ru": "Посмотри робота",
+  "en": "See the robot",
+  "kk": "Роботты көріңіз",
+  "uk": "Подивись робота"
  },
  "guide_1_d": {
-   "ru": "Фото, характеристики и открытый исходный код.",
-   "en": "Photo, specs and open source code.",
-   "kk": "Фото, сипаттамалар және ашық бастапқы код.",
-   "uk": "Фото, характеристики та відкритий вихідний код."
+  "ru": "Фото, характеристики и открытый исходный код.",
+  "en": "Photo, specs and open source code.",
+  "kk": "Фото, сипаттамалар және ашық бастапқы код.",
+  "uk": "Фото, характеристики та відкритий вихідний код."
  },
  "guide_2_t": {
-   "ru": "Следи за подготовкой",
-   "en": "Follow the progress",
-   "kk": "Дайындықты қадағалаңыз",
-   "uk": "Стеж за підготовкою"
+  "ru": "Следи за подготовкой",
+  "en": "Follow the progress",
+  "kk": "Дайындықты қадағалаңыз",
+  "uk": "Стеж за підготовкою"
  },
  "guide_2_d": {
-   "ru": "Что уже готово и что ещё в работе — по шагам, с таймером до старта.",
-   "en": "What is done and what is still in progress, step by step, with a countdown.",
-   "kk": "Не дайын, не әлі жұмыста — қадам-қадаммен, санақ таймерімен.",
-   "uk": "Що вже готово і що ще в роботі — крок за кроком, з таймером до старту."
+  "ru": "Что уже готово и что ещё в работе — по шагам, с таймером до старта.",
+  "en": "What is done and what is still in progress, step by step, with a countdown.",
+  "kk": "Не дайын, не әлі жұмыста — қадам-қадаммен, санақ таймерімен.",
+  "uk": "Що вже готово і що ще в роботі — крок за кроком, з таймером до старту."
  },
  "guide_3_t": {
-   "ru": "Читай новости",
-   "en": "Read the news",
-   "kk": "Жаңалықтарды оқыңыз",
-   "uk": "Читай новини"
+  "ru": "Читай новости",
+  "en": "Read the news",
+  "kk": "Жаңалықтарды оқыңыз",
+  "uk": "Читай новини"
  },
  "guide_3_d": {
-   "ru": "Последняя новость команды — чуть ниже.",
-   "en": "The team’s latest news is just below.",
-   "kk": "Команданың соңғы жаңалығы — төменде.",
-   "uk": "Остання новина команди — трохи нижче."
+  "ru": "Последняя новость команды — чуть ниже.",
+  "en": "The team’s latest news is just below.",
+  "kk": "Команданың соңғы жаңалығы — төменде.",
+  "uk": "Остання новина команди — трохи нижче."
  },
  "soon": {
-   "ru": "Скоро появится",
-   "en": "Coming soon",
-   "kk": "Жақында",
-   "uk": "Скоро з’явиться"
- },
- "olympiad_intro": {
-   "ru": "Олимпиада пройдёт 21–23 ноября 2026. Ниже — что команда уже сделала и что осталось.",
-   "en": "The Olympiad takes place on 21–23 November 2026. Below is what the team has done and what is left.",
-   "kk": "Олимпиада 2026 жылы 21–23 қарашада өтеді. Төменде команда не істегені және не қалғаны көрсетілген.",
-   "uk": "Олімпіада відбудеться 21–23 листопада 2026. Нижче — що команда вже зробила і що залишилось."
+  "ru": "Скоро появится",
+  "en": "Coming soon",
+  "kk": "Жақында",
+  "uk": "Скоро з’явиться"
  },
  "robots_intro": {
-   "ru": "Выберите робота, чтобы увидеть фото, характеристики и исходный код.",
-   "en": "Choose a robot to see its photo, specs and source code.",
-   "kk": "Фото, сипаттамалар мен бастапқы кодты көру үшін роботты таңдаңыз.",
-   "uk": "Оберіть робота, щоб побачити фото, характеристики та вихідний код."
+  "ru": "Выберите робота, чтобы увидеть фото, характеристики и исходный код.",
+  "en": "Choose a robot to see its photo, specs and source code.",
+  "kk": "Фото, сипаттамалар мен бастапқы кодты көру үшін роботты таңдаңыз.",
+  "uk": "Оберіть робота, щоб побачити фото, характеристики та вихідний код."
  },
  "skip": {
-   "ru": "К содержимому",
-   "en": "Skip to content",
-   "kk": "Мазмұнға өту",
-   "uk": "До вмісту"
+  "ru": "К содержимому",
+  "en": "Skip to content",
+  "kk": "Мазмұнға өту",
+  "uk": "До вмісту"
  },
  "hero_team": {
-   "ru": "НИИ «Отвечаю щас полетит»",
-   "en": "NII “I’m Answering, It’s About to Fly”",
-   "kk": "НИИ «Жауап беремін, қазір ұшады»",
-   "uk": "НИИ «Відповідаю, зараз полетить»"
+  "ru": "НИИ «Отвечаю щас полетит»",
+  "en": "NII “I’m Answering, It’s About to Fly”",
+  "kk": "НИИ «Жауап беремін, қазір ұшады»",
+  "uk": "НИИ «Відповідаю, зараз полетить»"
  },
  "hero_sub2": {
-   "ru": "Команда инженеров. Мы строим робота и готовим его к STEM-олимпиаде.",
-   "en": "A team of engineers. We are building a robot for the STEM Olympiad.",
-   "kk": "Инженерлер командасы. Біз робот жасап, оны STEM олимпиадасына дайындап жатырмыз.",
-   "uk": "Команда інженерів. Ми будуємо робота й готуємо його до STEM-олімпіади."
+  "ru": "Команда инженеров.",
+  "en": "A team of engineers.",
+  "kk": "Инженерлер командасы.",
+  "uk": "Команда інженерів."
  },
  "our_robot": {
-   "ru": "Наш робот",
-   "en": "Our robot",
-   "kk": "Біздің робот",
-   "uk": "Наш робот"
+  "ru": "Наш робот",
+  "en": "Our robot",
+  "kk": "Біздің робот",
+  "uk": "Наш робот"
  },
  "more_robot": {
-   "ru": "Подробнее о роботе",
-   "en": "More about the robot",
-   "kk": "Робот туралы толығырақ",
-   "uk": "Докладніше про робота"
+  "ru": "Подробнее о роботе",
+  "en": "More about the robot",
+  "kk": "Робот туралы толығырақ",
+  "uk": "Докладніше про робота"
+ },
+ "news_menu": {
+  "ru": "Новости",
+  "en": "News",
+  "kk": "Жаңалықтар",
+  "uk": "Новини"
+ },
+ "news_all_label": {
+  "ru": "Все новости",
+  "en": "All news",
+  "kk": "Барлық жаңалықтар",
+  "uk": "Усі новини"
+ },
+ "news_intro": {
+  "ru": "Что нового у команды.",
+  "en": "What’s new with the team.",
+  "kk": "Команданың жаңалықтары.",
+  "uk": "Що нового в команди."
  }
 };
 var LANGS=['ru','en','kk','uk'];
@@ -566,10 +434,13 @@ if(LANGS.indexOf(c)>-1)return c;
 return 'ru';
 }
 var L=detectLang();
+var LG={wide:{ru:['img/logo-wide.png',358,80,'НИИ'],o:['img/logo-wide-latin.png',640,160,'NII']},mark:{ru:['img/logo.png',178,88,'НИИ'],o:['img/logo-latin.png',292,176,'NII']}};
+function setLogos(l){document.querySelectorAll('img[data-logo]').forEach(function(n){var g=LG[n.dataset.logo];if(!g)return;var v=l==='ru'?g.ru:g.o;if(n.getAttribute('src')!==v[0])n.setAttribute('src',v[0]);n.setAttribute('width',v[1]);n.setAttribute('height',v[2]);n.alt=v[3]})}
 function apply(l,save){
 L=l;
 if(save){try{localStorage.setItem('lang',l)}catch(e){}}
 document.documentElement.lang=l==='kk'?'kk':l;
+setLogos(l);
 document.querySelectorAll('[data-i18n]').forEach(function(n){var d=D[n.dataset.i18n];if(d&&d[l])n.innerHTML=d[l]});
 document.querySelectorAll('.lang button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l)});
 document.dispatchEvent(new Event('langchange'));
