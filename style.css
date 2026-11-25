@@ -416,3 +416,8 @@ section{padding:100px 0}
 /* news photos: no cropping, card adapts to photo */
 .newsbox[data-all] .nb-img,.newsbox[data-all] article.open .nb-img{object-fit:contain;aspect-ratio:auto;height:auto;background:#111}
 @media (max-width:640px){.newsbox[data-all] article:not(.open) .nb-img{object-fit:contain;aspect-ratio:auto}}
+/* news grid: masonry columns, no empty gaps between cards of different height */
+@media (min-width:641px){
+.newsbox[data-all] .nb-body{display:block;column-width:300px;column-gap:20px}
+.newsbox[data-all] article{break-inside:avoid;margin:0 0 20px;display:block;width:100%}
+}
