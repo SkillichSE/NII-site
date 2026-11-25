@@ -399,9 +399,9 @@ section{padding:100px 0}
 @media (max-width:640px){.hero{padding:110px 5vw 40px}.hero h1{font-size:1.7rem}}
 .hero{padding:140px 6vw 70px;background:radial-gradient(ellipse at 20% 100%,#2a0e07 0,#000 70%)}
 .rbox{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:3vw;align-items:center}
-.rpic{width:115%;max-width:none;margin-left:-17%;height:auto;object-fit:contain;pointer-events:none}
+.rpic{width:115%;max-width:none;margin-left:-7.5%;height:auto;object-fit:contain;pointer-events:none}
 .rinfo .chips{grid-template-columns:1fr}
-@media (max-width:900px){.rbox{grid-template-columns:1fr;gap:20px}.rpic{width:110%;margin-left:-5%;max-height:none}.hero{padding:100px 5vw 36px}}
+@media (max-width:900px){.rbox{grid-template-columns:1fr;gap:20px}.rpic{width:115%;margin-left:-7.5%;max-height:none}.hero{padding:100px 5vw 36px}}
 .hero p{display:block!important;font-size:1rem}
 .bot-title h1 img.soma{display:block;margin:0 auto;width:min(860px,100%);max-height:58svh;height:auto;object-fit:contain;pointer-events:none;-webkit-user-drag:none}
 .bot-hero.solo{justify-content:center}
@@ -413,3 +413,6 @@ section{padding:100px 0}
 .hero h1{max-width:none;line-height:0;margin-bottom:6px}
 @media (max-width:640px){.hero h1 img.hero-logo{height:clamp(90px,20svh,160px)}}
 @media (max-height:500px) and (orientation:landscape){.hero h1 img.hero-logo{height:clamp(70px,32svh,130px)}}
+/* news photos: no cropping, card adapts to photo */
+.newsbox[data-all] .nb-img,.newsbox[data-all] article.open .nb-img{object-fit:contain;aspect-ratio:auto;height:auto;background:#111}
+@media (max-width:640px){.newsbox[data-all] article:not(.open) .nb-img{object-fit:contain;aspect-ratio:auto}}
