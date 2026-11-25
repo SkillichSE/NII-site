@@ -45,15 +45,12 @@ box.classList.add('masonry');
 var cs=[];
 for(var k=0;k<n;k++){var c=document.createElement('div');c.className='nb-col';cs.push(c)}
 box.textContent='';cs.forEach(function(c){box.appendChild(c)});
-arts.forEach(function(a){
-var m=cs[0];cs.forEach(function(c){if(c.offsetHeight<m.offsetHeight)m=c});
-m.appendChild(a);
-});
+arts.forEach(function(a,i){cs[i%n].appendChild(a)});
 cols=n;
 }
 function relayout(){clearTimeout(tm);tm=setTimeout(function(){if(all&&loaded)layout()},80)}
 window.addEventListener('resize',relayout);
-box.addEventListener('load',relayout,true);
+
 function ts(x){var t=new Date(x.date).getTime();return isNaN(t)?0:t}
 get('/api/news').then(function(a){
 items=Array.isArray(a)?a.slice():[];
