@@ -422,3 +422,18 @@ section{padding:100px 0}
 .nb-body.masonry article{margin:0;width:100%;height:auto}
 .hero>video.hero-video{z-index:0;opacity:.6;object-position:center}
 .hero{min-height:100svh;justify-content:flex-end}
+
+/* hardware: menu groups + sections */
+.mgroup{display:block;font-family:'Unbounded',sans-serif;font-size:.5rem;letter-spacing:.32em;text-transform:uppercase;color:var(--y);padding:10px 14px 4px}
+.mgroup:not(:first-child){border-top:1px solid var(--line);margin-top:6px;padding-top:14px}
+header nav .menu .mgroup{padding-left:0;padding-right:0}
+.hw-sec{margin-top:56px}
+.hw-sec:first-of-type{margin-top:36px}
+.hw-h{display:flex;align-items:baseline;gap:16px;padding-bottom:14px;margin-bottom:22px;border-bottom:1px solid var(--y)}
+.hw-h h2{font-size:clamp(1.2rem,3vw,1.9rem);letter-spacing:.1em;margin:0}
+.hw-h .cap{color:var(--y)}
+.rcard.rocket img{aspect-ratio:760/560;object-fit:contain;transform:scale(1.12)}
+@media (hover:hover){.rcard.rocket:hover img{transform:translateY(-8px) scale(1.18)}}
+.stage.photo img[src$=".gif"]{width:100%;max-height:none}
+.bot-hero.rk{cursor:default}.bot-hero.rk .stage.photo{width:min(760px,100%)}
+.hw-sec{padding:0!important;border:0!important}
