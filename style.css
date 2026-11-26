@@ -435,5 +435,5 @@ header nav .menu .mgroup{padding-left:0;padding-right:0}
 .rcard.rocket img{aspect-ratio:760/560;object-fit:contain;transform:scale(1.12)}
 @media (hover:hover){.rcard.rocket:hover img{transform:translateY(-8px) scale(1.18)}}
 .stage.photo img[src$=".gif"]{width:100%;max-height:none}
-.bot-hero.rk{cursor:default}.bot-hero.rk .stage.photo{width:min(760px,100%)}
+.bot-hero.rk{cursor:default}.bot-hero.rk .stage.photo{width:min(1280px,100%)}
 .hw-sec{padding:0!important;border:0!important}
