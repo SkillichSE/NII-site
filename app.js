@@ -39,7 +39,7 @@ var st=document.getElementById('stage');
 if(!st)return;
 var N=+st.dataset.n,dir=st.dataset.dir,inner=document.getElementById('inner'),hint=document.getElementById('hint'),hero=st.parentNode;
 var imgs=[];
-for(var i=0;i<N;i++){var im=new Image();im.src='img/'+dir+'/bot_'+i+'.webp';im.alt='';im.decoding='async';im.draggable=false;inner.appendChild(im);imgs.push(im)}
+for(var i=0;i<N;i++){var im=new Image();im.src='https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/'+dir+'/bot_'+i+'.webp';im.alt='';im.decoding='async';im.draggable=false;inner.appendChild(im);imgs.push(im)}
 var ang=0,vel=0,auto=!reduce,speed=1,drag=false,sx=0,sa=0,cur=-1,last=0,lx=0,lt=0,timer=null;
 function render(){
 ang=(ang%360+360)%360;

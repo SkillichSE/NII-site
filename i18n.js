@@ -500,7 +500,7 @@ if(LANGS.indexOf(c)>-1)return c;
 return 'ru';
 }
 var L=detectLang();
-var LG={hero:{ru:['img/logo-hero.png',1123,520,'НИИ'],o:['img/logo-hero-latin.png',908,520,'NII']},wide:{ru:['img/logo-wide.png',358,80,'НИИ'],o:['img/logo-wide-latin.png',640,160,'NII']},mark:{ru:['img/logo.png',178,88,'НИИ'],o:['img/logo-latin.png',292,176,'NII']}};
+var LG={hero:{ru:['https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/logo-hero.png',1123,520,'НИИ'],o:['https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/logo-hero-latin.png',908,520,'NII']},wide:{ru:['https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/logo-wide.png',358,80,'НИИ'],o:['https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/logo-wide-latin.png',640,160,'NII']},mark:{ru:['https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/logo.png',178,88,'НИИ'],o:['https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/logo-latin.png',292,176,'NII']}};
 function setLogos(l){document.querySelectorAll('img[data-logo]').forEach(function(n){var g=LG[n.dataset.logo];if(!g)return;var v=l==='ru'?g.ru:g.o;if(n.getAttribute('src')!==v[0])n.setAttribute('src',v[0]);n.setAttribute('width',v[1]);n.setAttribute('height',v[2]);n.alt=v[3]})}
 function apply(l,save){
 L=l;
