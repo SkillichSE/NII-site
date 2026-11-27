@@ -437,3 +437,17 @@ header nav .menu .mgroup{padding-left:0;padding-right:0}
 .stage.photo img[src$=".gif"]{width:100%;max-height:none}
 .bot-hero.rk{cursor:default}.bot-hero.rk .stage.photo{width:min(1280px,100%)}
 .hw-sec{padding:0!important;border:0!important}
+
+/* rocket page */
+.bot-hero.rk{flex-direction:column;justify-content:center;height:auto;min-height:0;padding:96px 4vw 24px;cursor:default}
+.rk-view{position:relative;width:min(1280px,100%);margin:6px auto 0;aspect-ratio:1360/520;cursor:grab}
+.rk-view:active{cursor:grabbing}
+.rk-view canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.rk-p{color:#d6d6d6;line-height:1.65;font-size:1rem;margin:18px 0 0;max-width:560px}
+.hw-eng{display:grid;grid-template-columns:1fr 1fr;gap:6vw;margin-top:64px}
+.hw-eng h3{font-family:'Unbounded',sans-serif;font-size:clamp(1rem,2vw,1.3rem);letter-spacing:.08em;margin:0;padding-bottom:12px;border-bottom:1px solid var(--y)}
+.hw-eng h3 small{display:block;margin-top:8px;font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:var(--y);font-weight:400}
+.hw-eng .rk-p{margin:14px 0 14px}
+.hw-eng .specs{border-top:0}
+.hw-eng .specs div{padding:9px 0;grid-template-columns:150px 1fr;gap:12px}
+@media(max-width:900px){.bot-hero.rk{padding:80px 4vw 16px}.rk-view{aspect-ratio:4/3}.hw-eng{grid-template-columns:1fr;gap:40px;margin-top:44px}.hw-eng .specs div{grid-template-columns:120px 1fr}}

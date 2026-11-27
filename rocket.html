@@ -12,16 +12,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
-<style>
-.bot-hero.rk{flex-direction:column;justify-content:center;height:auto;min-height:100svh;padding-left:4vw;padding-right:4vw}
-.rk-view{position:relative;width:min(1280px,100%);margin:10px auto 0;aspect-ratio:1360/520;cursor:grab}
-.rk-view canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
-.rk-ui{position:absolute;left:0;bottom:0;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
-.rk-ui button{font:500 .62rem/1 'Unbounded',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.5);border:1px solid var(--line);padding:.9em 1.1em;cursor:pointer}
-.rk-ui button:hover,.rk-ui button.on{border-color:#ffd111;color:#ffd111}
-.rk-p{color:#d6d6d6;line-height:1.7;font-size:1.05rem;margin:0 0 28px;max-width:640px}
-@media(max-width:820px){.rk-view{aspect-ratio:4/3}}
-</style>
 </head>
 <body>
 <a class="skip" href="#main" data-i18n="skip">К содержимому</a>
@@ -30,19 +20,11 @@
 <main id="main">
 <div class="bot-hero rk">
 <div class="bot-title"><h1>Optimism-1</h1></div>
-<div class="rk-view" role="img" aria-label="Интерактивная 3D-модель ракеты Optimism-1"></div>
+<div class="rk-view" role="img" aria-label="Optimism-1 3D"></div>
 </div>
-<section><div class="wrap cols">
-<div class="sticky"><h2 class="rv">Optimism-1</h2></div>
-<div class="rv"><p class="rk-p">Это должен быть первый опыт НИИ в ракетостроении. Ракета получит двигатель РД1-100-7М-7. Если всё пройдёт штатно, появится большая конфигурация, возможно с бортовой камерой, на двигателе РД1-300-7М.</p><div class="specs"><div><span><span>Статус</span></span><span>В разработке</span></div><div><span><span>Двигатель</span></span><span>РД1-100-7М-7</span></div><div><span><span>Длина</span></span><span>69 см</span></div><div><span><span>Диаметр</span></span><span>3,3 см</span></div><div><span><span>Масса</span></span><span>349 г с двигателем</span></div><div><span><span>Апогей</span></span><span>992 м (расчёт)</span></div><div><span><span>Макс. скорость</span></span><span>294 м/с (М 0,865)</span></div><div><span><span>Ускорение</span></span><span>до 345 м/с²</span></div><div><span><span>Устойчивость</span></span><span>1,92 калибра</span></div></div></div>
-</div></section>
-<section><div class="wrap cols">
-<div class="sticky"><h2 class="rv">РД1-100-7М</h2></div>
-<div class="rv"><p class="rk-p">Конфигурация 1, первая версия. Недорогой серийный двигатель с вышибным зарядом. На нём отработаем конструкцию, оперение и систему спасения.</p><div class="specs"><div><span><span>Средняя тяга</span></span><span>50 Н</span></div><div><span><span>Макс. тяга</span></span><span>120 Н</span></div><div><span><span>Импульс</span></span><span>92–100 Н·с</span></div><div><span><span>Время работы</span></span><span>2 с</span></div><div><span><span>Размеры</span></span><span>Ø29 × 220 мм</span></div><div><span><span>Масса</span></span><span>180 г</span></div><div><span><span>Задержка</span></span><span>7 с</span></div></div></div>
-</div></section>
-<section><div class="wrap cols">
-<div class="sticky"><h2 class="rv">РД1-300-7М</h2></div>
-<div class="rv"><p class="rk-p">Конфигурация 2, большая версия. Самый мощный двигатель серии для моделей ракет. Под него нужен корпус крупнее, и в нём найдётся место для бортовой камеры.</p><div class="specs"><div><span><span>Средняя тяга</span></span><span>250 Н</span></div><div><span><span>Макс. тяга</span></span><span>330 Н</span></div><div><span><span>Импульс</span></span><span>280–300 Н·с</span></div><div><span><span>Время работы</span></span><span>≈1,2 с (расчёт)</span></div><div><span><span>Размеры</span></span><span>Ø37 × 300 мм</span></div><div><span><span>Масса</span></span><span>430–440 г</span></div><div><span><span>Задержка</span></span><span>7 с</span></div></div></div>
+<section><div class="wrap">
+<div class="cols"><div class="sticky"><h2 class="rv">Optimism-1</h2><p class="rk-p rv" data-i18n="rk_intro"></p></div><div class="specs rv"><div><span><span data-i18n="status_label">Статус</span></span><span data-i18n="status_dev">В разработке</span></div><div><span><span data-i18n="rk_engine"></span></span><span>РД1-100-7М-7</span></div><div><span><span data-i18n="rk_len"></span></span><span data-i18n="rk_len_v"></span></div><div><span><span data-i18n="rk_dia"></span></span><span data-i18n="rk_dia_v"></span></div><div><span><span data-i18n="rk_mass"></span></span><span data-i18n="rk_mass_v"></span></div><div><span><span data-i18n="rk_apo"></span></span><span data-i18n="rk_apo_v"></span></div><div><span><span data-i18n="rk_vmax"></span></span><span data-i18n="rk_vmax_v"></span></div><div><span><span data-i18n="rk_acc"></span></span><span data-i18n="rk_acc_v"></span></div><div><span><span data-i18n="rk_stab"></span></span><span data-i18n="rk_stab_v"></span></div></div></div>
+<div class="hw-eng"><div class="rv"><h3>РД1-100-7М <small data-i18n="rk_cfg1"></small></h3><p class="rk-p" data-i18n="rk_e1"></p><div class="specs"><div><span><span data-i18n="rk_thr_avg"></span></span><span data-i18n="rk_v50"></span></div><div><span><span data-i18n="rk_thr_max"></span></span><span data-i18n="rk_v120"></span></div><div><span><span data-i18n="rk_imp"></span></span><span data-i18n="rk_vi1"></span></div><div><span><span data-i18n="rk_burn"></span></span><span data-i18n="rk_v2s"></span></div><div><span><span data-i18n="rk_size"></span></span><span data-i18n="rk_sz1"></span></div><div><span><span data-i18n="rk_m"></span></span><span data-i18n="rk_m1"></span></div><div><span><span data-i18n="rk_delay"></span></span><span data-i18n="rk_v7s"></span></div></div></div><div class="rv"><h3>РД1-300-7М <small data-i18n="rk_cfg2"></small></h3><p class="rk-p" data-i18n="rk_e2"></p><div class="specs"><div><span><span data-i18n="rk_thr_avg"></span></span><span data-i18n="rk_v250"></span></div><div><span><span data-i18n="rk_thr_max"></span></span><span data-i18n="rk_v330"></span></div><div><span><span data-i18n="rk_imp"></span></span><span data-i18n="rk_vi2"></span></div><div><span><span data-i18n="rk_burn"></span></span><span data-i18n="rk_burn2"></span></div><div><span><span data-i18n="rk_size"></span></span><span data-i18n="rk_sz2"></span></div><div><span><span data-i18n="rk_m"></span></span><span data-i18n="rk_m2"></span></div><div><span><span data-i18n="rk_delay"></span></span><span data-i18n="rk_v7s"></span></div></div></div></div>
 </div></section>
 </main>
 <footer>
