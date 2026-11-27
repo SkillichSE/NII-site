@@ -456,3 +456,6 @@ header nav .menu .mgroup{padding-left:0;padding-right:0}
 
 .rk-view{aspect-ratio:auto;height:clamp(300px,calc(100svh - 200px),700px)}
 @media(max-width:900px){.rk-view{aspect-ratio:auto;height:clamp(300px,58svh,520px)}}
+.bot-hero.rk{padding-left:0;padding-right:0}
+.bot-hero.rk .rk-view{width:100%;max-width:none;margin-left:0;margin-right:0}
+.bot-hero.rk .bot-title{padding:0 4vw}
