@@ -1,4 +1,4 @@
-/* Optimism-1: интерактивная 3D-модель (three.js). Вращение мышью/пальцем; без зума, без кнопок, страница скроллится свободно. */
+/* Optimism: интерактивная 3D-модель (three.js). Вращение мышью/пальцем; без зума, без кнопок, страница скроллится свободно. */
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
@@ -10,7 +10,7 @@ const el = document.querySelector('.rk-view');
 if (el) { try { init(el); } catch (e) { console.error('rocket init', e); window.__rkFail && window.__rkFail(); } }
 
 function init(el) {
-  const ARIA = { ru: 'Интерактивная 3D-модель ракеты Optimism-1', en: 'Interactive 3D model of the Optimism-1 rocket', uk: 'Інтерактивна 3D-модель ракети Optimism-1', kk: 'Optimism-1 зымыранының интерактивті 3D моделі' };
+  const ARIA = { ru: 'Интерактивная 3D-модель ракеты Optimism', en: 'Interactive 3D model of the Optimism rocket', uk: 'Інтерактивна 3D-модель ракети Optimism', kk: 'Optimism зымыранының интерактивті 3D моделі' };
   const setAria = () => el.setAttribute('aria-label', ARIA[document.documentElement.lang] || ARIA.en);
   setAria(); document.addEventListener('langchange', setAria);
 
@@ -181,6 +181,50 @@ void main(){
     cam.position.copy(ctl.target).addScaledVector(vT, curD);
   }
 
+
+  /* ---------- надпись OPTIMISM на корпусе (из логотипа SVG), с двух сторон ---------- */
+  const LOGO_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="34.5 34.5 488 71" width="2048" height="298" fill="none" stroke-width="7" stroke-linecap="butt">'
+    + '<g transform="translate(40,40)" stroke="#0b0b0b"><ellipse cx="28" cy="30" rx="28" ry="30"/></g>'
+    + '<g transform="translate(127,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M0 63.5V0H28A15 15 0 0 1 28 30H0"/></g>'
+    + '<g transform="translate(190,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M0 0H44M22 0V63.5"/></g>'
+    + '<g transform="translate(257,40)" stroke="#0b0b0b"><path d="M0 -3.5V63.5"/></g>'
+    + '<g transform="translate(289,40)" stroke="#0b0b0b" stroke-linejoin="bevel"><path d="M0 63.5V-3.5L24 34L48 -3.5V63.5"/></g>'
+    + '<g transform="translate(369,40)" stroke="#0b0b0b"><path d="M0 16V63.5"/><path d="M0 -3.5V5" stroke="#ff5a1f"/></g>'
+    + '<g transform="translate(398,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M42 0H15A15 15 0 0 0 15 30H27A15 15 0 0 1 27 60H0"/></g>'
+    + '<g transform="translate(469,40)" stroke="#0b0b0b" stroke-linejoin="bevel"><path d="M0 63.5V-3.5L24 34L48 -3.5V63.5"/></g></svg>';
+  function addLogo() {
+    const bb = new THREE.Box3();
+    rocket.traverse((m) => { if (m.isMesh && m.userData.k === 'body') bb.union(new THREE.Box3().setFromObject(m)); });
+    if (bb.isEmpty()) return;
+    const r = (bb.max.y - bb.min.y) / 2 + 0.002, cy = (bb.max.y + bb.min.y) / 2, cz = (bb.max.z + bb.min.z) / 2;
+    const bl = bb.max.x - bb.min.x, finEnd = bb.min.x + bl * 0.2;      // оперение занимает хвост корпуса
+    const xc = finEnd + (bb.max.x - finEnd) / 2 - 0.1;
+    const img = new Image();
+    img.onload = () => {
+      const cv = document.createElement('canvas'); cv.width = 2048; cv.height = 298;
+      cv.getContext('2d').drawImage(img, 0, 0, 2048, 298);
+      const tex = new THREE.CanvasTexture(cv);
+      tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = R.capabilities.getMaxAnisotropy(); tex.needsUpdate = true;
+      const mat = new THREE.MeshStandardMaterial({ map: tex, transparent: true, roughness: 0.3, metalness: 0.05,
+        side: THREE.DoubleSide, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
+      const Hh = 0.3, Lg = Hh * 488 / 71, NV = 40;
+      for (const s of [1, -1]) {                                       // +z и -z: читается слева направо с обеих сторон
+        const pos = [], uv = [], idx = [];
+        for (let i = 0; i <= 1; i++) for (let j = 0; j <= NV; j++) {
+          const a = (j / NV - 0.5) * Hh / r;
+          pos.push(xc + s * (i - 0.5) * Lg, cy + r * Math.sin(a), cz + s * r * Math.cos(a)); uv.push(i, j / NV);
+        }
+        for (let j = 0; j < NV; j++) { const a = j, b = j + 1, c = NV + 1 + j, d = NV + 2 + j; idx.push(a, b, c, b, d, c); }
+        const g = new THREE.BufferGeometry();
+        g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+        g.setIndex(idx); g.computeVertexNormals();
+        const nrm = g.attributes.normal; for (let k = 0; k < nrm.count; k++) { const y = g.attributes.position.getY(k) - cy, z = g.attributes.position.getZ(k) - cz, l = Math.hypot(y, z); nrm.setXYZ(k, 0, y / l, z / l); }
+        const mesh = new THREE.Mesh(g, mat); mesh.renderOrder = 2; rocket.add(mesh);
+      }
+    };
+    img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(LOGO_SVG);
+  }
+
   new OBJLoader().load('models/rocket.obj', (obj) => {
     obj.traverse((m) => {
       if (!m.isMesh) return;
@@ -196,6 +240,7 @@ void main(){
     obj.position.set(-(bb.min.x + bb.max.x) / 2, -(bb.min.y + bb.max.y) / 2, -(ball.min.z + len / 2));
     w.rotation.y = Math.PI / 2; w.scale.setScalar(10 / len);
     rocket.add(w); rocket.updateMatrixWorld(true);
+    try { addLogo(); } catch (e) { console.error('rocket logo', e); }
     tailX = new THREE.Box3().setFromObject(rocket).min.x;
     try { buildFX(); makeFitPts(); ready = true; } catch (e) { console.error('rocket fx', e); }
     resize();
