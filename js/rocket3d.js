@@ -47,7 +47,7 @@ function init(el) {
   const FX = new THREE.Group(); scene.add(FX);       // весь огонь: плюм, ядро, свечение, дым, искры
   const U = { uTime: { value: 0 }, uInt: { value: 0 }, uLen: { value: 1 } };
   let tailX = -5, ready = false;
-  const NR = 0.16;                                    // радиус сопла в сцене
+  const NR = 0.2;                                    // радиус сопла в сцене
   const LP = 2.9;                                     // длина факела
   const parts = {};
 
@@ -152,7 +152,7 @@ void main(){
     const w = el.clientWidth, h = el.clientHeight; if (!w || !h) return;
     R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
     const D = Math.max(15.5 / (2 * Math.tan(13 * Math.PI / 180) * cam.aspect), 11);
-    if (cam.position.lengthToSquared() > 0.01 && ctl.target.lengthSq() > 0) dir.copy(cam.position).sub(ctl.target).normalize();
+    if (cam.position.lengthSq() > 0.01 && ctl.target.lengthSq() > 0) dir.copy(cam.position).sub(ctl.target).normalize();
     ctl.target.set(-1.7, 0, 0); cam.position.copy(ctl.target).addScaledVector(dir, D);
   }
   resize();
@@ -163,10 +163,15 @@ void main(){
       if (!m.isMesh) return;
       const k = pick(m.name.toLowerCase());
       m.geometry.deleteAttribute('normal'); m.geometry.deleteAttribute('uv');
-      m.geometry = toCreasedNormals(m.geometry, 0.6); m.material = mats[k];
+      m.geometry = toCreasedNormals(m.geometry, 0.6); m.material = mats[k]; m.userData.k = k;
     });
     const w = new THREE.Group(); w.add(obj);
-    obj.position.set(0.352, 0, -9.8); w.rotation.y = Math.PI / 2; w.scale.setScalar(10 / 19.6);
+    // ось ракеты берём по корпусу (оперение несимметрично), длину по всей модели
+    const bb = new THREE.Box3(), ball = new THREE.Box3();
+    obj.traverse((m) => { if (!m.isMesh) return; m.geometry.computeBoundingBox(); ball.union(m.geometry.boundingBox); if (m.userData.k !== 'fin') bb.union(m.geometry.boundingBox); });
+    const len = ball.max.z - ball.min.z;
+    obj.position.set(-(bb.min.x + bb.max.x) / 2, -(bb.min.y + bb.max.y) / 2, -(ball.min.z + len / 2));
+    w.rotation.y = Math.PI / 2; w.scale.setScalar(10 / len);
     rocket.add(w); rocket.updateMatrixWorld(true);
     tailX = new THREE.Box3().setFromObject(rocket).min.x;
     try { buildFX(); ready = true; } catch (e) { console.error('rocket fx', e); }
