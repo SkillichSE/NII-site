@@ -26,7 +26,7 @@ function init(el) {
   ctl.autoRotate = !reduce; ctl.autoRotateSpeed = 0.8;
   ctl.minPolarAngle = 0.55; ctl.maxPolarAngle = 2.5;
   R.domElement.style.touchAction = 'pan-y';          // вертикальный свайп скроллит страницу
-  let idle, dir = new THREE.Vector3(0.2, 0.12, 0.97).normalize();
+  let curD = 0, idle, dir = new THREE.Vector3(0.2, 0.12, 0.97).normalize();
   ctl.addEventListener('start', () => { ctl.autoRotate = false; clearTimeout(idle); });
   ctl.addEventListener('end', () => { if (!reduce) idle = setTimeout(() => (ctl.autoRotate = true), 4000); });
 
@@ -154,10 +154,32 @@ void main(){
     const half = Math.min(13 * Math.PI / 180, Math.atan(Math.tan(13 * Math.PI / 180) * cam.aspect));
     const D = 7.6 / Math.sin(half);              // вся сфера (ракета + факел) влезает при любом повороте
     if (cam.position.lengthSq() > 0.01 && ctl.target.lengthSq() > 0) dir.copy(cam.position).sub(ctl.target).normalize();
-    ctl.target.set(-2.1, 0, 0); cam.position.copy(ctl.target).addScaledVector(dir, D);
+    ctl.target.set(-2.1, 0, 0); cam.position.copy(ctl.target).addScaledVector(dir, D); curD = 0;
   }
   resize();
   new ResizeObserver(resize).observe(el);
+
+  // точная подгонка: камера держит ракету с факелом в кадре при любом повороте, но как можно крупнее
+  const fitPts = []; const vR = new THREE.Vector3(), vU = new THREE.Vector3(), vT = new THREE.Vector3();
+  function makeFitPts() {
+    const x0 = tailX, x1 = tailX + 10, fl = x0 - LP * 0.85;
+    fitPts.push(new THREE.Vector3(x1, 0, 0), new THREE.Vector3(fl, 0, 0));
+    for (const a of [-1, 1]) for (const b of [-1, 1]) {
+      fitPts.push(new THREE.Vector3(x0, a * 0.7, b * 0.7), new THREE.Vector3(x0 - 1.4, a * 0.4, b * 0.4), new THREE.Vector3(x1 - 1, a * 0.25, b * 0.25));
+    }
+  }
+  function fit(dt) {
+    if (!fitPts.length) return;
+    vT.copy(cam.position).sub(ctl.target); const len = vT.length(); if (len < 1e-3) return; vT.divideScalar(len);
+    cam.updateMatrixWorld(); vR.setFromMatrixColumn(cam.matrixWorld, 0); vU.setFromMatrixColumn(cam.matrixWorld, 1);
+    const tv = Math.tan(13 * Math.PI / 180), th = tv * cam.aspect; let need = 0;
+    for (const p of fitPts) {
+      const q = p.clone().sub(ctl.target), d = q.dot(vT);
+      need = Math.max(need, d + 1.06 * Math.max(Math.abs(q.dot(vR)) / th, Math.abs(q.dot(vU)) / tv));
+    }
+    curD = curD ? curD + (need - curD) * Math.min(dt * 5, 1) : need;
+    cam.position.copy(ctl.target).addScaledVector(vT, curD);
+  }
 
   new OBJLoader().load('models/rocket.obj', (obj) => {
     obj.traverse((m) => {
@@ -175,7 +197,7 @@ void main(){
     w.rotation.y = Math.PI / 2; w.scale.setScalar(10 / len);
     rocket.add(w); rocket.updateMatrixWorld(true);
     tailX = new THREE.Box3().setFromObject(rocket).min.x;
-    try { buildFX(); ready = true; } catch (e) { console.error('rocket fx', e); }
+    try { buildFX(); makeFitPts(); ready = true; } catch (e) { console.error('rocket fx', e); }
     resize();
   }, undefined, (e) => console.error('rocket.obj', e));
 
@@ -228,6 +250,6 @@ void main(){
         } else { P.setXYZ(i * 2, 0, -999, 0); P.setXYZ(i * 2 + 1, 0, -999, 0); }
       } P.needsUpdate = true; C.needsUpdate = true;
     } catch (e) { console.error('rocket fx loop', e); ready = false; parts.grp && (FX.visible = false); }
-    ctl.update(); R.render(scene, cam); window.__rk = 1;
+    ctl.update(); fit(dt); R.render(scene, cam); window.__rk = 1;
   })();
 }
