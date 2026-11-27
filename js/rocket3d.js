@@ -6,7 +6,8 @@ import { toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const el = document.querySelector('.rk-view'); if (el) init(el);
+const el = document.querySelector('.rk-view');
+if (el) { try { init(el); } catch (e) { console.error('rocket init', e); window.__rkFail && window.__rkFail(); } }
 
 function init(el) {
   const ARIA = { ru: 'Интерактивная 3D-модель ракеты Optimism-1', en: 'Interactive 3D model of the Optimism-1 rocket', uk: 'Інтерактивна 3D-модель ракети Optimism-1', kk: 'Optimism-1 зымыранының интерактивті 3D моделі' };
@@ -180,7 +181,7 @@ void main(){
   (function loop() {
     requestAnimationFrame(loop); if (!vis) return;
     const dt = Math.min(clock.getDelta(), 0.05), t = clock.elapsedTime, ti = performance.now() / 1000 - t0;
-    if (ready) {
+    if (ready) try {
       // розжиг: вспышка, перерегулирование, затем штатный режим
       const lam = ti < 1.6 ? ease(Math.min(ti / 0.9, 1)) + 0.16 * Math.exp(-(((ti - 1.0) / 0.35) ** 2)) : 1;
       const inten = (0.25 + 0.75 * ease(Math.min(ti / 0.7, 1))) * (1 + 0.35 * Math.exp(-(((ti - 0.5) / 0.35) ** 2)));
@@ -220,7 +221,7 @@ void main(){
           C.setXYZ(i * 2, 1, 0.45 + 0.5 * k, 0.1 + 0.35 * k * k); C.setXYZ(i * 2 + 1, 0.25 * k, 0.05 * k, 0);
         } else { P.setXYZ(i * 2, 0, -999, 0); P.setXYZ(i * 2 + 1, 0, -999, 0); }
       } P.needsUpdate = true; C.needsUpdate = true;
-    }
-    ctl.update(); R.render(scene, cam);
+    } catch (e) { console.error('rocket fx loop', e); ready = false; parts.grp && (FX.visible = false); }
+    ctl.update(); R.render(scene, cam); window.__rk = 1;
   })();
 }

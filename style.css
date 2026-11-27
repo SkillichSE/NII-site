@@ -439,7 +439,7 @@ header nav .menu .mgroup{padding-left:0;padding-right:0}
 .hw-sec{padding:0!important;border:0!important}
 
 /* rocket page */
-.bot-hero.rk{flex-direction:column;justify-content:center;height:100vh;height:100svh;min-height:480px;padding:84px 4vw 22px;cursor:default}
+.bot-hero.rk{flex-direction:column;align-items:stretch;justify-content:center;height:100vh;height:100svh;min-height:480px;padding:84px 4vw 22px;cursor:default}
 .rk-view{position:relative;width:min(1280px,100%);margin:6px auto 0;aspect-ratio:1360/520;cursor:grab}
 .rk-view:active{cursor:grabbing}
 .rk-view canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
@@ -452,3 +452,4 @@ header nav .menu .mgroup{padding-left:0;padding-right:0}
 .hw-eng .specs div{padding:9px 0;grid-template-columns:150px 1fr;gap:12px}
 @media(max-width:900px){.bot-hero.rk{height:auto;min-height:100svh;padding:84px 4vw 22px}.rk-view{aspect-ratio:4/3}.hw-eng{grid-template-columns:1fr;gap:40px;margin-top:44px}.hw-eng .specs div{grid-template-columns:120px 1fr}}
 .rk-lead{max-width:760px;margin:48px 0 0}.rk-lead+.hw-eng{margin-top:36px}
+.bot-hero.rk .bot-title{text-align:center;flex:none;margin:0}
