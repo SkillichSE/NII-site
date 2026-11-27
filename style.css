@@ -459,3 +459,5 @@ header nav .menu .mgroup{padding-left:0;padding-right:0}
 .bot-hero.rk{padding-left:0;padding-right:0}
 .bot-hero.rk .rk-view{width:100%;max-width:none;margin-left:0;margin-right:0}
 .bot-hero.rk .bot-title{padding:0 4vw}
+
+.rk-view{overflow:visible}.rk-view canvas{top:-20%;bottom:auto;height:140%}.bot-hero.rk{overflow:visible}

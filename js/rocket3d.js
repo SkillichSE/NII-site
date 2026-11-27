@@ -149,7 +149,7 @@ void main(){
   }
 
   function resize() {
-    const w = el.clientWidth, h = el.clientHeight; if (!w || !h) return;
+    const w = el.clientWidth, h = Math.round(el.clientHeight * 1.4); if (!w || !h) return;   // холст выше блока на 20% сверху и снизу
     R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
     const half = Math.min(13 * Math.PI / 180, Math.atan(Math.tan(13 * Math.PI / 180) * cam.aspect));
     const D = 7.6 / Math.sin(half);              // вся сфера (ракета + факел) влезает при любом повороте
@@ -162,7 +162,7 @@ void main(){
   // точная подгонка: камера держит ракету с факелом в кадре при любом повороте, но как можно крупнее
   const fitPts = []; const vR = new THREE.Vector3(), vU = new THREE.Vector3(), vT = new THREE.Vector3();
   function makeFitPts() {
-    const x0 = tailX, x1 = tailX + 10, fl = x0 - LP * 0.85;
+    const x0 = tailX, x1 = tailX + 10, fl = x0 - LP * 1.15;
     fitPts.push(new THREE.Vector3(x1, 0, 0), new THREE.Vector3(fl, 0, 0));
     for (const a of [-1, 1]) for (const b of [-1, 1]) {
       fitPts.push(new THREE.Vector3(x0, a * 0.7, b * 0.7), new THREE.Vector3(x0 - 1.4, a * 0.4, b * 0.4), new THREE.Vector3(x1 - 1, a * 0.25, b * 0.25));
