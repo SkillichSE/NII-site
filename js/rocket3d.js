@@ -50,19 +50,6 @@ function init(el) {
   const LP = 2.9;                                     // длина факела
   const parts = {};
 
-  new OBJLoader().load('models/rocket.obj', (obj) => {
-    obj.traverse((m) => {
-      if (!m.isMesh) return;
-      const k = pick(m.name.toLowerCase());
-      m.geometry.deleteAttribute('normal'); m.geometry.deleteAttribute('uv');
-      m.geometry = toCreasedNormals(m.geometry, 0.6); m.material = mats[k];
-    });
-    const w = new THREE.Group(); w.add(obj);
-    obj.position.set(0.352, 0, -9.8); w.rotation.y = Math.PI / 2; w.scale.setScalar(10 / 19.6);
-    rocket.add(w); rocket.updateMatrixWorld(true);
-    tailX = new THREE.Box3().setFromObject(rocket).min.x;
-    buildFX(); ready = true; resize();
-  });
 
   /* ---------- огонь ---------- */
   const GL = `
@@ -169,6 +156,22 @@ void main(){
   }
   resize();
   new ResizeObserver(resize).observe(el);
+
+  new OBJLoader().load('models/rocket.obj', (obj) => {
+    obj.traverse((m) => {
+      if (!m.isMesh) return;
+      const k = pick(m.name.toLowerCase());
+      m.geometry.deleteAttribute('normal'); m.geometry.deleteAttribute('uv');
+      m.geometry = toCreasedNormals(m.geometry, 0.6); m.material = mats[k];
+    });
+    const w = new THREE.Group(); w.add(obj);
+    obj.position.set(0.352, 0, -9.8); w.rotation.y = Math.PI / 2; w.scale.setScalar(10 / 19.6);
+    rocket.add(w); rocket.updateMatrixWorld(true);
+    tailX = new THREE.Box3().setFromObject(rocket).min.x;
+    try { buildFX(); ready = true; } catch (e) { console.error('rocket fx', e); }
+    resize();
+  }, undefined, (e) => console.error('rocket.obj', e));
+
 
   let vis = true, t0 = performance.now() / 1000;
   new IntersectionObserver((e) => { const v = e[0].isIntersecting; if (v && !vis) t0 = performance.now() / 1000; vis = v; }).observe(el);   // розжиг заново при возврате к модели
