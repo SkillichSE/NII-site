@@ -453,3 +453,6 @@ header nav .menu .mgroup{padding-left:0;padding-right:0}
 @media(max-width:900px){.bot-hero.rk{height:auto;min-height:100svh;padding:84px 4vw 22px}.rk-view{aspect-ratio:4/3}.hw-eng{grid-template-columns:1fr;gap:40px;margin-top:44px}.hw-eng .specs div{grid-template-columns:120px 1fr}}
 .rk-lead{max-width:760px;margin:48px 0 0}.rk-lead+.hw-eng{margin-top:36px}
 .bot-hero.rk .bot-title{text-align:center;flex:none;margin:0}
+
+.rk-view{aspect-ratio:auto;height:clamp(300px,calc(100svh - 200px),700px)}
+@media(max-width:900px){.rk-view{aspect-ratio:auto;height:clamp(300px,58svh,520px)}}

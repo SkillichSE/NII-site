@@ -48,7 +48,7 @@ function init(el) {
   const U = { uTime: { value: 0 }, uInt: { value: 0 }, uLen: { value: 1 } };
   let tailX = -5, ready = false;
   const NR = 0.2;                                    // радиус сопла в сцене
-  const LP = 2.9;                                     // длина факела
+  const LP = 4.3;                                     // длина факела
   const parts = {};
 
 
@@ -77,11 +77,11 @@ void main(){
  float n=fbm(q+w*1.6);
  float edge=smoothstep(0.,.45,fr-(1.-n)*.32*(.3+u));
  float dens=pow(fr,.85)*edge;
- float T=1.5*dens*exp(-1.05*u)*(.55+.75*n);
- T*=1.-smoothstep(.78,1.,u);
+ float T=1.5*dens*exp(-0.75*u)*(.6+.8*n);
+ T*=1.-smoothstep(.7,1.,u);
  // ударные диски
- float dia=pow(.5+.5*cos(vP.y/(uL*uLen)*28.),2.)*(1.-smoothstep(.0,.55,u));
- T+=.45*dia*fr*exp(-1.4*u);
+ float dia=pow(.5+.5*cos(vP.y/(uL*uLen)*22.),2.)*(1.-smoothstep(.0,.65,u));
+ T+=.6*dia*pow(fr,1.5)*exp(-1.1*u);
  T*=uInt*smoothstep(0.,.03,u);
  vec3 c=ramp(T);
  gl_FragColor=vec4(c*(.9+1.8*T),1.-exp(-2.6*T));
@@ -92,7 +92,7 @@ void main(){
  float fr=abs(dot(normalize(vN),normalize(vV)));
  float n=fbm(vec3(vP.x*9.,vP.y*3.-uTime*9.,vP.z*9.));
  float dia=.3+.7*pow(.5+.5*cos(vP.y/(uL*uLen)*30.),2.);
- float T=1.35*pow(fr,1.3)*exp(-1.7*u)*dia*(.8+.4*n)*smoothstep(.0,.05,u)*(1.-smoothstep(.55,.95,u))*uInt;
+ float T=1.35*pow(fr,1.3)*exp(-1.2*u)*dia*(.8+.4*n)*smoothstep(.0,.05,u)*(1.-smoothstep(.55,.95,u))*uInt;
  vec3 c=ramp(T+.15);
  gl_FragColor=vec4(c*(1.+1.6*T),clamp(T*1.4,0.,1.));
 }`;
@@ -102,7 +102,7 @@ void main(){
     for (let i = 0; i <= n; i++) { const u = (i / n) * umax; let r = fn(u) * rmul; if (i === n) r = 4e-4; pts.push(new THREE.Vector2(Math.max(r, 4e-4), u * LP)); }
     return new THREE.LatheGeometry(pts, 40);
   };
-  const wdt = (u) => NR * 1.75 * (1 + Math.sqrt(u)) * (1 - 0.62 * ease(Math.min(Math.max((u - 0.45) / 0.8, 0), 1)));
+  const wdt = (u) => NR * (0.95 + 0.85 * Math.sqrt(u)) * (1 - 0.55 * ease(Math.min(Math.max((u - 0.4) / 0.8, 0), 1)));
   function mk(frag, geo, extra = {}) {
     return new THREE.Mesh(geo, new THREE.ShaderMaterial({
       uniforms: { ...U, uL: { value: LP }, uMode: { value: 0 } }, vertexShader: vs, fragmentShader: frag,
@@ -151,9 +151,10 @@ void main(){
   function resize() {
     const w = el.clientWidth, h = el.clientHeight; if (!w || !h) return;
     R.setSize(w, h, false); cam.aspect = w / h; cam.updateProjectionMatrix();
-    const D = Math.max(15.5 / (2 * Math.tan(13 * Math.PI / 180) * cam.aspect), 11);
+    const half = Math.min(13 * Math.PI / 180, Math.atan(Math.tan(13 * Math.PI / 180) * cam.aspect));
+    const D = 7.6 / Math.sin(half);              // вся сфера (ракета + факел) влезает при любом повороте
     if (cam.position.lengthSq() > 0.01 && ctl.target.lengthSq() > 0) dir.copy(cam.position).sub(ctl.target).normalize();
-    ctl.target.set(-1.7, 0, 0); cam.position.copy(ctl.target).addScaledVector(dir, D);
+    ctl.target.set(-2.1, 0, 0); cam.position.copy(ctl.target).addScaledVector(dir, D);
   }
   resize();
   new ResizeObserver(resize).observe(el);
