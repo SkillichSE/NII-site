@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#000000">
-<title>Optimism-1 — ракета · НИИ</title>
+<title>Optimism-1 - НИИ</title>
 <meta name="description" content="НИИ - Отвечаю щас полетит. Инженерная команда.">
 <link rel="icon" href="https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,34 +13,14 @@
 <link rel="stylesheet" href="style.css">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
 <style>
-.rk-status{display:inline-flex;align-items:center;gap:.7em;margin-top:16px;padding:.7em 1.3em;border:1px solid var(--y);border-radius:999px;color:var(--y);font:500 .68rem/1 'Unbounded',sans-serif;letter-spacing:.18em;text-transform:uppercase}
-.rk-status i{width:.65em;height:.65em;border-radius:50%;background:var(--y);animation:rkp 1.8s infinite}
-@keyframes rkp{0%{box-shadow:0 0 0 0 rgba(255,209,17,.55)}70%,100%{box-shadow:0 0 0 .8em rgba(255,209,17,0)}}
-.rk-view{position:relative;width:100%;aspect-ratio:1360/520;overflow:hidden;background:radial-gradient(ellipse at 50% 90%,#3a120a 0,#000 70%)}
-.rk-view canvas{display:block;width:100%;height:100%;cursor:grab}.rk-view canvas:active{cursor:grabbing}
-.rk-hero{max-width:1360px;margin:18px auto 0}
-.rk-ui{position:absolute;left:12px;bottom:12px;display:flex;gap:8px;z-index:2}
-.rk-ui button{font:500 .62rem/1 'Unbounded',sans-serif;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.55);border:1px solid var(--line);padding:.85em 1.1em;cursor:pointer;backdrop-filter:blur(6px)}
-.rk-ui button:hover,.rk-ui button.on{border-color:var(--y);color:var(--y)}
-.rk-hint{position:absolute;right:14px;top:12px;font-size:.72rem;color:var(--mute);pointer-events:none}
-.rk-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--mute);font-size:.85rem;pointer-events:none}
-.rk-sec{padding:clamp(48px,8vw,110px) 0}.rk-sec .wrap{max-width:1360px}
-.rk-lead{max-width:760px;font-size:clamp(1rem,1.5vw,1.2rem);line-height:1.65;color:#d6d6d6;margin:18px 0 40px}
-.rk-cfgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
-.rk-cfg{background:#000;display:flex;flex-direction:column}
-.rk-cfg .rk-view{aspect-ratio:3/2}
-.rk-cfg-body{padding:clamp(18px,2.4vw,32px)}
-.rk-tag{display:inline-block;font:500 .62rem/1 'Unbounded',sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--o);margin-bottom:12px}
-.rk-cfg h3{font-size:clamp(1.1rem,1.8vw,1.5rem);margin:0 0 12px}
-.rk-cfg p{color:#c9c9c9;line-height:1.6;margin:0}
-.rk-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:22px 0}
-.rk-stats div{background:#000;padding:16px 14px}
-.rk-stats b{display:block;font:700 clamp(1.05rem,1.7vw,1.5rem)/1.1 'Unbounded',sans-serif;color:var(--y)}
-.rk-stats span{display:block;margin-top:6px;font-size:.72rem;color:var(--mute)}
-.rk-dl{margin:0}.rk-dl div{display:flex;justify-content:space-between;gap:16px;padding:.75em 0;border-bottom:1px solid var(--line);font-size:.92rem}
-.rk-dl dt{color:var(--mute)}.rk-dl dd{margin:0;text-align:right}
-.rk-note{margin-top:22px;font-size:.78rem;color:var(--mute);line-height:1.55;max-width:760px}
-@media(max-width:820px){.rk-cfgs{grid-template-columns:1fr!important}.rk-stats[style]{grid-template-columns:repeat(2,1fr)!important}.rk-hero .rk-view,.rk-view.hero{aspect-ratio:4/3}.rk-hint{display:none}}
+.bot-hero.rk{flex-direction:column;justify-content:center;height:auto;min-height:100svh;padding-left:4vw;padding-right:4vw}
+.rk-view{position:relative;width:min(1280px,100%);margin:10px auto 0;aspect-ratio:1360/520;cursor:grab}
+.rk-view canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.rk-ui{position:absolute;left:0;bottom:0;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
+.rk-ui button{font:500 .62rem/1 'Unbounded',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.5);border:1px solid var(--line);padding:.9em 1.1em;cursor:pointer}
+.rk-ui button:hover,.rk-ui button.on{border-color:#ffd111;color:#ffd111}
+.rk-p{color:#d6d6d6;line-height:1.7;font-size:1.05rem;margin:0 0 28px;max-width:640px}
+@media(max-width:820px){.rk-view{aspect-ratio:4/3}}
 </style>
 </head>
 <body>
@@ -49,65 +29,20 @@
 
 <main id="main">
 <div class="bot-hero rk">
-<div class="bot-title"><h1>Optimism-1</h1><div class="rk-status"><i></i>В разработке</div></div>
+<div class="bot-title"><h1>Optimism-1</h1></div>
+<div class="rk-view" role="img" aria-label="Интерактивная 3D-модель ракеты Optimism-1"></div>
 </div>
-<div class="rk-hero"><div class="rk-view hero" data-model="heavy"></div></div>
-
-<section class="rk-sec"><div class="wrap">
-<h2 class="rv">Первый шаг НИИ в ракетостроении</h2>
-<p class="rk-lead rv">Это должен быть первый опыт НИИ в ракетостроении. Ракета Optimism-1 будет иметь две конфигурации. Обе модели можно покрутить, включить двигатель и посмотреть внутреннюю компоновку в разрезе.</p>
-<div class="rk-cfgs">
-
-<article class="rk-cfg rv">
-<div class="rk-view" data-model="lite"></div>
-<div class="rk-cfg-body">
-<span class="rk-tag">Конфигурация 1 · первая версия</span>
-<h3>Optimism-1 · двигатель РД1-100-7М</h3>
-<p>Первая версия ракеты: компактный корпус и недорогой серийный двигатель. Её задача: отработать конструкцию, оперение и систему спасения.</p>
-<div class="rk-stats"><div><b>50 Н</b><span>средняя тяга</span></div><div><b>92–100 Н·с</b><span>суммарный импульс</span></div><div><b>2 с</b><span>время работы</span></div></div>
-<dl class="rk-dl">
-<div><dt>Максимальная тяга</dt><dd>120 Н</dd></div>
-<div><dt>Диаметр двигателя</dt><dd>29 мм</dd></div>
-<div><dt>Длина двигателя</dt><dd>220 мм</dd></div>
-<div><dt>Масса двигателя</dt><dd>180 г</dd></div>
-<div><dt>Замедлитель (до вышибного заряда)</dt><dd>7 с</dd></div>
-</dl>
-</div>
-</article>
-
-<article class="rk-cfg rv">
-<div class="rk-view" data-model="heavy"></div>
-<div class="rk-cfg-body">
-<span class="rk-tag">Конфигурация 2 · большая версия</span>
-<h3>Optimism-1 · двигатель РД1-300-7М</h3>
-<p>Будущая большая конфигурация: корпус крупнее, тяга выше. Возможно, получит бортовую камеру.</p>
-<div class="rk-stats"><div><b>~250 Н</b><span>средняя тяга</span></div><div><b>280–300 Н·с</b><span>суммарный импульс</span></div><div><b>≈1,2 с</b><span>время работы (расчёт)</span></div></div>
-<dl class="rk-dl">
-<div><dt>Максимальная тяга</dt><dd>330 Н</dd></div>
-<div><dt>Диаметр двигателя</dt><dd>37 мм</dd></div>
-<div><dt>Длина двигателя</dt><dd>300 мм</dd></div>
-<div><dt>Масса двигателя</dt><dd>430–440 г</dd></div>
-<div><dt>Замедлитель (до вышибного заряда)</dt><dd>7 с</dd></div>
-</dl>
-</div>
-</article>
-
-</div>
-<p class="rk-note rv">Характеристики двигателей приведены по данным производителя (Real Rockets) и могут отличаться у конкретных партий. Время работы РД1-300-7М получено делением импульса на среднюю тягу. Проект в разработке: параметры будут уточняться по результатам расчётов и стендовых испытаний.</p>
+<section><div class="wrap cols">
+<div class="sticky"><h2 class="rv">Optimism-1</h2></div>
+<div class="rv"><p class="rk-p">Это должен быть первый опыт НИИ в ракетостроении. Ракета получит двигатель РД1-100-7М-7. Если всё пройдёт штатно, появится большая конфигурация, возможно с бортовой камерой, на двигателе РД1-300-7М.</p><div class="specs"><div><span><span>Статус</span></span><span>В разработке</span></div><div><span><span>Двигатель</span></span><span>РД1-100-7М-7</span></div><div><span><span>Длина</span></span><span>69 см</span></div><div><span><span>Диаметр</span></span><span>3,3 см</span></div><div><span><span>Масса</span></span><span>349 г с двигателем</span></div><div><span><span>Апогей</span></span><span>992 м (расчёт)</span></div><div><span><span>Макс. скорость</span></span><span>294 м/с (М 0,865)</span></div><div><span><span>Ускорение</span></span><span>до 345 м/с²</span></div><div><span><span>Устойчивость</span></span><span>1,92 калибра</span></div></div></div>
 </div></section>
-
-<section class="rk-sec"><div class="wrap">
-<h2 class="rv">Расчётные параметры</h2>
-<p class="rk-lead rv">Симуляция в OpenRocket для первой конфигурации: двигатель РД1-100-7М-7, стабильность 1,92 калибра при М=0,3.</p>
-<div class="rk-stats rv" style="grid-template-columns:repeat(4,1fr)"><div><b>992 м</b><span>апогей</span></div><div><b>294 м/с</b><span>макс. скорость (М 0,865)</span></div><div><b>345 м/с²</b><span>макс. ускорение</span></div><div><b>1,92 кал</b><span>запас устойчивости</span></div></div>
-<div class="rk-cfgs rv" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)">
-<div class="rk-cfg" style="background:#fff;justify-content:center"><img src="img/rocket/openrocket.png" alt="Rocket5 в OpenRocket: ЦТ 48,1 см, ЦД 54,5 см" loading="lazy" style="width:100%;display:block"></div>
-<div class="rk-cfg"><div class="rk-cfg-body"><dl class="rk-dl">
-<div><dt>Длина</dt><dd>69 см</dd></div><div><dt>Максимальный диаметр</dt><dd>3,3 см</dd></div>
-<div><dt>Масса без двигателя</dt><dd>149 г</dd></div><div><dt>Масса с двигателем</dt><dd>349 г</dd></div>
-<div><dt>Центр тяжести (от носа)</dt><dd>48,1 см</dd></div><div><dt>Центр давления (от носа)</dt><dd>54,5 см</dd></div>
-</dl></div></div></div>
-<p class="rk-note rv">Значения расчётные и уточнятся после сборки и взвешивания.</p>
+<section><div class="wrap cols">
+<div class="sticky"><h2 class="rv">РД1-100-7М</h2></div>
+<div class="rv"><p class="rk-p">Конфигурация 1, первая версия. Недорогой серийный двигатель с вышибным зарядом. На нём отработаем конструкцию, оперение и систему спасения.</p><div class="specs"><div><span><span>Средняя тяга</span></span><span>50 Н</span></div><div><span><span>Макс. тяга</span></span><span>120 Н</span></div><div><span><span>Импульс</span></span><span>92–100 Н·с</span></div><div><span><span>Время работы</span></span><span>2 с</span></div><div><span><span>Размеры</span></span><span>Ø29 × 220 мм</span></div><div><span><span>Масса</span></span><span>180 г</span></div><div><span><span>Задержка</span></span><span>7 с</span></div></div></div>
+</div></section>
+<section><div class="wrap cols">
+<div class="sticky"><h2 class="rv">РД1-300-7М</h2></div>
+<div class="rv"><p class="rk-p">Конфигурация 2, большая версия. Самый мощный двигатель серии для моделей ракет. Под него нужен корпус крупнее, и в нём найдётся место для бортовой камеры.</p><div class="specs"><div><span><span>Средняя тяга</span></span><span>250 Н</span></div><div><span><span>Макс. тяга</span></span><span>330 Н</span></div><div><span><span>Импульс</span></span><span>280–300 Н·с</span></div><div><span><span>Время работы</span></span><span>≈1,2 с (расчёт)</span></div><div><span><span>Размеры</span></span><span>Ø37 × 300 мм</span></div><div><span><span>Масса</span></span><span>430–440 г</span></div><div><span><span>Задержка</span></span><span>7 с</span></div></div></div>
 </div></section>
 </main>
 <footer>
