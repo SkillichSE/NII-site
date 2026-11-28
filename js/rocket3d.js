@@ -1,4 +1,4 @@
-/* Optimism: интерактивная 3D-модель (three.js). Вращение мышью/пальцем; без зума, без кнопок, страница скроллится свободно. */
+/* Optimism: интерактивная 3D-модель (three.js); на корпусе крупно НИИ, мелко OPTIMISM. Вращение мышью/пальцем; без зума, без кнопок, страница скроллится свободно. */
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
@@ -194,7 +194,8 @@ void main(){
 
 
   /* ---------- надпись OPTIMISM на корпусе (из логотипа SVG), с двух сторон ---------- */
-  const LOGO_SVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-234 4 760 132" width="2048" height="356" fill="none" stroke-width="7" stroke-linecap="butt">'
+  const LOGO_SVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 760 132" width="2048" height="356" fill="none" stroke-width="7" stroke-linecap="butt">'
+    + '<g transform="translate(469.75,31) scale(0.5)">'
     + '<g transform="translate(40,40)" stroke="#0b0b0b"><ellipse cx="28" cy="30" rx="28" ry="30"/></g>'
     + '<g transform="translate(127,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M0 63.5V0H28A15 15 0 0 1 28 30H0"/></g>'
     + '<g transform="translate(190,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M0 0H44M22 0V63.5"/></g>'
@@ -203,7 +204,8 @@ void main(){
     + '<g transform="translate(369,40)" stroke="#0b0b0b"><path d="M0 16V63.5"/><path d="M0 -3.5V5" stroke="#ff5a1f"/></g>'
     + '<g transform="translate(398,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M42 0H15A15 15 0 0 0 15 30H27A15 15 0 0 1 27 60H0"/></g>'
     + '<g transform="translate(469,40)" stroke="#0b0b0b" stroke-linejoin="bevel"><path d="M0 63.5V-3.5L24 34L48 -3.5V63.5"/></g>'
-    + '<g fill="#0b0b0b" stroke="none"><path d="M-230.50 69.12L-230.50 132.88L-206.00 132.88L-205.75 94.38L-176.75 132.88L-150.25 132.88L-150.25 69.12L-174.75 69.12L-175.00 107.62L-204.00 69.12Z"/><path d="M-120.00 69.12L-120.00 132.88L-94.75 132.88L-94.75 69.12Z"/><path d="M-42.50 5.62L-66.50 12.88L-47.25 74.62L-23.25 67.12Z"/><rect x="-5.40" y="-24.79" width="10.81" height="49.57" rx="2.16" transform="translate(-40.56 110.11) rotate(-17.50)"/><rect x="-5.39" y="-18.07" width="10.79" height="36.14" rx="2.16" transform="translate(-26.43 98.62) rotate(-17.49)"/><rect x="-5.39" y="-12.41" width="10.77" height="24.82" rx="2.15" transform="translate(-12.01 88.13) rotate(-17.59)"/></g></svg>';
+    + '</g>'
+    + '<g transform="translate(499,-136.24) scale(2)" fill="#0b0b0b" stroke="none"><path d="M-230.50 69.12L-230.50 132.88L-206.00 132.88L-205.75 94.38L-176.75 132.88L-150.25 132.88L-150.25 69.12L-174.75 69.12L-175.00 107.62L-204.00 69.12Z"/><path d="M-120.00 69.12L-120.00 132.88L-94.75 132.88L-94.75 69.12Z"/><path d="M-42.50 5.62L-66.50 12.88L-47.25 74.62L-23.25 67.12Z"/><rect x="-5.40" y="-24.79" width="10.81" height="49.57" rx="2.16" transform="translate(-40.56 110.11) rotate(-17.50)"/><rect x="-5.39" y="-18.07" width="10.79" height="36.14" rx="2.16" transform="translate(-26.43 98.62) rotate(-17.49)"/><rect x="-5.39" y="-12.41" width="10.77" height="24.82" rx="2.15" transform="translate(-12.01 88.13) rotate(-17.59)"/></g></svg>';
   function addLogo() {
     const bb = new THREE.Box3();
     rocket.traverse((m) => { if (m.isMesh && m.userData.k === 'body') bb.union(new THREE.Box3().setFromObject(m)); });
