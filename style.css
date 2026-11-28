@@ -489,3 +489,8 @@ nav.hw-jump a{flex:1;justify-content:center;padding:12px 10px}}
 @media (hover:hover){.rk-cut:hover{border-color:var(--y)}}
 .rk-legend{position:relative;z-index:5;list-style:none;margin:12px auto 0;padding:0 4vw;display:none;flex-wrap:wrap;justify-content:center;gap:6px 18px;color:#d6d6d6;font-size:.78rem}
 .rk-legend.on{display:flex}.rk-legend li{display:flex;align-items:center;gap:7px}.rk-legend i{width:9px;height:9px;border-radius:50%;flex:none}
+
+/* rocket: цитата-вступление под 3D-моделью */
+.rk-quote{position:relative;margin:0 0 clamp(48px,8vw,90px);padding:clamp(18px,3vw,34px) clamp(20px,4vw,48px);max-width:920px;border-left:2px solid var(--y);background:linear-gradient(90deg,rgba(255,209,17,.09),rgba(255,209,17,0) 75%)}
+.rk-quote::before{content:"";position:absolute;left:-6px;top:-1px;width:11px;height:11px;background:var(--y)}
+.rk-quote p{margin:0;font-family:'Unbounded',sans-serif;font-weight:300;font-size:clamp(1.2rem,2.8vw,2.1rem);line-height:1.45;letter-spacing:.01em;color:#fff}
