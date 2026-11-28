@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;700&family=Manrope:wght@300;400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=7">
+<link rel="stylesheet" href="style.css?v=8">
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.1/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.1/examples/jsm/"}}</script>
 </head>
 <body>
@@ -27,11 +27,13 @@
 <div class="bot-hero rk">
 <div class="bot-title"><h1>Optimism</h1></div>
 <div class="rk-view" role="img" aria-label="Optimism 3D"></div>
+<button type="button" class="rk-cut" aria-pressed="false"><span class="c-on" data-i18n="rk_cut">Показать в разрезе</span><span class="c-off" data-i18n="rk_cut_off">Показать целиком</span></button>
+<ul class="rk-legend" aria-hidden="true"><li><i style="background:#6b6f78"></i><span data-i18n="rk_lg_weight"></span></li><li><i style="background:#ff5a1f"></i><span data-i18n="rk_lg_chute"></span></li><li><i style="background:#ffd111"></i><span data-i18n="rk_lg_cord"></span></li><li><i style="background:#d8c9a6"></i><span data-i18n="rk_lg_wad"></span></li><li><i style="background:#9aa0aa"></i><span data-i18n="rk_lg_motor"></span></li><li><i style="background:#8a6240"></i><span data-i18n="rk_lg_ring"></span></li></ul>
 </div>
 <section><div class="wrap">
 <div class="cols"><div class="sticky"><h2 class="rv">Optimism</h2></div><div class="specs rv"><div><span><span data-i18n="status_label">Статус</span></span><span data-i18n="status_dev">В разработке</span></div><div><span><span data-i18n="rk_engine"></span></span><span data-i18n="rk_mot1s">РД1-100-7М-7</span></div><div><span><span data-i18n="rk_len"></span></span><span data-i18n="rk_len_v"></span></div><div><span><span data-i18n="rk_dia"></span></span><span data-i18n="rk_dia_v"></span></div><div><span><span data-i18n="rk_mass"></span></span><span data-i18n="rk_mass_v"></span></div><div><span><span data-i18n="rk_apo"></span></span><span data-i18n="rk_apo_v"></span></div><div><span><span data-i18n="rk_vmax"></span></span><span data-i18n="rk_vmax_v"></span></div><div><span><span data-i18n="rk_acc"></span></span><span data-i18n="rk_acc_v"></span></div><div><span><span data-i18n="rk_stab"></span></span><span data-i18n="rk_stab_v"></span></div></div></div>
 <p class="rk-p rv rk-lead" data-i18n="rk_intro"></p>
-<div class="hw-eng"><div class="rv"><h3><span data-i18n="rk_mot1">РД1-100-7М</span> <small data-i18n="rk_cfg1"></small></h3><p class="rk-p" data-i18n="rk_e1"></p><div class="specs"><div><span><span data-i18n="rk_thr_avg"></span></span><span data-i18n="rk_v50"></span></div><div><span><span data-i18n="rk_thr_max"></span></span><span data-i18n="rk_v120"></span></div><div><span><span data-i18n="rk_imp"></span></span><span data-i18n="rk_vi1"></span></div><div><span><span data-i18n="rk_burn"></span></span><span data-i18n="rk_v2s"></span></div><div><span><span data-i18n="rk_size"></span></span><span data-i18n="rk_sz1"></span></div><div><span><span data-i18n="rk_m"></span></span><span data-i18n="rk_m1"></span></div><div><span><span data-i18n="rk_delay"></span></span><span data-i18n="rk_v7s"></span></div></div></div><div class="rv"><h3><span data-i18n="rk_mot2">РД1-300-7М</span> <small data-i18n="rk_cfg2"></small></h3><p class="rk-p" data-i18n="rk_e2"></p><div class="specs"><div><span><span data-i18n="rk_thr_avg"></span></span><span data-i18n="rk_v250"></span></div><div><span><span data-i18n="rk_thr_max"></span></span><span data-i18n="rk_v330"></span></div><div><span><span data-i18n="rk_imp"></span></span><span data-i18n="rk_vi2"></span></div><div><span><span data-i18n="rk_burn"></span></span><span data-i18n="rk_burn2"></span></div><div><span><span data-i18n="rk_size"></span></span><span data-i18n="rk_sz2"></span></div><div><span><span data-i18n="rk_m"></span></span><span data-i18n="rk_m2"></span></div><div><span><span data-i18n="rk_delay"></span></span><span data-i18n="rk_v7s"></span></div></div></div></div>
+<div class="hw-eng"><div class="rv"><h3><span data-i18n="rk_mot1">РД1-100-7М</span></h3><p class="rk-p" data-i18n="rk_e1"></p><div class="specs"><div><span><span data-i18n="rk_thr_avg"></span></span><span data-i18n="rk_v50"></span></div><div><span><span data-i18n="rk_thr_max"></span></span><span data-i18n="rk_v120"></span></div><div><span><span data-i18n="rk_imp"></span></span><span data-i18n="rk_vi1"></span></div><div><span><span data-i18n="rk_burn"></span></span><span data-i18n="rk_v2s"></span></div><div><span><span data-i18n="rk_size"></span></span><span data-i18n="rk_sz1"></span></div><div><span><span data-i18n="rk_m"></span></span><span data-i18n="rk_m1"></span></div><div><span><span data-i18n="rk_delay"></span></span><span data-i18n="rk_v7s"></span></div></div></div></div>
 </div></section>
 </main>
 <footer>
@@ -41,6 +43,6 @@
 <script>(function(){var v=document.querySelector('.rk-view');function f(){if(!v||window.__rk||v.querySelector('img'))return;var i=new Image();i.alt='Optimism';i.src='https://iu2f0tisnnlzwr3w.public.blob.vercel-storage.com/img/rocket/rocket.gif';i.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:contain';v.appendChild(i)}window.__rkFail=f;setTimeout(f,8000)})()</script>
 <script src="i18n.js"></script>
 <script src="app.js"></script>
-<script type="module" src="js/rocket3d.js?v=10"></script>
+<script type="module" src="js/rocket3d.js?v=15"></script>
 </body>
 </html>

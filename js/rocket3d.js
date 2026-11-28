@@ -15,7 +15,7 @@ function init(el) {
   setAria(); document.addEventListener('langchange', setAria);
 
   const R = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  R.setPixelRatio(Math.min(devicePixelRatio, 2));
+  R.setPixelRatio(Math.min(devicePixelRatio, 2)); R.localClippingEnabled = true;
   R.toneMapping = THREE.ACESFilmicToneMapping; R.outputColorSpace = THREE.SRGBColorSpace;
   el.appendChild(R.domElement);
   const scene = new THREE.Scene();
@@ -35,10 +35,24 @@ function init(el) {
   const glow = new THREE.PointLight(0xff7a2a, 0, 18, 2); scene.add(glow);
 
   const std = (c, r, m) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m, side: THREE.DoubleSide });
-  const white = (r = 0.3, m = 0.05) => std(0xf4f5f7, r, m);   // вся ракета белая
-  const mats = { nose: white(0.3), fin: white(0.35), motor: white(0.35, 0.15), body: white(0.3), ring: white(0.6, 0), chute: white(0.8, 0), cord: white(0.6, 0), inner: white(0.6, 0.1) };
-  const pick = (n) => /nose/.test(n) ? 'nose' : /rd1/.test(n) ? 'motor' : /airframe|body/.test(n) ? 'body'
-    : /fin/.test(n) ? 'fin' : /centering|motor block/.test(n) ? 'ring' : /parachute/.test(n) ? 'chute' : /shock/.test(n) ? 'cord' : 'inner';
+  const WHITE = 0xf4f5f7, white = (r = 0.3, m = 0.05) => std(WHITE, r, m);   // снаружи вся ракета белая
+  const mats = { nose: white(0.3), fin: white(0.35), motor: white(0.35, 0.15), body: white(0.3), ring: white(0.6, 0), chute: white(0.8, 0), cord: white(0.6, 0), inner: white(0.6, 0.1), weight: white(0.4, 0.1), wad: white(0.9, 0) };
+  const TINT = { motor: [0x9aa0aa, 0.35, 0.85], ring: [0x8a6240, 0.7, 0], chute: [0xff5a1f, 0.8, 0], cord: [0xffd111, 0.6, 0], inner: [0x555a63, 0.6, 0.5], weight: [0x6b6f78, 0.4, 0.8], wad: [0xd8c9a6, 0.9, 0] };
+  const pick = (n) => /weight/.test(n) ? 'weight' : /nose/.test(n) ? 'nose' : /rd1/.test(n) ? 'motor' : /airframe|body/.test(n) ? 'body'
+    : /fin/.test(n) ? 'fin' : /centering|motor block/.test(n) ? 'ring' : /parachute/.test(n) ? 'chute' : /shock/.test(n) ? 'cord' : /wadding|flame/.test(n) ? 'wad' : 'inner';
+
+  /* ---------- разрез: плоскость через ось, всегда отсекает половину, обращённую к камере ---------- */
+  const clip = new THREE.Plane(new THREE.Vector3(0, 0, -1), 1);
+  Object.values(mats).forEach((m) => { m.clippingPlanes = [clip]; });
+  let secOn = false, secD = 1, tinted = false, logoMat = null;
+  const BASE = {}; for (const k in TINT) BASE[k] = [mats[k].roughness, mats[k].metalness];
+  const tint = (on) => { tinted = on; for (const k in TINT) { const m = mats[k], v = TINT[k]; m.color.setHex(on ? v[0] : WHITE); m.roughness = on ? v[1] : BASE[k][0]; m.metalness = on ? v[2] : BASE[k][1]; } };
+  const cutBtn = document.querySelector('.rk-cut'), legend = document.querySelector('.rk-legend');
+  if (cutBtn) cutBtn.addEventListener('click', () => {
+    secOn = !secOn; cutBtn.setAttribute('aria-pressed', secOn);
+    if (legend) legend.classList.toggle('on', secOn);
+    if (secOn) tint(true);
+  });
 
   const rocket = new THREE.Group(); scene.add(rocket);
   const FX = new THREE.Group(); scene.add(FX);       // весь огонь: плюм, ядро, свечение, дым, искры
@@ -180,7 +194,7 @@ void main(){
 
 
   /* ---------- надпись OPTIMISM на корпусе (из логотипа SVG), с двух сторон ---------- */
-  const LOGO_SVG = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="34.5 34.5 488 71" width="2048" height="298" fill="none" stroke-width="7" stroke-linecap="butt">'
+  const LOGO_SVG = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-234 4 760 132" width="2048" height="356" fill="none" stroke-width="7" stroke-linecap="butt">'
     + '<g transform="translate(40,40)" stroke="#0b0b0b"><ellipse cx="28" cy="30" rx="28" ry="30"/></g>'
     + '<g transform="translate(127,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M0 63.5V0H28A15 15 0 0 1 28 30H0"/></g>'
     + '<g transform="translate(190,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M0 0H44M22 0V63.5"/></g>'
@@ -188,7 +202,8 @@ void main(){
     + '<g transform="translate(289,40)" stroke="#0b0b0b" stroke-linejoin="bevel"><path d="M0 63.5V-3.5L24 34L48 -3.5V63.5"/></g>'
     + '<g transform="translate(369,40)" stroke="#0b0b0b"><path d="M0 16V63.5"/><path d="M0 -3.5V5" stroke="#ff5a1f"/></g>'
     + '<g transform="translate(398,40)" stroke="#0b0b0b" stroke-linejoin="miter"><path d="M42 0H15A15 15 0 0 0 15 30H27A15 15 0 0 1 27 60H0"/></g>'
-    + '<g transform="translate(469,40)" stroke="#0b0b0b" stroke-linejoin="bevel"><path d="M0 63.5V-3.5L24 34L48 -3.5V63.5"/></g></svg>';
+    + '<g transform="translate(469,40)" stroke="#0b0b0b" stroke-linejoin="bevel"><path d="M0 63.5V-3.5L24 34L48 -3.5V63.5"/></g>'
+    + '<g fill="#0b0b0b" stroke="none"><path d="M-230.50 69.12L-230.50 132.88L-206.00 132.88L-205.75 94.38L-176.75 132.88L-150.25 132.88L-150.25 69.12L-174.75 69.12L-175.00 107.62L-204.00 69.12Z"/><path d="M-120.00 69.12L-120.00 132.88L-94.75 132.88L-94.75 69.12Z"/><path d="M-42.50 5.62L-66.50 12.88L-47.25 74.62L-23.25 67.12Z"/><rect x="-5.40" y="-24.79" width="10.81" height="49.57" rx="2.16" transform="translate(-40.56 110.11) rotate(-17.50)"/><rect x="-5.39" y="-18.07" width="10.79" height="36.14" rx="2.16" transform="translate(-26.43 98.62) rotate(-17.49)"/><rect x="-5.39" y="-12.41" width="10.77" height="24.82" rx="2.15" transform="translate(-12.01 88.13) rotate(-17.59)"/></g></svg>';
   function addLogo() {
     const bb = new THREE.Box3();
     rocket.traverse((m) => { if (m.isMesh && m.userData.k === 'body') bb.union(new THREE.Box3().setFromObject(m)); });
@@ -198,13 +213,13 @@ void main(){
     const xc = finEnd + (bb.max.x - finEnd) / 2 - 0.1;
     const img = new Image();
     img.onload = () => {
-      const cv = document.createElement('canvas'); cv.width = 2048; cv.height = 298;
-      cv.getContext('2d').drawImage(img, 0, 0, 2048, 298);
+      const cv = document.createElement('canvas'); cv.width = 2048; cv.height = 356;
+      cv.getContext('2d').drawImage(img, 0, 0, 2048, 356);
       const tex = new THREE.CanvasTexture(cv);
       tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = R.capabilities.getMaxAnisotropy(); tex.needsUpdate = true;
-      const mat = new THREE.MeshStandardMaterial({ map: tex, transparent: true, roughness: 0.3, metalness: 0.05,
+      const mat = logoMat = new THREE.MeshStandardMaterial({ map: tex, transparent: true, clippingPlanes: [clip], roughness: 0.3, metalness: 0.05,
         side: THREE.DoubleSide, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
-      const Hh = 1.25 * r, Lg = Hh * 488 / 71, NV = 40;
+      const Hh = 1.25 * r * 132 / 71, Lg = Hh * 760 / 132, NV = 72;
       for (const s of [1, -1]) {                                       // +z и -z: читается слева направо с обеих сторон
         const pos = [], uv = [], idx = [];
         for (let i = 0; i <= 1; i++) for (let j = 0; j <= NV; j++) {
@@ -292,6 +307,12 @@ void main(){
         } else { P.setXYZ(i * 2, 0, -999, 0); P.setXYZ(i * 2 + 1, 0, -999, 0); }
       } P.needsUpdate = true; C.needsUpdate = true;
     } catch (e) { console.error('rocket fx loop', e); ready = false; parts.grp && (FX.visible = false); }
+    secD += ((secOn ? 0 : 1) - secD) * Math.min(dt * 4, 1);
+    if (!secOn && secD > 0.985) { secD = 1; if (tinted) tint(false); }
+    let ny = cam.position.y, nz = cam.position.z; const nl = Math.hypot(ny, nz);
+    if (nl < 1e-3) { ny = 0; nz = 1; } else { ny /= nl; nz /= nl; }
+    clip.normal.set(0, -ny, -nz); clip.constant = secD;
+    if (logoMat) logoMat.opacity = Math.max(0, (secD - 0.6) / 0.4);
     ctl.update(); fit(dt); R.render(scene, cam); window.__rk = 1;
   })();
 }
