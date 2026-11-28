@@ -35,13 +35,10 @@ function init(el) {
   const glow = new THREE.PointLight(0xff7a2a, 0, 18, 2); scene.add(glow);
 
   const std = (c, r, m) => new THREE.MeshStandardMaterial({ color: c, roughness: r, metalness: m, side: THREE.DoubleSide });
-  const mats = {
-    nose: std(0x15161a, 0.3, 0.2), fin: std(0x0b0c0f, 0.45, 0.3), motor: std(0x9aa0aa, 0.35, 0.85),
-    body: std(0xe9ebef, 0.3, 0.05), ring: std(0x8a6240, 0.7, 0),
-    chute: std(0xff5a1f, 0.8, 0), cord: std(0xffd111, 0.6, 0), inner: std(0x555a63, 0.6, 0.5),
-  };
-  const pick = (n) => /nose/.test(n) ? 'nose' : /rd1/.test(n) ? 'motor' : /inner/.test(n) ? 'inner' : /body/.test(n) ? 'body'
-    : /fin/.test(n) ? 'fin' : /centering/.test(n) ? 'ring' : /parachute/.test(n) ? 'chute' : /shock/.test(n) ? 'cord' : 'inner';
+  const white = (r = 0.3, m = 0.05) => std(0xf4f5f7, r, m);   // вся ракета белая
+  const mats = { nose: white(0.3), fin: white(0.35), motor: white(0.35, 0.15), body: white(0.3), ring: white(0.6, 0), chute: white(0.8, 0), cord: white(0.6, 0), inner: white(0.6, 0.1) };
+  const pick = (n) => /nose/.test(n) ? 'nose' : /rd1/.test(n) ? 'motor' : /airframe|body/.test(n) ? 'body'
+    : /fin/.test(n) ? 'fin' : /centering|motor block/.test(n) ? 'ring' : /parachute/.test(n) ? 'chute' : /shock/.test(n) ? 'cord' : 'inner';
 
   const rocket = new THREE.Group(); scene.add(rocket);
   const FX = new THREE.Group(); scene.add(FX);       // весь огонь: плюм, ядро, свечение, дым, искры
@@ -207,7 +204,7 @@ void main(){
       tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = R.capabilities.getMaxAnisotropy(); tex.needsUpdate = true;
       const mat = new THREE.MeshStandardMaterial({ map: tex, transparent: true, roughness: 0.3, metalness: 0.05,
         side: THREE.DoubleSide, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 });
-      const Hh = 0.3, Lg = Hh * 488 / 71, NV = 40;
+      const Hh = 1.25 * r, Lg = Hh * 488 / 71, NV = 40;
       for (const s of [1, -1]) {                                       // +z и -z: читается слева направо с обеих сторон
         const pos = [], uv = [], idx = [];
         for (let i = 0; i <= 1; i++) for (let j = 0; j <= NV; j++) {
@@ -225,7 +222,7 @@ void main(){
     img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(LOGO_SVG);
   }
 
-  new OBJLoader().load('models/rocket.obj', (obj) => {
+  new OBJLoader().load('models/hialt-29.obj?v=1', (obj) => {
     obj.traverse((m) => {
       if (!m.isMesh) return;
       const k = pick(m.name.toLowerCase());
@@ -244,7 +241,7 @@ void main(){
     tailX = new THREE.Box3().setFromObject(rocket).min.x;
     try { buildFX(); makeFitPts(); ready = true; } catch (e) { console.error('rocket fx', e); }
     resize();
-  }, undefined, (e) => console.error('rocket.obj', e));
+  }, undefined, (e) => console.error('hialt-29.obj', e));
 
 
   let vis = true, t0 = performance.now() / 1000;
